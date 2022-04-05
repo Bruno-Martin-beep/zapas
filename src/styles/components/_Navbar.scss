@@ -1,0 +1,52 @@
+.navbar {
+  position: absolute;
+  z-index: 10;
+  mix-blend-mode: difference;
+}
+
+.logo {
+  top: 0%;
+  left: 0%;
+  color: #ffffff;
+  opacity: 0%;
+  visibility: hidden;
+  transition: opacity 200ms ease-in-out;
+  user-select: none;
+  cursor: pointer;
+}
+
+.logo.visible {
+  opacity: 100%;
+  visibility: visible;
+}
+
+.beta {
+  bottom: 0%;
+  left: 0%;
+  color: #ffffff;
+}
+
+.background {
+  position: absolute;
+  top: 25px;
+  right: 15%;
+  width: 50px;
+  height: 50px;
+  z-index: 10;
+}
+
+.background-selected{
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  user-select: none;
+  cursor: pointer;
+}
+
+.bag-info {
+  top: 0%;
+  right: 0%;
+  color: #ffffff;
+  user-select: none;
+  cursor: pointer;
+}

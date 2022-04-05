@@ -1,0 +1,28 @@
+html,
+body {
+  background: #a7c7e7;
+  overflow: hidden;
+}
+
+h2 {
+  font-size: 2rem;
+  margin: 25px;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  color: hsl(0, 0%, 10%);
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin: 15px;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  color: hsl(0, 0%, 10%);
+}
+
+p {
+  font-size: 1.2rem;
+  font-family: "Montserrat", sans-serif;
+  color: hsl(0, 0%, 10%);
+}

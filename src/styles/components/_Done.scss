@@ -1,0 +1,30 @@
+.controls {
+  position: absolute;
+  bottom: 0%;
+  right: 25%;
+  margin: 25px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+}
+
+.controls.visible {
+  visibility: visible;
+  opacity: 100%;
+}
+
+.controls > * + * {
+  margin-top: 25px;
+}
+
+.done {
+  padding: 15px 30px;
+  border-radius: 50px;
+  font-size: 2rem;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  background-color: hsl(0, 0%, 10%);
+  color: hsl(0, 0%, 95%);
+  user-select: none;
+  cursor: pointer;
+}

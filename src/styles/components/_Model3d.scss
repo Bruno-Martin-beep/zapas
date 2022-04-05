@@ -1,0 +1,34 @@
+.canvas {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  top: 0%;
+  left: 0%;
+  transition: left 400ms ease-in-out;
+  user-select: none;
+}
+
+.canvas.editing {
+  left: -12.5%;
+}
+
+.canvas-name {
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 25px;
+  font-size: 2rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  color: hsl(0, 0%, 95%);
+  opacity: 0%;
+  visibility: hidden;
+  transition: opacity 200ms ease-in-out;
+  user-select: none;
+}
+
+.canvas-name.visible {
+  opacity: 100%;
+  visibility: visible;
+}
