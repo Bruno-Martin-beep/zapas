@@ -15,20 +15,33 @@ const Navbar = ({ baseModel, currentModel }) => {
 
   useEffect(() => {
     document.body.style.backgroundColor = background;
-  }, [background])
+  }, [background]);
 
   const picker = useRef(null);
-  
+
   useEffect(() => {
     function handleOutsideClick(event) {
       if (picker.current && !picker.current.contains(event.target)) {
-        setShowPicker(false)
+        setShowPicker(false);
       }
     }
 
     document.addEventListener("click", handleOutsideClick);
     return () => document.removeEventListener("click", handleOutsideClick);
-  }, [picker])
+  }, [picker]);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(background);
+  };
+
+  const handlePaste = () => {
+    const regex = new RegExp("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$");
+    navigator.clipboard.readText().then((clipText) => {
+      if (regex.test(clipText)) {
+        setBackground(clipText);
+      }
+    });
+  };
 
   const handleClick = () => {
     setActive((prev) => !prev);
@@ -47,11 +60,7 @@ const Navbar = ({ baseModel, currentModel }) => {
       >
         zapaz
       </h2>
-      <h2
-        className="navbar beta"
-      >
-        beta
-      </h2>
+      <h2 className="navbar beta">beta</h2>
       <h2
         className={classNames("navbar logo", { visible: currentModel.editing })}
         onClick={() => HandleBack()}
@@ -60,16 +69,39 @@ const Navbar = ({ baseModel, currentModel }) => {
       </h2>
       <div className="background" ref={picker}>
         <div
-          className="background-selected"
-          style={{ backgroundColor: background }}
-          onClick={() => setShowPicker(prev => !prev)}
-        />
-         <div className={classNames("color-picker", { visible: showPicker })} >
-            <HexColorPicker
-              color={background}
-              onChange={setBackground}
-            />
+          className="background-button"
+          onClick={() => setShowPicker((prev) => !prev)}
+        >
+          <div
+            className="background-selected"
+            style={{ backgroundColor: background }}
+          />
+          <div
+            className={classNames("background-arrow", { active: showPicker })}
+          >
+            {">"}
           </div>
+        </div>
+
+        <div
+          className={classNames("background-picker", { visible: showPicker })}
+        >
+          <HexColorPicker color={background} onChange={setBackground} />
+          <div className="background-controls">
+            <HexColorInput
+              color={background}
+              style={{ width: "75px" }}
+              onChange={setBackground}
+              prefixed
+            />
+            <p className="custom-color-copy" onClick={() => handleCopy()}>
+              Copy
+            </p>
+            <p className="custom-color-copy" onClick={() => handlePaste()}>
+              Paste
+            </p>
+          </div>
+        </div>
       </div>
       <h2 className="navbar bag-info" onClick={() => handleClick()}>
         bag {bag.length}

@@ -7,7 +7,7 @@
 .logo {
   top: 0%;
   left: 0%;
-  color: #ffffff;
+  color: hsl(0, 0%, 95%);
   opacity: 0%;
   visibility: hidden;
   transition: opacity 200ms ease-in-out;
@@ -23,16 +23,40 @@
 .beta {
   bottom: 0%;
   left: 0%;
-  color: #ffffff;
+  color: hsl(0, 0%, 95%);
 }
 
 .background {
   position: absolute;
   top: 25px;
   right: 15%;
-  width: 50px;
-  height: 50px;
+  width: 120px;
+  height: 60px;
   z-index: 10;
+}
+
+.background-button {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  padding: 5px;
+  border-radius: 50px;
+  background-color: hsl(0, 0%, 95%);
+}
+
+.background-arrow {
+  flex-grow: 1;
+  font-size: 2rem;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  color: hsl(0, 0%, 10%);
+  transform: rotate(90deg);
+  transition: transform 200ms ease-in-out;
+}
+
+.background-arrow.active {
+  transform: rotate(-90deg);
 }
 
 .background-selected{
@@ -43,10 +67,34 @@
   cursor: pointer;
 }
 
+.background-picker {
+  position: relative;
+  top: 5%;
+  width: 220px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: hsl(0, 0%, 95%);
+  box-shadow:  0px 0px 60px 30px #4d4d4d20;
+  visibility: hidden;
+}
+
+.background-picker > * + * {
+  margin-top: 10px;
+}
+
+.background-picker.visible {
+  visibility: visible;
+}
+
+.background-controls {
+  display: flex;
+  justify-content: space-around;
+}
+
 .bag-info {
   top: 0%;
   right: 0%;
-  color: #ffffff;
+  color: hsl(0, 0%, 95%);
   user-select: none;
   cursor: pointer;
 }
