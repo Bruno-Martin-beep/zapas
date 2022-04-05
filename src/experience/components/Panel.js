@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   selectCurrentShoe,
   editShoe,
+  editSize,
   changeCurrentMesh,
   changePrevMesh,
 } from "../features/modelsListSlice";
@@ -24,6 +25,8 @@ const colors = [
   "#000000",
 ];
 
+const sizes = [39, 40, 41, 42, 43, 44, 45, 46];
+
 const Panel = () => {
   const currentModel = useSelector(selectCurrentShoe);
   const dispatch = useDispatch();
@@ -35,25 +38,25 @@ const Panel = () => {
   useEffect(() => {
     function handleOutsideClick(event) {
       if (picker.current && !picker.current.contains(event.target)) {
-        setShowPicker(false)
+        setShowPicker(false);
       }
     }
 
     document.addEventListener("click", handleOutsideClick);
     return () => document.removeEventListener("click", handleOutsideClick);
-  }, [picker])
-  
+  }, [picker]);
+
   const handleCopy = () => {
     navigator.clipboard.writeText(currentModel.currentMesh.color);
   };
 
   const handlePaste = () => {
-    const regex =  new RegExp("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$");
+    const regex = new RegExp("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$");
     navigator.clipboard.readText().then((clipText) => {
-      if(regex.test(clipText)) {
-        handleColor(clipText)
+      if (regex.test(clipText)) {
+        handleColor(clipText);
       }
-    }); 
+    });
   };
 
   const handleColor = (color) => {
@@ -78,6 +81,10 @@ const Panel = () => {
     currentModel.currentMesh.index >= currentModel.meshes.length - 1
       ? dispatch(changeCurrentMesh(0))
       : dispatch(changeCurrentMesh(currentModel.currentMesh.index + 1));
+  };
+
+  const handleSize = (number) => {
+    dispatch(editSize(number));
   };
 
   return (
@@ -106,7 +113,7 @@ const Panel = () => {
             style={{ backgroundColor: currentModel.currentMesh.color }}
             onClick={() => setShowPicker((prev) => !prev)}
           />
-          <div className={classNames("color-picker", { visible: showPicker })} >
+          <div className={classNames("color-picker", { visible: showPicker })}>
             <HexColorPicker
               color={currentModel.currentMesh.color}
               onChange={handleColor}
@@ -144,6 +151,23 @@ const Panel = () => {
             />
           );
         })}
+      </div>
+
+      <div className="sizes">
+        <h2>sizes</h2>
+        <div className="sizes-numbers">
+          {sizes.map((elem, index) => {
+            return (
+              <h2
+                key={index}
+                onClick={() => handleSize(elem)}
+                className={classNames({ numberSelected: elem === currentModel.size })}
+              >
+                {elem}
+              </h2>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

@@ -39,6 +39,9 @@ export const modelsListSlice = createSlice({
       state.currentShoe.meshes[action.payload.index].color =
         action.payload.color;
     },
+    editSize: (state, action) => {
+      state.currentShoe.size = action.payload;
+    },
     toggleEditing: (state) => {
       state.currentShoe.editing = !state.currentShoe.editing;
     },
@@ -80,6 +83,7 @@ export const {
   removeShoe,
   addShoe,
   editShoe,
+  editSize,
   toggleEditing,
   changeCurrentMesh,
   changePrevMesh,

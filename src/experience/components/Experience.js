@@ -25,7 +25,7 @@ const Experience = () => {
 
     const loadShoe = {
       name: "super shoe",
-      size: 9,
+      size: 39,
       editing: false,
       meshes: [],
       index: nanoid(),

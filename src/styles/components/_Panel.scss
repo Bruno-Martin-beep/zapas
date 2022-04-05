@@ -1,4 +1,6 @@
 .panel {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   top: 0;
   right: -25%;
@@ -95,4 +97,24 @@
   border-radius: 50px;
   user-select: none;
   cursor: pointer;
+}
+
+.sizes {
+  display: flex;
+  width: 100%;
+  margin-top: auto;
+}
+
+.sizes-numbers {
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+  overflow-x: scroll;
+}
+
+.numberSelected {
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 15px;
+  background-color: rgb(188, 188, 188);
 }
