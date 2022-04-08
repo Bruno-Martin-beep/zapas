@@ -10,6 +10,8 @@ import Done from "./Done";
 
 const Experience = () => {
   const [baseModel, setBaseModel] = useState({});
+  const [renderer, setRenderer] = useState(null);
+  const [scene, setScene] = useState(null);
 
   const dispatch = useDispatch();
   const currentModel = useSelector(selectCurrentShoe);
@@ -19,14 +21,14 @@ const Experience = () => {
 
     const loadModel = {
       name: "super shoe",
-      price: 100,
       meshes: [],
     };
 
     const loadShoe = {
       name: "super shoe",
-      size: 39,
+      price: 100,
       editing: false,
+      size: 39,
       meshes: [],
       index: nanoid(),
     };
@@ -61,11 +63,11 @@ const Experience = () => {
 
   return (
     <>
-      {currentModel && <Navbar baseModel={baseModel} currentModel={currentModel} />}
-      {currentModel && <Model3d baseModel={baseModel} />}
+      {currentModel && <Navbar currentModel={currentModel} />}
+      {currentModel && <Model3d baseModel={baseModel} setRenderer={setRenderer} setScene={setScene} />}
       {currentModel && <Panel />}
       {currentModel && (
-        <Done baseModel={baseModel} currentModel={currentModel} />
+        <Done currentModel={currentModel}  renderer={renderer} scene={scene} />
       )}
     </>
   );

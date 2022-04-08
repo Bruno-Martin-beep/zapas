@@ -1,13 +1,22 @@
 import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 
 const Shoe = ({
   currentModel,
   baseModel,
   handleSelectedObject,
   handleEdit,
+  setRenderer,
+  setScene,
 }) => {
+  const { gl, scene } = useThree();
+
+  useEffect(() => {
+    setRenderer(gl);
+    setScene(scene);
+  }, [gl, scene, setRenderer, setScene]);
+
   const group = useRef();
 
   function hexToHSL(H) {
@@ -63,7 +72,7 @@ const Shoe = ({
   });
 
   return (
-    <group rotation-y={Math.PI} position={[0, 0.15, 0]} ref={group}>
+    <group position={[0, 0.15, 0]} ref={group}>
       {currentModel.meshes.map((elem, index) => {
         return (
           <mesh

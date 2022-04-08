@@ -7,9 +7,8 @@ import {
   addToList,
   removeShoe,
 } from "../features/modelsListSlice";
-import ShoeBag from "./ShoeBag";
 
-const Bag = ({ active, baseModel, handleClick }) => {
+const Bag = ({ active, handleClick }) => {
   const dispatch = useDispatch();
   const bag = useSelector(selectShoeList);
 
@@ -20,6 +19,7 @@ const Bag = ({ active, baseModel, handleClick }) => {
   };
 
   const handleRemove = (shoe) => {
+    sessionStorage.removeItem(shoe.index);
     dispatch(removeShoe(shoe));
   };
 
@@ -27,31 +27,46 @@ const Bag = ({ active, baseModel, handleClick }) => {
     <div className={classNames("bag", { visible: active })}>
       <div className="bag-title">
         <h3>Your bag</h3>
-        <h3 className="close" onClick={() => handleClick()}>Close</h3>
+        <h3 className="close" onClick={() => handleClick()}>
+          Close
+        </h3>
       </div>
       <div className="bag-content">
         {bag.length === 0 && <p>Your bag is currently empty.</p>}
+        <p>{sessionStorage.length}</p>
         {bag.map((shoe) => {
           return (
             <div
               key={shoe.index}
               className={classNames("bag-shoe", { editing: shoe.editing })}
             >
-              <ShoeBag shoe={shoe} baseModel={baseModel} />
+              <img
+                className="bag-shoe-render"
+                src={sessionStorage.getItem(shoe.index)}
+                alt={"Shoe"}
+              />
               <div className="bag-shoe-info">
                 <div className="bag-shoe-info2">
                   <p>{shoe.name}</p>
-                  <p>${baseModel.price}</p>
+                  <p>${shoe.price}</p>
                 </div>
                 <p>Size {shoe.size}</p>
                 <div className="bag-shoe-info2">
-                  <div >
-                    <p className="bag-shoe-control" onClick={() => handleEdit(shoe)}>
+                  <div>
+                    <p
+                      className="bag-shoe-control"
+                      onClick={() => handleEdit(shoe)}
+                    >
                       {shoe.editing ? "Save" : "Edit"}
                     </p>
                     <p>Share</p>
                   </div>
-                    <p className="bag-shoe-control" onClick={() => handleRemove(shoe)}>Remove</p>
+                  <p
+                    className="bag-shoe-control"
+                    onClick={() => handleRemove(shoe)}
+                  >
+                    Remove
+                  </p>
                 </div>
               </div>
             </div>
