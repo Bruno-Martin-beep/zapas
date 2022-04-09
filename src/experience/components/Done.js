@@ -50,10 +50,7 @@ const Done = ({ currentModel, renderer, scene }) => {
 
     renderer.render(scene, camera);
 
-    sessionStorage.setItem(currentModel.index, renderer.domElement.toDataURL("image/webp"));
-
-    console.log(renderer.domElement.toDataURL("image/webp"));
-    console.log(renderer.domElement.toDataURL("image/png"));
+    const image = renderer.domElement.toDataURL("image/webp");
 
     renderer.setSize(window.innerWidth, window.innerHeight);
 
@@ -63,7 +60,7 @@ const Done = ({ currentModel, renderer, scene }) => {
       index: nanoid(),
     };
     dispatch(toggleEditing());
-    dispatch(addToList());
+    dispatch(addToList({...currentModel, editing: false, image}));
     dispatch(addShoe(newShoe));
   };
 

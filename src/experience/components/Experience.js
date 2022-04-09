@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addShoe, selectCurrentShoe } from "../features/modelsListSlice";
+import { addToList, addShoe, selectCurrentShoe } from "../features/modelsListSlice";
+import { loadFromLocalStorage } from "../localStorage";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { nanoid } from "nanoid";
 import Navbar from "./Navbar";
@@ -15,6 +16,12 @@ const Experience = () => {
 
   const dispatch = useDispatch();
   const currentModel = useSelector(selectCurrentShoe);
+
+  useEffect(() => {
+    const bag = loadFromLocalStorage();
+    bag.map(shoe => dispatch(addToList(shoe)));
+  }, [dispatch])
+  
 
   const onFirstRender = () => {
     const gltfLoader = new GLTFLoader();

@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classNames from "classnames";
 import { useSelector, useDispatch } from "react-redux";
+
+import { saveToLocalStorage } from "../localStorage";
 import {
   selectShoeList,
   addShoe,
@@ -12,14 +14,18 @@ const Bag = ({ active, handleClick }) => {
   const dispatch = useDispatch();
   const bag = useSelector(selectShoeList);
 
+  useEffect(() => {
+    saveToLocalStorage(bag)
+  }, [bag])
+  
+
   const handleEdit = (shoe) => {
     dispatch(addShoe({ ...shoe, editing: !shoe.editing }));
-    dispatch(addToList());
+    dispatch(addToList({ ...shoe, editing: !shoe.editing }));
     handleClick();
   };
 
   const handleRemove = (shoe) => {
-    sessionStorage.removeItem(shoe.index);
     dispatch(removeShoe(shoe));
   };
 
@@ -33,7 +39,6 @@ const Bag = ({ active, handleClick }) => {
       </div>
       <div className="bag-content">
         {bag.length === 0 && <p>Your bag is currently empty.</p>}
-        <p>{sessionStorage.length}</p>
         {bag.map((shoe) => {
           return (
             <div
@@ -42,7 +47,7 @@ const Bag = ({ active, handleClick }) => {
             >
               <img
                 className="bag-shoe-render"
-                src={sessionStorage.getItem(shoe.index)}
+                src={shoe.image}
                 alt={"Shoe"}
               />
               <div className="bag-shoe-info">

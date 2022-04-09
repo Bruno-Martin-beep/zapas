@@ -10,16 +10,16 @@ export const modelsListSlice = createSlice({
     currentShoe: null,
   },
   reducers: {
-    addToList: (state) => {
+    addToList: (state, action) => {
       if (
-        state.shoeList.some((elem) => elem.index === state.currentShoe.index)
+        state.shoeList.some((elem) => elem.index === action.payload.index)
       ) {
         const index = state.shoeList.findIndex(
-          (elem) => elem.index === state.currentShoe.index
+          (elem) => elem.index === action.payload.index
         );
-        state.shoeList[index] = state.currentShoe;
+        state.shoeList[index] = action.payload;
       } else {
-        state.shoeList = [...state.shoeList, state.currentShoe];
+        state.shoeList = [...state.shoeList, action.payload];
       }
     },
     removeShoe: (state, action) => {
