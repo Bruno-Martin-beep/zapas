@@ -19,7 +19,9 @@ const Experience = () => {
 
   useEffect(() => {
     const bag = loadFromLocalStorage();
-    bag.map(shoe => dispatch(addToList(shoe)));
+    if(bag) {
+      bag.map(shoe => dispatch(addToList(shoe)));
+    }
   }, [dispatch])
   
 
