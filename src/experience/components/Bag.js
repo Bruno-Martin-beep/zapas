@@ -10,7 +10,7 @@ import {
   removeShoe,
 } from "../features/modelsListSlice";
 
-const Bag = ({ active, handleClick }) => {
+const Bag = ({ active, handleClick, handleDone }) => {
   const dispatch = useDispatch();
   const bag = useSelector(selectShoeList);
 
@@ -20,9 +20,13 @@ const Bag = ({ active, handleClick }) => {
   
 
   const handleEdit = (shoe) => {
-    dispatch(addShoe({ ...shoe, editing: !shoe.editing }));
-    dispatch(addToList({ ...shoe, editing: !shoe.editing }));
-    handleClick();
+    if(!shoe.editing) {
+      dispatch(addShoe({ ...shoe, editing: !shoe.editing }));
+      dispatch(addToList({ ...shoe, editing: !shoe.editing }));
+      handleClick();
+    } else {
+      handleDone()
+    }
   };
 
   const handleRemove = (shoe) => {

@@ -3,15 +3,10 @@ import classNames from "classnames";
 import { useSelector, useDispatch } from "react-redux";
 import {
   selectShoeList,
-  addToList,
   addShoe,
-  toggleEditing,
 } from "../features/modelsListSlice";
-import { nanoid } from "nanoid";
 
-import { PerspectiveCamera } from 'three';
-
-const Done = ({ currentModel, renderer, scene }) => {
+const Done = ({ currentModel, renderer, handleDone }) => {
   const dispatch = useDispatch();
   const bag = useSelector(selectShoeList);
 
@@ -39,29 +34,6 @@ const Done = ({ currentModel, renderer, scene }) => {
     };
 
     dispatch(addShoe(resetShoe));
-  };
-
-  const handleDone = () => {
-    const camera = new PerspectiveCamera(50, 1, 0.1, 100);
-    camera.position.z = 2.5;
-    camera.position.y = 0.15;
-
-    renderer.setSize(400, 400);
-
-    renderer.render(scene, camera);
-
-    const image = renderer.domElement.toDataURL("image/webp");
-
-    renderer.setSize(window.innerWidth, window.innerHeight);
-
-    const newShoe = {
-      ...currentModel,
-      editing: false,
-      index: nanoid(),
-    };
-    dispatch(toggleEditing());
-    dispatch(addToList({...currentModel, editing: false, image}));
-    dispatch(addShoe(newShoe));
   };
 
   return (

@@ -5,7 +5,7 @@ import { selectShoeList, toggleEditing } from "../features/modelsListSlice";
 import { HexColorPicker, HexColorInput } from "react-colorful";
 import Bag from "./Bag";
 
-const Navbar = ({ currentModel }) => {
+const Navbar = ({ currentModel, handleDone }) => {
   const dispatch = useDispatch();
   const bag = useSelector(selectShoeList);
 
@@ -106,7 +106,7 @@ const Navbar = ({ currentModel }) => {
       <h2 className="navbar bag-info" onClick={() => handleClick()}>
         bag {bag.length}
       </h2>
-      <Bag active={active} handleClick={handleClick} />
+      <Bag active={active} handleClick={handleClick} handleDone={handleDone} />
     </>
   );
 };

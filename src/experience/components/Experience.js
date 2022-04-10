@@ -9,6 +9,8 @@ import Model3d from "./Model3d";
 import Panel from "./Panel";
 import Done from "./Done";
 
+import { PerspectiveCamera } from 'three';
+
 const Experience = () => {
   const [baseModel, setBaseModel] = useState({});
   const [renderer, setRenderer] = useState(null);
@@ -70,13 +72,35 @@ const Experience = () => {
 
   useEffect(onFirstRender, [dispatch]);
 
+  const handleDone = () => {
+    const camera = new PerspectiveCamera(50, 1, 0.1, 100);
+    camera.position.z = 2.5;
+    camera.position.y = 0.15;
+
+    renderer.setSize(400, 400);
+
+    renderer.render(scene, camera);
+
+    const image = renderer.domElement.toDataURL("image/webp");
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    const newShoe = {
+      ...currentModel,
+      editing: false,
+      index: nanoid(),
+    };
+    dispatch(addToList({...currentModel, editing: false, image}));
+    dispatch(addShoe(newShoe));
+  };
+
   return (
     <>
-      {currentModel && <Navbar currentModel={currentModel} />}
+      {currentModel && <Navbar currentModel={currentModel} handleDone={handleDone} />}
       {currentModel && <Model3d baseModel={baseModel} setRenderer={setRenderer} setScene={setScene} />}
       {currentModel && <Panel />}
       {currentModel && (
-        <Done currentModel={currentModel}  renderer={renderer} scene={scene} />
+        <Done currentModel={currentModel} handleDone={handleDone} renderer={renderer} scene={scene} />
       )}
     </>
   );
