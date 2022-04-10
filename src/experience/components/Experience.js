@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToList, addShoe, selectCurrentShoe } from "../features/modelsListSlice";
+import {
+  addToList,
+  addShoe,
+  selectCurrentShoe,
+} from "../features/modelsListSlice";
 import { loadFromLocalStorage } from "../localStorage";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { nanoid } from "nanoid";
@@ -9,7 +13,7 @@ import Model3d from "./Model3d";
 import Panel from "./Panel";
 import Done from "./Done";
 
-import { PerspectiveCamera } from 'three';
+import { PerspectiveCamera } from "three";
 
 const Experience = () => {
   const [baseModel, setBaseModel] = useState({});
@@ -21,11 +25,13 @@ const Experience = () => {
 
   useEffect(() => {
     const bag = loadFromLocalStorage();
-    if(bag) {
-      bag.map(shoe => dispatch(addToList(shoe)));
+    if (bag) {
+      bag.forEach((shoe) => {
+        const newShoe = {...shoe, editing: false}
+        dispatch(addToList(newShoe));
+      });
     }
-  }, [dispatch])
-  
+  }, [dispatch]);
 
   const onFirstRender = () => {
     const gltfLoader = new GLTFLoader();
@@ -90,17 +96,30 @@ const Experience = () => {
       editing: false,
       index: nanoid(),
     };
-    dispatch(addToList({...currentModel, editing: false, image}));
+    dispatch(addToList({ ...currentModel, editing: false, image }));
     dispatch(addShoe(newShoe));
   };
 
   return (
     <>
-      {currentModel && <Navbar currentModel={currentModel} handleDone={handleDone} />}
-      {currentModel && <Model3d baseModel={baseModel} setRenderer={setRenderer} setScene={setScene} />}
+      {currentModel && (
+        <Navbar currentModel={currentModel} handleDone={handleDone} />
+      )}
+      {currentModel && (
+        <Model3d
+          baseModel={baseModel}
+          setRenderer={setRenderer}
+          setScene={setScene}
+        />
+      )}
       {currentModel && <Panel />}
       {currentModel && (
-        <Done currentModel={currentModel} handleDone={handleDone} renderer={renderer} scene={scene} />
+        <Done
+          currentModel={currentModel}
+          handleDone={handleDone}
+          renderer={renderer}
+          scene={scene}
+        />
       )}
     </>
   );
