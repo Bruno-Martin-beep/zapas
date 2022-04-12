@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import classNames from "classnames";
 import { useSelector, useDispatch } from "react-redux";
-import { selectShoeList, toggleEditing } from "../features/modelsListSlice";
+import { selectShoeList, addShoe } from "../features/modelsListSlice";
 import { HexColorPicker, HexColorInput } from "react-colorful";
 import Bag from "./Bag";
 
@@ -48,21 +48,21 @@ const Navbar = ({ currentModel, handleDone }) => {
   };
 
   const HandleBack = () => {
-    dispatch(toggleEditing());
+    dispatch(addShoe({ ...currentModel, editing: false, sharing: false }));
   };
 
   return (
     <>
       <h2
         className={classNames("navbar logo", {
-          visible: !currentModel.editing,
+          visible: !currentModel.editing && !currentModel.sharing,
         })}
       >
         zapaz
       </h2>
       <h2 className="navbar beta">beta</h2>
       <h2
-        className={classNames("navbar logo", { visible: currentModel.editing })}
+        className={classNames("navbar logo", { visible: currentModel.editing || currentModel.sharing })}
         onClick={() => HandleBack()}
       >
         {"<"}

@@ -6,20 +6,12 @@ import {
   addShoe,
 } from "../features/modelsListSlice";
 
-const Done = ({ currentModel, renderer, handleDone }) => {
+const Done = ({ currentModel, handleDone }) => {
   const dispatch = useDispatch();
   const bag = useSelector(selectShoeList);
 
-  const handleShare = () => {
-    const link = document.createElement("a");
-    document.body.appendChild(link); //Firefox requires the link to be in the body
-    link.setAttribute("download", currentModel.name);
-    link.setAttribute(
-      "href",
-      renderer.domElement.toDataURL("image/png")
-    );
-    link.click();
-    document.body.removeChild(link);
+  const toggleShare = () => { 
+    dispatch(addShoe({ ...currentModel, editing: false, sharing: true }));
   };
 
   const handleReset = () => {
@@ -38,7 +30,7 @@ const Done = ({ currentModel, renderer, handleDone }) => {
 
   return (
     <div className={classNames("controls", { visible: currentModel.editing })}>
-      <div className="done" onClick={() => handleShare()}>
+      <div className="done" onClick={() => toggleShare()}>
         Share
       </div>
       <div className="done" onClick={() => handleReset()}>

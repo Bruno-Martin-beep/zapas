@@ -15,18 +15,18 @@ const Bag = ({ active, handleClick, handleDone }) => {
   const bag = useSelector(selectShoeList);
 
   useEffect(() => {
-    saveToLocalStorage(bag)
-  }, [bag])
-  
+    saveToLocalStorage(bag);
+  }, [bag]);
 
   const handleEdit = (shoe) => {
-    if(!shoe.editing) {
-      dispatch(addShoe({ ...shoe, editing: !shoe.editing }));
-      dispatch(addToList({ ...shoe, editing: !shoe.editing }));
+      dispatch(addShoe({ ...shoe, editing: !shoe.editing, sharing: true }));
+      dispatch(addToList({ ...shoe, editing: !shoe.editing, sharing: true }));
       handleClick();
-    } else {
-      handleDone()
-    }
+  };
+
+  const handleShare = (shoe) => {
+      dispatch(addShoe({ ...shoe, editing: false, sharing: true }));
+      handleClick();
   };
 
   const handleRemove = (shoe) => {
@@ -49,11 +49,7 @@ const Bag = ({ active, handleClick, handleDone }) => {
               key={shoe.index}
               className={classNames("bag-shoe", { editing: shoe.editing })}
             >
-              <img
-                className="bag-shoe-render"
-                src={shoe.image}
-                alt={"Shoe"}
-              />
+              <img className="bag-shoe-render" src={shoe.image} alt={"Shoe"} />
               <div className="bag-shoe-info">
                 <div className="bag-shoe-info2">
                   <p>{shoe.name}</p>
@@ -68,7 +64,12 @@ const Bag = ({ active, handleClick, handleDone }) => {
                     >
                       {shoe.editing ? "Save" : "Edit"}
                     </p>
-                    <p>Share</p>
+                    <p
+                      className="bag-shoe-control"
+                      onClick={() => handleShare(shoe)}
+                    >
+                      Share
+                    </p>
                   </div>
                   <p
                     className="bag-shoe-control"

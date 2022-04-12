@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { useSelector, useDispatch } from "react-redux";
 import {
   selectCurrentShoe,
-  toggleEditing,
+  addShoe,
   changeCurrentMesh,
   changePrevMesh,
 } from "../features/modelsListSlice";
@@ -21,13 +21,17 @@ const Model3d = ({ baseModel, setRenderer, setScene }) => {
   };
 
   const handleEdit = () => {
-    dispatch(toggleEditing());
+    dispatch(addShoe({ ...currentModel, editing: true, sharing: false }));
   };
 
   return (
     <>
       <div className={classNames("canvas", { editing: currentModel.editing })}>
-        <Canvas gl={{ preserveDrawingBuffer: true }} dpr={[1, 2]} camera={{  fov: 50, position: [0, 0, 2.5] }}>
+        <Canvas
+          gl={{ preserveDrawingBuffer: true }}
+          dpr={[1, 2]}
+          camera={{ fov: 50, position: [0, 0, 2.5] }}
+        >
           <ambientLight intensity={0.75} />
           <directionalLight
             position={[2, 2, 2]}
@@ -47,11 +51,7 @@ const Model3d = ({ baseModel, setRenderer, setScene }) => {
             setRenderer={setRenderer}
             setScene={setScene}
           />
-          <OrbitControls
-            enablePan={false}
-            minDistance={2}
-            maxDistance={3.5}
-          />
+          <OrbitControls enablePan={false} minDistance={2} maxDistance={3.5} />
         </Canvas>
       </div>
       <div

@@ -12,6 +12,7 @@ import Navbar from "./Navbar";
 import Model3d from "./Model3d";
 import Panel from "./Panel";
 import Done from "./Done";
+import Share from "./Share";
 
 import { PerspectiveCamera } from "three";
 
@@ -45,6 +46,7 @@ const Experience = () => {
       name: "super shoe",
       price: 100,
       editing: false,
+      sharing: false,
       size: 39,
       meshes: [],
       index: nanoid(),
@@ -77,6 +79,18 @@ const Experience = () => {
   };
 
   useEffect(onFirstRender, [dispatch]);
+
+  const handleShare = () => {
+    const link = document.createElement("a");
+    document.body.appendChild(link); //Firefox requires the link to be in the body
+    link.setAttribute("download", currentModel.name);
+    link.setAttribute(
+      "href",
+      renderer.domElement.toDataURL("image/png")
+    );
+    link.click();
+    document.body.removeChild(link);
+  };
 
   const handleDone = () => {
     const camera = new PerspectiveCamera(50, 1, 0.1, 100);
@@ -117,8 +131,12 @@ const Experience = () => {
         <Done
           currentModel={currentModel}
           handleDone={handleDone}
-          renderer={renderer}
-          scene={scene}
+        />
+      )}
+      {currentModel && (
+        <Share
+          currentModel={currentModel}
+          handleShare={handleShare}
         />
       )}
     </>
