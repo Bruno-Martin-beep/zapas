@@ -1,5 +1,5 @@
 {
-  "homepage":"https://bruno-martin-beep.github.io/zapas",
+  "homepage": "https://bruno-martin-beep.github.io/zapas",
   "name": "zapas",
   "version": "0.1.0",
   "private": true,
@@ -14,9 +14,9 @@
     "@testing-library/user-event": "^13.5.0",
     "classnames": "^2.3.1",
     "nanoid": "^3.3.2",
-    "react": "^17.0.2",
+    "react": "^18.0.0",
     "react-colorful": "^5.5.1",
-    "react-dom": "^17.0.2",
+    "react-dom": "^18.0.0",
     "react-redux": "^7.2.6",
     "react-scripts": "5.0.0",
     "redux": "^4.1.2",

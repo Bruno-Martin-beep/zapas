@@ -1,43 +1,23 @@
 import React, { useEffect } from "react";
 import classNames from "classnames";
-import { useSelector, useDispatch } from "react-redux";
-
+import { useSelector } from "react-redux";
 import { saveToLocalStorage } from "../localStorage";
-import {
-  selectShoeList,
-  addShoe,
-  addToList,
-  removeShoe,
-} from "../features/modelsListSlice";
+import { selectShoeList } from "../features/modelsListSlice";
+import Modal from "./Modal";
+import BagShoeControls from "./BagShoeControls";
 
-const Bag = ({ active, handleClick, handleDone }) => {
-  const dispatch = useDispatch();
+const Bag = ({ closing, close, handleDone }) => {
   const bag = useSelector(selectShoeList);
 
   useEffect(() => {
     saveToLocalStorage(bag);
   }, [bag]);
 
-  const handleEdit = (shoe) => {
-      dispatch(addShoe({ ...shoe, editing: !shoe.editing, sharing: true }));
-      dispatch(addToList({ ...shoe, editing: !shoe.editing, sharing: true }));
-      handleClick();
-  };
-
-  const handleShare = (shoe) => {
-      dispatch(addShoe({ ...shoe, editing: false, sharing: true }));
-      handleClick();
-  };
-
-  const handleRemove = (shoe) => {
-    dispatch(removeShoe(shoe));
-  };
-
   return (
-    <div className={classNames("bag", { visible: active })}>
+    <Modal className={classNames("bag", { closing: closing })} close={close}>
       <div className="bag-title">
         <h3>Your bag</h3>
-        <h3 className="close" onClick={() => handleClick()}>
+        <h3 className="close" onClick={() => close()}>
           Close
         </h3>
       </div>
@@ -49,42 +29,21 @@ const Bag = ({ active, handleClick, handleDone }) => {
               key={shoe.index}
               className={classNames("bag-shoe", { editing: shoe.editing })}
             >
-              <img className="bag-shoe-render" src={shoe.image} alt={"Shoe"} />
+              <img className="bag-shoe-image" src={shoe.image} alt={"Shoe"} />
               <div className="bag-shoe-info">
                 <div className="bag-shoe-info2">
                   <p>{shoe.name}</p>
                   <p>${shoe.price}</p>
                 </div>
                 <p>Size {shoe.size}</p>
-                <div className="bag-shoe-info2">
-                  <div>
-                    <p
-                      className="bag-shoe-control"
-                      onClick={() => handleEdit(shoe)}
-                    >
-                      {shoe.editing ? "Save" : "Edit"}
-                    </p>
-                    <p
-                      className="bag-shoe-control"
-                      onClick={() => handleShare(shoe)}
-                    >
-                      Share
-                    </p>
-                  </div>
-                  <p
-                    className="bag-shoe-control"
-                    onClick={() => handleRemove(shoe)}
-                  >
-                    Remove
-                  </p>
-                </div>
+                <BagShoeControls shoe={shoe} closeBag={close} handleDone={handleDone} />
               </div>
             </div>
           );
         })}
       </div>
       <div className="checkout">Checkout</div>
-    </div>
+    </Modal>
   );
 };
 

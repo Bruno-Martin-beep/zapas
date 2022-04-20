@@ -30,7 +30,7 @@ const Model3d = ({ baseModel, setRenderer, setScene }) => {
         <Canvas
           gl={{ preserveDrawingBuffer: true }}
           dpr={[1, 2]}
-          camera={{ fov: 50, position: [0, 0, 2.5] }}
+          camera={{ fov: 45, position: [0, 0, 2.75] }}
         >
           <ambientLight intensity={0.75} />
           <directionalLight
@@ -51,7 +51,7 @@ const Model3d = ({ baseModel, setRenderer, setScene }) => {
             setRenderer={setRenderer}
             setScene={setScene}
           />
-          <OrbitControls enablePan={false} minDistance={2} maxDistance={3.5} />
+          <OrbitControls enablePan={false} minDistance={2.25} maxDistance={3.5} />
         </Canvas>
       </div>
       <div

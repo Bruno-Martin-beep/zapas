@@ -3,16 +3,34 @@
   flex-direction: column;
   position: absolute;
   top: 0%;
-  right: -25%;
+  right: 0%;
   height: 100vh;
   width: 25%;
   background-color: hsl(0, 0%, 95%);
   z-index: 10;
-  transition: right 200ms ease-in-out;
+  animation: bag-in 350ms ease-in-out;
 }
 
-.bag.visible {
-  right: 0%;
+.bag.closing {
+  animation: bag-out 350ms ease-in-out forwards;
+}
+
+@keyframes bag-in {
+  0% {
+    right: -25%;
+  }
+  100% {
+    right: 0%;
+  }
+}
+
+@keyframes bag-out {
+  0% {
+    right: 0%;
+  }
+  100% {
+    right: -25%;
+  }
 }
 
 .bag-title {
@@ -32,17 +50,20 @@
 .bag-shoe {
   display: flex;
   width: auto;
+  margin: 15px;
 }
 
 .bag-shoe.editing {
-  background-color: #a7c7e7;
+  border-radius: 8px;
+  background-color: #D1D1D1;
 }
 
-.bag-shoe-render {
+.bag-shoe-image {
   width: 100px;
   height: 100px;
   margin: 15px;
-  background-color: #a7c7e7;
+  border-radius: 8px;
+  background-color: #ffffff;
 }
 
 .bag-shoe-info {
@@ -64,8 +85,26 @@
 }
 
 .bag-shoe-control {
+  position: relative;
+  text-decoration: underline;
   user-select: none;
   cursor: pointer;
+}
+
+.question {
+  position: absolute;
+  top: 105%;
+  width: 220px;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  background-color: hsl(0, 0%, 95%);
+  box-shadow:  0px 0px 60px 30px #4d4d4d20;
+  animation: fade-in 350ms ease-in-out;
+}
+
+.question.closing {
+  animation: fade-out 350ms ease-in-out forwards;
 }
 
 .checkout {

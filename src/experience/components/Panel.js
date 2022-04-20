@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import classNames from "classnames";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -8,7 +8,7 @@ import {
   changeCurrentMesh,
   changePrevMesh,
 } from "../features/modelsListSlice";
-import { HexColorPicker, HexColorInput } from "react-colorful";
+import ColorPickerPanel from "./ColorPickerPanel";
 
 const colors = [
   "#cd5c5c",
@@ -30,34 +30,6 @@ const sizes = [39, 40, 41, 42, 43, 44, 45, 46];
 const Panel = () => {
   const currentModel = useSelector(selectCurrentShoe);
   const dispatch = useDispatch();
-
-  const [showPicker, setShowPicker] = useState(false);
-
-  const picker = useRef(null);
-
-  useEffect(() => {
-    function handleOutsideClick(event) {
-      if (picker.current && !picker.current.contains(event.target)) {
-        setShowPicker(false);
-      }
-    }
-
-    document.addEventListener("click", handleOutsideClick);
-    return () => document.removeEventListener("click", handleOutsideClick);
-  }, [picker]);
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(currentModel.currentMesh.color);
-  };
-
-  const handlePaste = () => {
-    const regex = new RegExp("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$");
-    navigator.clipboard.readText().then((clipText) => {
-      if (regex.test(clipText)) {
-        handleColor(clipText);
-      }
-    });
-  };
 
   const handleColor = (color) => {
     dispatch(changePrevMesh(currentModel.currentMesh));
@@ -106,40 +78,7 @@ const Panel = () => {
           {">"}
         </button>
       </div>
-      <div className="custom-color">
-        <div className="color-selector" ref={picker}>
-          <div
-            className="color-selected"
-            style={{ backgroundColor: currentModel.currentMesh.color }}
-            onClick={() => setShowPicker((prev) => !prev)}
-          />
-          <div className={classNames("color-picker", { visible: showPicker })}>
-            <HexColorPicker
-              color={currentModel.currentMesh.color}
-              onChange={handleColor}
-            />
-          </div>
-        </div>
-        <HexColorInput
-          className="custom-color-input"
-          color={currentModel.currentMesh.color}
-          onChange={handleColor}
-          prefixed
-        />
-        {/* <input
-          type="color"
-          value={currentModel.currentMesh.color}
-          onChange={(e) => handleColor(e.target.value)}
-          className="color-selector"
-        /> */}
-        <p className="custom-color-copy" onClick={() => handleCopy()}>
-          Copy
-        </p>
-        <p className="custom-color-copy" onClick={() => handlePaste()}>
-          Paste
-        </p>
-      </div>
-
+      <ColorPickerPanel />
       <div className="selectors">
         {colors.map((elem, index) => {
           return (
@@ -152,7 +91,6 @@ const Panel = () => {
           );
         })}
       </div>
-
       <div className="sizes">
         <h2>sizes</h2>
         <div className="sizes-numbers">
@@ -161,7 +99,9 @@ const Panel = () => {
               <h2
                 key={index}
                 onClick={() => handleSize(elem)}
-                className={classNames({ numberSelected: elem === currentModel.size })}
+                className={classNames({
+                  numberSelected: elem === currentModel.size,
+                })}
               >
                 {elem}
               </h2>

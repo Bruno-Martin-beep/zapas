@@ -8,7 +8,8 @@
   height: 100vh;
   padding-top: 100px;
   background-color: hsl(0, 0%, 95%);
-  transition: right 400ms ease-in-out;
+  overflow: auto;
+  transition: right 350ms ease-in-out;
   z-index: 5;
 }
 
@@ -63,11 +64,11 @@
   position: relative;
   top: 5%;
   width: 200px;
-  visibility: hidden;
+  animation: fade-in 350ms ease-in-out;
 }
 
-.color-picker.visible {
-  visibility: visible;
+.color-picker.closing {
+  animation: fade-out 350ms ease-in-out forwards;
 }
 
 .custom-color-input {
