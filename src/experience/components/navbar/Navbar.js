@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import { useSelector, useDispatch } from "react-redux";
-import { selectShoeList, addShoe } from "../features/modelsListSlice";
+import { selectShoeList, addShoe } from "../../features/modelsListSlice";
 import Bag from "./Bag";
 import BackgroundPicker from "./BackgroundPicker";
 

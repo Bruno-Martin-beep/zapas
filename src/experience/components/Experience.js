@@ -8,9 +8,9 @@ import {
 import { loadFromLocalStorage } from "../localStorage";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { nanoid } from "nanoid";
-import Navbar from "./Navbar";
-import Model3d from "./Model3d";
-import Panel from "./Panel";
+import Navbar from "./navbar/Navbar";
+import Model3d from "./canvas/Model3d";
+import Panel from "./panel/Panel";
 import Done from "./Done";
 import Share from "./Share";
 

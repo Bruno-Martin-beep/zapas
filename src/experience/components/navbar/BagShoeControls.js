@@ -6,7 +6,7 @@ import {
   addShoe,
   addToList,
   removeShoe,
-} from "../features/modelsListSlice";
+} from "../../features/modelsListSlice";
 import Dialog from "./Dialog";
 
 const BagShoeControls = ({ shoe, handleDone }) => {
@@ -25,7 +25,8 @@ const BagShoeControls = ({ shoe, handleDone }) => {
 
   const handleEditConfirm = () => {
     handleDone();
-    handleEdit();
+    dispatch(addShoe({ ...shoe, editing: !shoe.editing}));
+    dispatch(addToList({ ...shoe, editing: !shoe.editing}));
   };
 
   const handleCopy = () => {

@@ -5,9 +5,9 @@ import {
   selectCurrentShoe,
   editShoe,
   changePrevMesh,
-} from "../features/modelsListSlice";
+} from "../../features/modelsListSlice";
 import { HexColorPicker, HexColorInput } from "react-colorful";
-import Modal from "./Modal";
+import Modal from "../Modal";
 
 const ColorPickerPanel = () => {
   const currentModel = useSelector(selectCurrentShoe);

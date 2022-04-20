@@ -7,7 +7,7 @@ import {
   editSize,
   changeCurrentMesh,
   changePrevMesh,
-} from "../features/modelsListSlice";
+} from "../../features/modelsListSlice";
 import ColorPickerPanel from "./ColorPickerPanel";
 
 const colors = [

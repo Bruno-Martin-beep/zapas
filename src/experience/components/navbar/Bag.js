@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
-import { saveToLocalStorage } from "../localStorage";
-import { selectShoeList } from "../features/modelsListSlice";
-import Modal from "./Modal";
+import { saveToLocalStorage } from "../../localStorage";
+import { selectShoeList } from "../../features/modelsListSlice";
+import Modal from "../Modal";
 import BagShoeControls from "./BagShoeControls";
+import SubTotal from "./SubTotal";
 
 const Bag = ({ closing, close, handleDone }) => {
   const bag = useSelector(selectShoeList);
@@ -36,12 +37,17 @@ const Bag = ({ closing, close, handleDone }) => {
                   <p>${shoe.price}</p>
                 </div>
                 <p>Size {shoe.size}</p>
-                <BagShoeControls shoe={shoe} closeBag={close} handleDone={handleDone} />
+                <BagShoeControls
+                  shoe={shoe}
+                  closeBag={close}
+                  handleDone={handleDone}
+                />
               </div>
             </div>
           );
         })}
       </div>
+      <SubTotal bag={bag} />
       <div className="checkout">Checkout</div>
     </Modal>
   );

@@ -6,7 +6,7 @@ import {
   addShoe,
   changeCurrentMesh,
   changePrevMesh,
-} from "../features/modelsListSlice";
+} from "../../features/modelsListSlice";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import Shoe from "./Shoe";

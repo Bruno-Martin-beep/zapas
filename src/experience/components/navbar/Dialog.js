@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
-import { selectShoeList, selectCurrentShoe } from "../features/modelsListSlice";
-import Modal from "./Modal";
+import { selectShoeList, selectCurrentShoe } from "../../features/modelsListSlice";
+import Modal from "../Modal";
 
 const Dialog = ({ name, actionDefault, actionConfirm, ...restProps }) => {
   const bag = useSelector(selectShoeList);

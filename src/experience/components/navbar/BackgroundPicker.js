@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import classNames from "classnames";
-import Modal from "./Modal";
+import Modal from "../Modal";
 import { HexColorPicker, HexColorInput } from "react-colorful";
 
 const BackgroundPicker = () => {
