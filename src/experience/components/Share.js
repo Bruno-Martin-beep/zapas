@@ -1,14 +1,13 @@
-import React from 'react'
-import classNames from "classnames";
+import React from "react";
 
-const Share = ({ currentModel, handleShare }) => {
+const Share = ({ handleShare }) => {
   return (
-    <div className={classNames("controls", { visible: currentModel.sharing }, "share")}>
+    <div className={"controls visible share"}>
       <div className="done" onClick={() => handleShare()}>
-        Download
+        Screenshot
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Share
+export default Share;

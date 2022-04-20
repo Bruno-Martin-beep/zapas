@@ -12,7 +12,6 @@ const Navbar = ({ currentModel, handleDone }) => {
   const [showBag, setShowBag] = useState(false);
   const [closing, setClosing] = useState(false);
 
-
   const close = () => {
     setClosing(true);
     setTimeout(() => {
@@ -30,14 +29,14 @@ const Navbar = ({ currentModel, handleDone }) => {
   };
 
   const HandleBack = () => {
-    dispatch(addShoe({ ...currentModel, editing: false, sharing: false }));
+    dispatch(addShoe({ ...currentModel, editing: false }));
   };
 
   return (
     <>
       <h2
         className={classNames("navbar logo", {
-          visible: !currentModel.editing && !currentModel.sharing,
+          visible: !currentModel.editing,
         })}
       >
         zapaz
@@ -45,7 +44,7 @@ const Navbar = ({ currentModel, handleDone }) => {
       <h2 className="navbar beta">beta</h2>
       <h2
         className={classNames("navbar logo", {
-          visible: currentModel.editing || currentModel.sharing,
+          visible: currentModel.editing,
         })}
         onClick={() => HandleBack()}
       >

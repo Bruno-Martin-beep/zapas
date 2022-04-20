@@ -21,7 +21,7 @@ const Model3d = ({ baseModel, setRenderer, setScene }) => {
   };
 
   const handleEdit = () => {
-    dispatch(addShoe({ ...currentModel, editing: true, sharing: false }));
+    dispatch(addShoe({ ...currentModel, editing: true }));
   };
 
   return (

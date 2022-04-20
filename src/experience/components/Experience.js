@@ -46,7 +46,6 @@ const Experience = () => {
       name: "super shoe",
       price: 100,
       editing: false,
-      sharing: false,
       size: 39,
       meshes: [],
       index: nanoid(),
@@ -93,8 +92,8 @@ const Experience = () => {
   };
 
   const handleDone = () => {
-    const camera = new PerspectiveCamera(50, 1, 0.1, 100);
-    camera.position.z = 2.5;
+    const camera = new PerspectiveCamera(45, 1, 0.1, 100);
+    camera.position.z = 2.75;
     camera.position.y = 0.15;
 
     renderer.setSize(400, 400);
