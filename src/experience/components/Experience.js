@@ -28,7 +28,7 @@ const Experience = () => {
     const bag = loadFromLocalStorage();
     if (bag) {
       bag.forEach((shoe) => {
-        const newShoe = {...shoe, editing: false}
+        const newShoe = { ...shoe, editing: false };
         dispatch(addToList(newShoe));
       });
     }
@@ -83,10 +83,7 @@ const Experience = () => {
     const link = document.createElement("a");
     document.body.appendChild(link); //Firefox requires the link to be in the body
     link.setAttribute("download", currentModel.name);
-    link.setAttribute(
-      "href",
-      renderer.domElement.toDataURL("image/png")
-    );
+    link.setAttribute("href", renderer.domElement.toDataURL("image/png"));
     link.click();
     document.body.removeChild(link);
   };
@@ -101,6 +98,10 @@ const Experience = () => {
     renderer.render(scene, camera);
 
     const image = renderer.domElement.toDataURL("image/webp");
+
+    camera.position.y = 0;
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
 
     renderer.setSize(window.innerWidth, window.innerHeight);
 
@@ -127,16 +128,10 @@ const Experience = () => {
       )}
       {currentModel && <Panel />}
       {currentModel && (
-        <Done
-          currentModel={currentModel}
-          handleDone={handleDone}
-        />
+        <Done currentModel={currentModel} handleDone={handleDone} />
       )}
       {currentModel && (
-        <Share
-          currentModel={currentModel}
-          handleShare={handleShare}
-        />
+        <Share currentModel={currentModel} handleShare={handleShare} />
       )}
     </>
   );
