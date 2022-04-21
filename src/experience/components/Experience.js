@@ -101,6 +101,10 @@ const Experience = () => {
 
     const image = renderer.domElement.toDataURL("image/webp");
 
+    camera.position.y = 0;
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     renderer.render(scene, oldCamera);
