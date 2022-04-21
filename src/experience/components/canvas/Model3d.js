@@ -11,7 +11,7 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import Shoe from "./Shoe";
 
-const Model3d = ({ baseModel, setRenderer, setScene }) => {
+const Model3d = ({ baseModel, setRenderer, setScene, setCamera }) => {
   const currentModel = useSelector(selectCurrentShoe);
   const dispatch = useDispatch();
 
@@ -28,9 +28,8 @@ const Model3d = ({ baseModel, setRenderer, setScene }) => {
     <>
       <div className={classNames("canvas", { editing: currentModel.editing })}>
         <Canvas
-          gl={{ preserveDrawingBuffer: true }}
           dpr={[1, 2]}
-          camera={{ fov: 45, position: [0, 0, 2.75] }}
+          camera={{ fov: 45, position: [0, 0, 2.75], near:1, far: 5 }}
         >
           <ambientLight intensity={0.75} />
           <directionalLight
@@ -50,6 +49,7 @@ const Model3d = ({ baseModel, setRenderer, setScene }) => {
             handleEdit={handleEdit}
             setRenderer={setRenderer}
             setScene={setScene}
+            setCamera={setCamera}
           />
           <OrbitControls enablePan={false} minDistance={2.25} maxDistance={3.5} />
         </Canvas>

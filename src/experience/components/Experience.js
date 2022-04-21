@@ -20,6 +20,7 @@ const Experience = () => {
   const [baseModel, setBaseModel] = useState({});
   const [renderer, setRenderer] = useState(null);
   const [scene, setScene] = useState(null);
+  const [camera, setCamera] = useState(null);
 
   const dispatch = useDispatch();
   const currentModel = useSelector(selectCurrentShoe);
@@ -28,7 +29,7 @@ const Experience = () => {
     const bag = loadFromLocalStorage();
     if (bag) {
       bag.forEach((shoe) => {
-        const newShoe = {...shoe, editing: false}
+        const newShoe = { ...shoe, editing: false };
         dispatch(addToList(newShoe));
       });
     }
@@ -83,26 +84,26 @@ const Experience = () => {
     const link = document.createElement("a");
     document.body.appendChild(link); //Firefox requires the link to be in the body
     link.setAttribute("download", currentModel.name);
-    link.setAttribute(
-      "href",
-      renderer.domElement.toDataURL("image/png")
-    );
+    renderer.render(scene, camera);
+    link.setAttribute("href", renderer.domElement.toDataURL("image/png"));
     link.click();
     document.body.removeChild(link);
   };
 
   const handleDone = () => {
-    const camera = new PerspectiveCamera(45, 1, 0.1, 100);
-    camera.position.z = 2.75;
-    camera.position.y = 0.15;
+    const oldCamera = camera.clone();
+    const camera1 = new PerspectiveCamera(45, 1, 2, 5);
+    camera1.position.set(0, 0.15, 2.75);
 
     renderer.setSize(400, 400);
 
-    renderer.render(scene, camera);
+    renderer.render(scene, camera1);
 
     const image = renderer.domElement.toDataURL("image/webp");
 
     renderer.setSize(window.innerWidth, window.innerHeight);
+
+    renderer.render(scene, oldCamera);
 
     const newShoe = {
       ...currentModel,
@@ -123,20 +124,15 @@ const Experience = () => {
           baseModel={baseModel}
           setRenderer={setRenderer}
           setScene={setScene}
+          setCamera={setCamera}
         />
       )}
       {currentModel && <Panel />}
       {currentModel && (
-        <Done
-          currentModel={currentModel}
-          handleDone={handleDone}
-        />
+        <Done currentModel={currentModel} handleDone={handleDone} />
       )}
       {currentModel && (
-        <Share
-          currentModel={currentModel}
-          handleShare={handleShare}
-        />
+        <Share currentModel={currentModel} handleShare={handleShare} />
       )}
     </>
   );

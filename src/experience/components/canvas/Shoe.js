@@ -9,13 +9,15 @@ const Shoe = ({
   handleEdit,
   setRenderer,
   setScene,
+  setCamera
 }) => {
-  const { gl, scene } = useThree();
+  const { gl, scene, camera } = useThree();
 
   useEffect(() => {
     setRenderer(gl);
     setScene(scene);
-  }, [gl, scene, setRenderer, setScene]);
+    setCamera(camera)
+  }, [gl, scene, camera, setRenderer, setScene, setCamera]);
 
   const group = useRef();
 
