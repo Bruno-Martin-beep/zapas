@@ -1,18 +1,9 @@
 import React, { useState } from "react";
 import classNames from "classnames";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  selectCurrentShoe,
-  editShoe,
-  changePrevMesh,
-} from "../../features/modelsListSlice";
 import { HexColorPicker, HexColorInput } from "react-colorful";
 import Modal from "../Modal";
 
-const ColorPickerPanel = () => {
-  const currentModel = useSelector(selectCurrentShoe);
-  const dispatch = useDispatch();
-
+const ColorPickerPanel = ({ currentModel, handleColor }) => {
   const [showPicker, setShowPicker] = useState(false);
   const [closing, setClosing] = useState(false);
 
@@ -43,16 +34,6 @@ const ColorPickerPanel = () => {
         handleColor(clipText);
       }
     });
-  };
-
-  const handleColor = (color) => {
-    dispatch(changePrevMesh(currentModel.currentMesh));
-    dispatch(
-      editShoe({
-        index: currentModel.currentMesh.index,
-        color: color,
-      })
-    );
   };
 
   return (

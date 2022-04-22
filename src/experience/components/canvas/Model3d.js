@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { useSelector, useDispatch } from "react-redux";
 import {
   selectCurrentShoe,
-  addShoe,
+  updateShoe,
   changeCurrentMesh,
   changePrevMesh,
 } from "../../features/modelsListSlice";
@@ -21,7 +21,7 @@ const Model3d = ({ baseModel, setRenderer, setScene, setCamera }) => {
   };
 
   const handleEdit = () => {
-    dispatch(addShoe({ ...currentModel, editing: true }));
+    dispatch(updateShoe({ ...currentModel, editing: true }));
   };
 
   return (

@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import baseModelsSlice from "./experience/features/baseModelsSlice";
+import shoeListSlice from "./experience/features/shoeListSlice";
 import modelsListSlice from "./experience/features/modelsListSlice";
 
 export default configureStore({
   reducer: {
-    baseModels: baseModelsSlice,
+    shoeList: shoeListSlice,
     modelsList: modelsListSlice,
   },
 });

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  addToList,
-  addShoe,
+  updateShoe,
   selectCurrentShoe,
 } from "../features/modelsListSlice";
+import { addShoe } from "../features/shoeListSlice";
 import { loadFromLocalStorage } from "../localStorage";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { nanoid } from "nanoid";
@@ -30,7 +30,7 @@ const Experience = () => {
     if (bag) {
       bag.forEach((shoe) => {
         const newShoe = { ...shoe, editing: false };
-        dispatch(addToList(newShoe));
+        dispatch(addShoe(newShoe));
       });
     }
   }, [dispatch]);
@@ -74,7 +74,7 @@ const Experience = () => {
         );
       });
       setBaseModel(loadModel);
-      dispatch(addShoe(loadShoe));
+      dispatch(updateShoe(loadShoe));
     });
   };
 
@@ -101,7 +101,6 @@ const Experience = () => {
 
     const image = renderer.domElement.toDataURL("image/webp");
 
-    camera.position.y = 0;
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 
@@ -114,8 +113,8 @@ const Experience = () => {
       editing: false,
       index: nanoid(),
     };
-    dispatch(addToList({ ...currentModel, editing: false, image }));
-    dispatch(addShoe(newShoe));
+    dispatch(addShoe({ ...currentModel, editing: false, image }));
+    dispatch(updateShoe(newShoe));
   };
 
   return (
@@ -131,7 +130,7 @@ const Experience = () => {
           setCamera={setCamera}
         />
       )}
-      {currentModel && <Panel />}
+      {currentModel && <Panel currentModel={currentModel} />}
       {currentModel && (
         <Done currentModel={currentModel} handleDone={handleDone} />
       )}

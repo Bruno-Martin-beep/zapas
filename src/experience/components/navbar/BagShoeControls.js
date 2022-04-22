@@ -1,12 +1,10 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  selectShoeList,
   selectCurrentShoe,
-  addShoe,
-  addToList,
-  removeShoe,
+  updateShoe,
 } from "../../features/modelsListSlice";
+import { addShoe, removeShoe, selectShoeList } from "../../features/shoeListSlice";
 import Dialog from "./Dialog";
 
 const BagShoeControls = ({ shoe, handleDone }) => {
@@ -17,20 +15,20 @@ const BagShoeControls = ({ shoe, handleDone }) => {
   const handleEdit = () => {
     const currentShoe = bag.find((elem) => elem.index === currentModel.index);
     if (currentShoe) {
-      dispatch(addToList({ ...currentShoe, editing: false }));
+      dispatch(addShoe({ ...currentShoe, editing: false }));
     }
+    dispatch(updateShoe({ ...shoe, editing: !shoe.editing}));
     dispatch(addShoe({ ...shoe, editing: !shoe.editing}));
-    dispatch(addToList({ ...shoe, editing: !shoe.editing}));
   };
 
   const handleEditConfirm = () => {
     handleDone();
+    dispatch(updateShoe({ ...shoe, editing: !shoe.editing}));
     dispatch(addShoe({ ...shoe, editing: !shoe.editing}));
-    dispatch(addToList({ ...shoe, editing: !shoe.editing}));
   };
 
   const handleCopy = () => {
-    dispatch(addShoe({ ...currentModel, meshes: shoe.meshes }));
+    dispatch(updateShoe({ ...currentModel, meshes: shoe.meshes }));
   };
 
   const handleSave = () => {
@@ -38,8 +36,8 @@ const BagShoeControls = ({ shoe, handleDone }) => {
   };
 
   const handleDiscard = () => {
+    dispatch(updateShoe({ ...shoe, editing: false}));
     dispatch(addShoe({ ...shoe, editing: false}));
-    dispatch(addToList({ ...shoe, editing: false}));
   };
 
   const handleRemove = () => {

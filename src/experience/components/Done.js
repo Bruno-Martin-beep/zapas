@@ -2,9 +2,9 @@ import React from "react";
 import classNames from "classnames";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  selectShoeList,
-  addShoe,
+  updateShoe,
 } from "../features/modelsListSlice";
+import { selectShoeList } from "../features/shoeListSlice";
 
 const Done = ({ currentModel, handleDone }) => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const Done = ({ currentModel, handleDone }) => {
       }),
     };
 
-    dispatch(addShoe(resetShoe));
+    dispatch(updateShoe(resetShoe));
   };
 
   return (

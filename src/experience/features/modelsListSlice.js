@@ -5,54 +5,31 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const modelsListSlice = createSlice({
   name: "modelsList",
-  initialState: {
-    shoeList: [],
-    currentShoe: null,
-  },
+  initialState: null,
   reducers: {
-    addToList: (state, action) => {
-      if (
-        state.shoeList.some((elem) => elem.index === action.payload.index)
-      ) {
-        const index = state.shoeList.findIndex(
-          (elem) => elem.index === action.payload.index
-        );
-        state.shoeList[index] = action.payload;
-      } else {
-        state.shoeList = [...state.shoeList, action.payload];
-      }
-    },
-    removeShoe: (state, action) => {
-      const index = state.shoeList.findIndex(
-        (elem) => elem.index === action.payload.index
-      );
-      state.shoeList.splice(index, 1);
-    },
-    addShoe: (state, action) => {
-      state.currentShoe = {
+    updateShoe: (state, action) => {
+      state = {
         ...action.payload,
         currentMesh: 0,
         prevMesh: action.payload.meshes[0],
       };
+      return state
     },
     editShoe: (state, action) => {
-      state.currentShoe.meshes[action.payload.index].color =
+      state.meshes[action.payload.index].color =
         action.payload.color;
     },
     editSize: (state, action) => {
-      state.currentShoe.size = action.payload;
+      state.size = action.payload;
     },
     toggleEditing: (state) => {
-      state.currentShoe.editing = !state.currentShoe.editing;
+      state.editing = !state.currentShoe.editing;
     },
     changeCurrentMesh: (state, action) => {
-      state.currentShoe.currentMesh = action.payload;
+      state.currentMesh = action.payload;
     },
     changePrevMesh: (state, action) => {
-      state.currentShoe.prevMesh = action.payload;
-    },
-    clearModelsList: (state) => {
-      state = [];
+      state.prevMesh = action.payload;
     },
   },
 });
@@ -60,10 +37,8 @@ export const modelsListSlice = createSlice({
 // Selectors
 ///////////////////////////////////////
 
-export const selectShoeList = (state) => state.modelsList.shoeList;
-
 export const selectCurrentShoe = (state) => {
-  const currentShoe = state.modelsList.currentShoe;
+  const currentShoe = state.modelsList;
 
   if (currentShoe === null) {
     return null;
@@ -79,15 +54,12 @@ export const selectCurrentShoe = (state) => {
 ///////////////////////////////////////
 
 export const {
-  addToList,
-  removeShoe,
-  addShoe,
+  updateShoe,
   editShoe,
   editSize,
   toggleEditing,
   changeCurrentMesh,
   changePrevMesh,
-  clearModelsList,
 } = modelsListSlice.actions;
 
 export default modelsListSlice.reducer;

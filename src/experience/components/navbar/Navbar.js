@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import { useSelector, useDispatch } from "react-redux";
-import { selectShoeList, addShoe } from "../../features/modelsListSlice";
+import { updateShoe } from "../../features/modelsListSlice";
+import { selectShoeList } from "../../features/shoeListSlice";
 import Bag from "./Bag";
 import BackgroundPicker from "./BackgroundPicker";
 
@@ -29,7 +30,7 @@ const Navbar = ({ currentModel, handleDone }) => {
   };
 
   const HandleBack = () => {
-    dispatch(addShoe({ ...currentModel, editing: false }));
+    dispatch(updateShoe({ ...currentModel, editing: false }));
   };
 
   return (
