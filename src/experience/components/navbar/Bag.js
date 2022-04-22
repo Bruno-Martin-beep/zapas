@@ -25,12 +25,7 @@ const Bag = ({ closing, close, handleDone }) => {
       <div className="bag-content">
         {bag.length === 0 && <p>Your bag is currently empty.</p>}
         {bag.map((shoe) => {
-          return (
-            <BagShoe shoe={shoe}
-            close={close}
-            handleDone={handleDone} />
-            
-          );
+          return <BagShoe key={shoe.index} shoe={shoe} close={close} handleDone={handleDone} />;
         })}
       </div>
       <SubTotal bag={bag} />

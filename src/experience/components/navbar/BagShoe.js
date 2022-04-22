@@ -5,7 +5,6 @@ import BagShoeControls from "./BagShoeControls";
 const BagShoe = ({ shoe, close, handleDone }) => {
   return (
     <div
-      key={shoe.index}
       className={classNames("bag-shoe", { editing: shoe.editing })}
     >
       <img className="bag-shoe-image" src={shoe.image} alt={"Shoe"} />
