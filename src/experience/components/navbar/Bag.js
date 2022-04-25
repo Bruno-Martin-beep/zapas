@@ -6,14 +6,18 @@ import { selectShoeList } from "../../features/shoeListSlice";
 import Modal from "../Modal";
 import BagShoe from "./BagShoe";
 import SubTotal from "./SubTotal";
+import { useClosing } from "../../hooks/useClosing";
 
-const Bag = ({ closing, close, handleDone }) => {
+const Bag = ({ setOpen, handleDone, openCheckout }) => {
   const bag = useSelector(selectShoeList);
+
+  const [showBag, closing, close] = useClosing(setOpen);
 
   useEffect(() => {
     saveToLocalStorage(bag);
   }, [bag]);
 
+  if (!showBag) return <></>;
   return (
     <Modal className={classNames("bag", { closing: closing })} close={close}>
       <div className="bag-title">
@@ -25,11 +29,18 @@ const Bag = ({ closing, close, handleDone }) => {
       <div className="bag-content">
         {bag.length === 0 && <p>Your bag is currently empty.</p>}
         {bag.map((shoe) => {
-          return <BagShoe key={shoe.index} shoe={shoe} close={close} handleDone={handleDone} />;
+          return (
+            <BagShoe
+              key={shoe.index}
+              shoe={shoe}
+              close={close}
+              handleDone={handleDone}
+            />
+          );
         })}
       </div>
       <SubTotal bag={bag} />
-      <div className="checkout">Checkout</div>
+      <div className="checkout" onClick={openCheckout}>Checkout</div>
     </Modal>
   );
 };

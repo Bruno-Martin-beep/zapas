@@ -1,25 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
+import { useClosing } from "../hooks/useClosing";
 import classNames from "classnames";
+import "./checkout.scss";
 import Modal from "./Modal";
 
-const Checkout = () => {
-  const [showCheckout, setShowCheckout] = useState(false);
-  const [closing, setClosing] = useState(false);
+const Checkout = ({setOpen}) => {
+  const [showCheckout, closing, close] = useClosing(setOpen);
 
-  const close = () => {
-    setClosing(true);
-    setTimeout(() => {
-      setClosing(false);
-      setShowCheckout(false);
-    }, 350);
-  };
-
+  if (!showCheckout) return <></>;
   return (
-    showCheckout && (
-      <Modal classNames={classNames({ closing: closing })} close={close}>
-        <div>Checkout</div>
-      </Modal>
-    )
+     <Modal
+      className={classNames("checkout-cont", { closing: closing })}
+      close={close}
+    >
+    </Modal> 
   );
 };
 

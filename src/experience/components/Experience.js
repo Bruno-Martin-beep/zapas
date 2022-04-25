@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  updateShoe,
-  selectCurrentShoe,
-} from "../features/modelsListSlice";
+import { updateShoe, selectCurrentShoe } from "../features/modelsListSlice";
 import { addShoe } from "../features/shoeListSlice";
 import { loadFromLocalStorage } from "../localStorage";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
@@ -13,6 +10,7 @@ import Model3d from "./canvas/Model3d";
 import Panel from "./panel/Panel";
 import Done from "./Done";
 import Share from "./Share";
+import Checkout from "./Checkout";
 
 import { PerspectiveCamera } from "three";
 
@@ -24,6 +22,8 @@ const Experience = () => {
 
   const dispatch = useDispatch();
   const currentModel = useSelector(selectCurrentShoe);
+
+  const [openCheckout, setOpenCheckout] = useState(() => {});
 
   useEffect(() => {
     const bag = loadFromLocalStorage();
@@ -117,26 +117,21 @@ const Experience = () => {
     dispatch(updateShoe(newShoe));
   };
 
+  if (!currentModel) return <></>;
+
   return (
     <>
-      {currentModel && (
-        <Navbar currentModel={currentModel} handleDone={handleDone} />
-      )}
-      {currentModel && (
-        <Model3d
-          baseModel={baseModel}
-          setRenderer={setRenderer}
-          setScene={setScene}
-          setCamera={setCamera}
-        />
-      )}
-      {currentModel && <Panel currentModel={currentModel} />}
-      {currentModel && (
-        <Done currentModel={currentModel} handleDone={handleDone} />
-      )}
-      {currentModel && (
-        <Share currentModel={currentModel} handleShare={handleShare} />
-      )}
+      <Navbar currentModel={currentModel} handleDone={handleDone} openCheckout={openCheckout} />
+      <Model3d
+        baseModel={baseModel}
+        setRenderer={setRenderer}
+        setScene={setScene}
+        setCamera={setCamera}
+      />
+      <Panel currentModel={currentModel} />
+      <Done currentModel={currentModel} handleDone={handleDone} />
+      <Share currentModel={currentModel} handleShare={handleShare} />
+      <Checkout setOpen={setOpenCheckout} />
     </>
   );
 };

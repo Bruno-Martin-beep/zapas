@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from "react";
 
-const Modal = ({close, children, ...restProps}) => {
+const Modal = ({ close, children, ...restProps }) => {
   const modal = useRef(null);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const Modal = ({close, children, ...restProps}) => {
     <div {...restProps} ref={modal}>
       {children}
     </div>
-  )
-}
+  );
+};
 
-export default Modal
+export default Modal;

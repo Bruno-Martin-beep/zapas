@@ -19,6 +19,7 @@ const Panel = ({ currentModel }) => {
       })
     );
   };
+
   return (
     <div className={classNames("panel", { visible: currentModel.editing })}>
       <MeshSelector currentModel={currentModel} />

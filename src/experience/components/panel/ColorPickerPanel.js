@@ -1,26 +1,12 @@
 import React, { useState } from "react";
-import classNames from "classnames";
-import { HexColorPicker, HexColorInput } from "react-colorful";
-import Modal from "../Modal";
+import { HexColorInput } from "react-colorful";
+import HexColorPickerPanel from "./HexColorPickerPanel";
 
 const ColorPickerPanel = ({ currentModel, handleColor }) => {
-  const [showPicker, setShowPicker] = useState(false);
-  const [closing, setClosing] = useState(false);
-
-  const close = () => {
-    setClosing(true);
-    setTimeout(() => {
-      setShowPicker(false);
-    }, 350);
-  };
+  const [open, setOpen] = useState(() => {});
 
   const handlePicker = () => {
-    if (!showPicker) {
-      setClosing(false);
-      setTimeout(() => {
-        setShowPicker(true);
-      });
-    }
+    open();
   };
 
   const handleCopy = () => {
@@ -44,17 +30,7 @@ const ColorPickerPanel = ({ currentModel, handleColor }) => {
           style={{ backgroundColor: currentModel.currentMesh.color }}
           onClick={() => handlePicker()}
         />
-        {showPicker && (
-          <Modal
-            className={classNames("color-picker", { closing: closing })}
-            close={close}
-          >
-            <HexColorPicker
-              color={currentModel.currentMesh.color}
-              onChange={handleColor}
-            />
-          </Modal>
-        )}
+        <HexColorPickerPanel setOpen={setOpen} currentModel={currentModel} handleColor={handleColor} />
       </div>
       <HexColorInput
         className="custom-color-input"

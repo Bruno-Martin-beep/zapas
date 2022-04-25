@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { selectCurrentShoe } from "../../features/modelsListSlice";
 import { selectShoeList } from "../../features/shoeListSlice";
 import Modal from "../Modal";
+import { useClosing } from "../../hooks/useClosing";
 
 const Dialog = ({ name, actionDefault, actionConfirm, ...restProps }) => {
   const bag = useSelector(selectShoeList);
@@ -12,16 +13,9 @@ const Dialog = ({ name, actionDefault, actionConfirm, ...restProps }) => {
   const [title, setTitle] = useState("Save current shoe?");
   const [confirm, setConfirm] = useState("Save");
 
-  const [showQuestion, setShowQuestion] = useState(false);
-  const [closing, setClosing] = useState(false);
+  const [open, setOpen ] = useState(() => {});
 
-  const close = () => {
-    setClosing(true);
-    setTimeout(() => {
-      setClosing(false);
-      setShowQuestion(false);
-    }, 350);
-  };
+  const [showQuestion, closing, close] = useClosing(setOpen);
 
   const handleConfirm = () => {
     actionConfirm();
@@ -35,7 +29,6 @@ const Dialog = ({ name, actionDefault, actionConfirm, ...restProps }) => {
 
   const checkShoe = () => {
     const isOnBag = bag.some((shoe) => shoe.index === currentModel.index);
-
     if (isOnBag) {
       const isSameShoe = bag
         .find((elem) => elem.index === currentModel.index)
@@ -44,14 +37,13 @@ const Dialog = ({ name, actionDefault, actionConfirm, ...restProps }) => {
         );
 
       if (isSameShoe) {
-        return actionDefault();
+        actionDefault();
+        return 
       }
       setTitle("Save current shoe?");
       setConfirm("Save");
-      setTimeout(() => {
-        setShowQuestion(true);
-      });
-      return setTimeout(() => setShowQuestion(true));
+      open();
+      return 
     }
 
     const isDefault = currentModel.meshes.every(
@@ -64,11 +56,12 @@ const Dialog = ({ name, actionDefault, actionConfirm, ...restProps }) => {
     );
 
     if (isDefault || isAlreadySaved) {
-      return actionDefault();
+      actionDefault();
+      return 
     }
     setTitle("Add to bag current shoe?");
     setConfirm("Add to bag");
-    return setTimeout(() => setShowQuestion(true));
+    open();
   };
 
   return (

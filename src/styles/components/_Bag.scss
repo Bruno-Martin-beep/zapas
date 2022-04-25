@@ -52,11 +52,16 @@
   display: flex;
   width: auto;
   margin: 15px;
+  animation: fade-in 350ms ease-in-out forwards;
 }
 
 .bag-shoe.editing {
   border-radius: 8px;
   background-color: #D1D1D1;
+}
+
+.bag-shoe.closing {
+  animation: fade-out 350ms ease-in-out forwards;
 }
 
 .bag-shoe-image {

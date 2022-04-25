@@ -4,30 +4,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateShoe } from "../../features/modelsListSlice";
 import { selectShoeList } from "../../features/shoeListSlice";
 import Bag from "./Bag";
-import BackgroundPicker from "./BackgroundPicker";
+import Background from "./Background";
 
-const Navbar = ({ currentModel, handleDone }) => {
+const Navbar = ({ currentModel, handleDone, openCheckout }) => {
   const dispatch = useDispatch();
   const bag = useSelector(selectShoeList);
 
-  const [showBag, setShowBag] = useState(false);
-  const [closing, setClosing] = useState(false);
-
-  const close = () => {
-    setClosing(true);
-    setTimeout(() => {
-      setClosing(false);
-      setShowBag(false);
-    }, 350);
-  };
-
-  const handleBag = () => {
-    if (!showBag) {
-      setTimeout(() => {
-        setShowBag(true);
-      });
-    }
-  };
+  const [open, setOpen] = useState(() => {});
 
   const HandleBack = () => {
     dispatch(updateShoe({ ...currentModel, editing: false }));
@@ -47,17 +30,15 @@ const Navbar = ({ currentModel, handleDone }) => {
         className={classNames("navbar logo", {
           visible: currentModel.editing,
         })}
-        onClick={() => HandleBack()}
+        onClick={HandleBack}
       >
         {"<"}
       </h2>
-      <BackgroundPicker />
-      <h2 className="navbar bag-info" onClick={() => handleBag()}>
+      <Background />
+      <h2 className="navbar bag-info" onClick={open}>
         bag {bag.length}
       </h2>
-      {showBag && (
-        <Bag closing={closing} close={close} handleDone={handleDone} />
-      )}
+      <Bag setOpen={setOpen} handleDone={handleDone} openCheckout={openCheckout} />
     </>
   );
 };

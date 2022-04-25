@@ -1,0 +1,15 @@
+.checkout-cont {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  transform: translate(-50%, -50%);
+  background-color: hsl(0, 0%, 95%);
+  animation: fade-in 350ms ease-in-out;
+  z-index: 20;
+}
+
+.checkout-cont.closing {
+  animation: fade-out 350ms ease-in-out forwards;
+}
