@@ -1,28 +1,23 @@
 import React, { useEffect } from "react";
 import classNames from "classnames";
+import "./backgroundPicker.scss";
 import Modal from "../Modal";
 import { HexColorPicker, HexColorInput } from "react-colorful";
 import { useClosing } from "../../hooks/useClosing";
+import ColorsControls from "../ColorsControls";
+import ColorsSaved from "../ColorsSaved";
 
-const BackgroundPicker = ({ setOpen, setShowPicker, background, setBackground }) => {
+const BackgroundPicker = ({
+  setOpen,
+  setShowPicker,
+  background,
+  setBackground,
+}) => {
   const [showPicker, closing, close] = useClosing(setOpen);
 
   useEffect(() => {
-    setShowPicker(showPicker)
-  }, [showPicker, setShowPicker])
-  
-  const handleCopy = () => {
-    navigator.clipboard.writeText(background);
-  };
-
-  const handlePaste = () => {
-    const regex = new RegExp("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$");
-    navigator.clipboard.readText().then((clipText) => {
-      if (regex.test(clipText)) {
-        setBackground(clipText);
-      }
-    });
-  };
+    setShowPicker(showPicker);
+  }, [showPicker, setShowPicker]);
 
   if (!showPicker) return <></>;
   return (
@@ -38,13 +33,13 @@ const BackgroundPicker = ({ setOpen, setShowPicker, background, setBackground })
           onChange={setBackground}
           prefixed
         />
-        <p className="custom-color-copy" onClick={() => handleCopy()}>
-          Copy
-        </p>
-        <p className="custom-color-copy" onClick={() => handlePaste()}>
-          Paste
-        </p>
+        <ColorsControls className="custom-color-copy" color={background} />
       </div>
+      <ColorsSaved
+        classParent={"colors-back"}
+        classChild={"color-saved-back"}
+        action={setBackground}
+      />
     </Modal>
   );
 };

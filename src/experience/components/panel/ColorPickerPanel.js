@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import "./colorPickerPanel.scss"
 import { HexColorInput } from "react-colorful";
+import ColorsControls from "../ColorsControls";
 import HexColorPickerPanel from "./HexColorPickerPanel";
 
 const ColorPickerPanel = ({ currentModel, handleColor }) => {
@@ -7,19 +9,6 @@ const ColorPickerPanel = ({ currentModel, handleColor }) => {
 
   const handlePicker = () => {
     open();
-  };
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(currentModel.currentMesh.color);
-  };
-
-  const handlePaste = () => {
-    const regex = new RegExp("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$");
-    navigator.clipboard.readText().then((clipText) => {
-      if (regex.test(clipText)) {
-        handleColor(clipText);
-      }
-    });
   };
 
   return (
@@ -38,12 +27,7 @@ const ColorPickerPanel = ({ currentModel, handleColor }) => {
         onChange={handleColor}
         prefixed
       />
-      <p className="custom-color-copy" onClick={() => handleCopy()}>
-        Copy
-      </p>
-      <p className="custom-color-copy" onClick={() => handlePaste()}>
-        Paste
-      </p>
+      <ColorsControls className="custom-color-copy" color={currentModel.currentMesh.color} />
     </div>
   );
 };

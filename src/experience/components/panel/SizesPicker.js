@@ -1,4 +1,5 @@
 import React from "react";
+import "./sizesPicker.scss"
 import classNames from "classnames";
 import { useDispatch } from "react-redux";
 import { editSize } from "../../features/modelsListSlice";
@@ -21,7 +22,7 @@ const SizesPicker = ({ currentModel }) => {
             <h2
               key={index}
               onClick={() => handleSize(elem)}
-              className={classNames({
+              className={classNames("numbers",{
                 numberSelected: elem === currentModel.size,
               })}
             >

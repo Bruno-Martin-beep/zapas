@@ -1,8 +1,8 @@
 // convert object to string and store in localStorage
-export const saveToLocalStorage = (state) => {
+export const saveToLocalStorage = (name, state) => {
   try {
     const serialisedState = JSON.stringify(state);
-    localStorage.setItem("bag", serialisedState);
+    localStorage.setItem(name, serialisedState);
   } catch (e) {
     console.warn(e);
   }
@@ -10,9 +10,9 @@ export const saveToLocalStorage = (state) => {
 
 // load string from localStarage and convert into an Object
 // invalid output must be undefined
-export const loadFromLocalStorage = () => {
+export const loadFromLocalStorage = (name) => {
   try {
-    const serialisedState = localStorage.getItem("bag");
+    const serialisedState = localStorage.getItem(name);
     if (serialisedState === null) return undefined;
     return JSON.parse(serialisedState);
   } catch (e) {
