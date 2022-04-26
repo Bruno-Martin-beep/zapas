@@ -1,4 +1,5 @@
 import React from "react";
+import "./model3d.scss";
 import classNames from "classnames";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -29,7 +30,7 @@ const Model3d = ({ baseModel, setRenderer, setScene, setCamera }) => {
       <div className={classNames("canvas", { editing: currentModel.editing })}>
         <Canvas
           dpr={[1, 2]}
-          camera={{ fov: 45, position: [0, 0, 2.75], near:1, far: 5 }}
+          camera={{ fov: 45, position: [0, 0, 2.75], near: 1, far: 5 }}
         >
           <ambientLight intensity={0.75} />
           <directionalLight
@@ -51,7 +52,11 @@ const Model3d = ({ baseModel, setRenderer, setScene, setCamera }) => {
             setScene={setScene}
             setCamera={setCamera}
           />
-          <OrbitControls enablePan={false} minDistance={2.25} maxDistance={3.5} />
+          <OrbitControls
+            enablePan={false}
+            minDistance={2.25}
+            maxDistance={3.5}
+          />
         </Canvas>
       </div>
       <div

@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import "./bag.scss";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
 import { saveToLocalStorage } from "../../localStorage";

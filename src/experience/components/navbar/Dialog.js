@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./dialog.scss";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
 import { selectCurrentShoe } from "../../features/modelsListSlice";

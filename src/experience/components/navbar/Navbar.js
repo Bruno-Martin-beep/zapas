@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./navbar.scss";
 import classNames from "classnames";
 import { useSelector, useDispatch } from "react-redux";
 import { updateShoe } from "../../features/modelsListSlice";
@@ -38,7 +39,11 @@ const Navbar = ({ currentModel, handleDone, openCheckout }) => {
       <h2 className="navbar bag-info" onClick={open}>
         bag {bag.length}
       </h2>
-      <Bag setOpen={setOpen} handleDone={handleDone} openCheckout={openCheckout} />
+      <Bag
+        setOpen={setOpen}
+        handleDone={handleDone}
+        openCheckout={openCheckout}
+      />
     </>
   );
 };

@@ -1,0 +1,41 @@
+.bag-shoe {
+  display: flex;
+  width: auto;
+  margin: 15px;
+  animation: fade-in 350ms ease-in-out forwards;
+}
+
+.bag-shoe.editing {
+  border-radius: 8px;
+  background-color: #D1D1D1;
+}
+
+.bag-shoe.closing {
+  animation: fade-out 350ms ease-in-out forwards;
+}
+
+.bag-shoe-image {
+  width: 100px;
+  height: 100px;
+  margin: 15px;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+.bag-shoe-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  margin: 15px;
+}
+
+.bag-shoe-info2 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bag-shoe-info2 > div {
+  display: flex;
+  gap: 15px;
+}

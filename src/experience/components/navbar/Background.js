@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./background.scss";
 import classNames from "classnames";
 import BackgroundPicker from "./BackgroundPicker";
 
@@ -9,7 +10,7 @@ const Background = () => {
     document.body.style.backgroundColor = background;
   }, [background]);
 
-  const [open, setOpen ] = useState(() => {});
+  const [open, setOpen] = useState(() => {});
 
   const [showPicker, setShowPicker] = useState(false);
 
@@ -28,7 +29,12 @@ const Background = () => {
           {">"}
         </div>
       </div>
-      <BackgroundPicker setOpen={setOpen} setShowPicker={setShowPicker} background={background} setBackground={setBackground} />
+      <BackgroundPicker
+        setOpen={setOpen}
+        setShowPicker={setShowPicker}
+        background={background}
+        setBackground={setBackground}
+      />
     </div>
   );
 };

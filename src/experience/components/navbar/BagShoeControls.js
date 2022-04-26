@@ -1,4 +1,5 @@
 import React from "react";
+import "./bagShoeControls.scss"
 import { useSelector, useDispatch } from "react-redux";
 import {
   selectCurrentShoe,
