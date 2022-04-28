@@ -1,3 +1,5 @@
+@use "../../../styles/animations";
+
 .background-picker {
   position: relative;
   top: 5%;
@@ -15,24 +17,6 @@
 
 .background-picker.closing {
   animation: fade-out 350ms ease-in-out forwards;
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0%;
-  }
-  100% {
-    opacity: 100%;
-  }
-}
-
-@keyframes fade-out {
-  0% {
-    opacity: 100%;
-  }
-  100% {
-    opacity: 0%;
-  }
 }
 
 .background-controls {

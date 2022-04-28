@@ -1,3 +1,5 @@
+@use "../../../styles/animations";
+
 .bag {
   display: flex;
   flex-direction: column;
@@ -13,24 +15,6 @@
 
 .bag.closing {
   animation: bag-out 350ms ease-in-out forwards;
-}
-
-@keyframes bag-in {
-  0% {
-    right: -25%;
-  }
-  100% {
-    right: 0%;
-  }
-}
-
-@keyframes bag-out {
-  0% {
-    right: 0%;
-  }
-  100% {
-    right: -25%;
-  }
 }
 
 .bag-title {

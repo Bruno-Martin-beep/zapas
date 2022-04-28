@@ -15,6 +15,28 @@
   cursor: pointer;
 }
 
+.back {
+  top: 0%;
+  left: 0%;
+  width: 48px;
+  height: 48px;
+  margin: 25px;
+  opacity: 0%;
+  visibility: hidden;
+  transition: opacity 200ms ease-in-out;
+  user-select: none;
+  cursor: pointer;
+}
+
+.back.visible {
+  opacity: 100%;
+  visibility: visible;
+}
+
+.back > path {
+  fill: hsl(0, 0%, 95%);
+}
+
 .logo.visible {
   opacity: 100%;
   visibility: visible;

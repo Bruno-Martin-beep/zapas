@@ -12,7 +12,7 @@ const Background = () => {
 
   const [open, setOpen] = useState(() => {});
 
-  const [showPicker, setShowPicker] = useState(false);
+  const [showPicker, setShowPicker] = useState(null);
 
   const handlePicker = () => {
     open();
@@ -25,9 +25,14 @@ const Background = () => {
           className="background-selected"
           style={{ backgroundColor: background }}
         />
-        <div className={classNames("background-arrow", { active: showPicker })}>
-          {">"}
-        </div>
+        <svg
+          className={classNames("background-arrow", { active: showPicker }, { disable: showPicker === false })}
+          name="expand more"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 48 48"
+        >
+          <path d="M14.15 16.6 24 26.5 33.85 16.65 36 18.8 24 30.75 12 18.75Z" />
+        </svg>
       </div>
       <BackgroundPicker
         setOpen={setOpen}

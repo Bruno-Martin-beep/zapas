@@ -13,6 +13,11 @@
   cursor: pointer;
 }
 
+.mesh-panel-button > svg {
+  width: 48px;
+  height: 48px;
+}
+
 .mesh-panel-name {
   display: flex;
 }

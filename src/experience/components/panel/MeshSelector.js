@@ -1,5 +1,5 @@
-import React from 'react'
-import "./meshSelector.scss"
+import React from "react";
+import "./meshSelector.scss";
 import { useDispatch } from "react-redux";
 import {
   changeCurrentMesh,
@@ -25,23 +25,27 @@ const MeshSelector = ({ currentModel }) => {
 
   return (
     <div className="mesh-panel">
-        <button className="mesh-panel-button" onClick={() => handleBackArrow()}>
-          {"<"}
-        </button>
-        <div className="mesh-panel-name">
-          <h2 className="active">{currentModel.currentMesh.name}</h2>
-          <h2>
-            {currentModel.currentMesh.index + 1}/{currentModel.meshes.length}
-          </h2>
-        </div>
-        <button
-          className="mesh-panel-button"
-          onClick={() => handleForwardArrow()}
-        >
-          {">"}
-        </button>
+      <button className="mesh-panel-button" onClick={() => handleBackArrow()}>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+          <path d="M28.05 36 16 23.95 28.05 11.9 30.2 14.05 20.3 23.95 30.2 33.85Z" />
+        </svg>
+      </button>
+      <div className="mesh-panel-name">
+        <h2 className="active">{currentModel.currentMesh.name}</h2>
+        <h2>
+          {currentModel.currentMesh.index + 1}/{currentModel.meshes.length}
+        </h2>
       </div>
-  )
-}
+      <button
+        className="mesh-panel-button"
+        onClick={() => handleForwardArrow()}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+          <path d="M18.75 36 16.6 33.85 26.5 23.95 16.6 14.05 18.75 11.9 30.8 23.95Z" />
+        </svg>
+      </button>
+    </div>
+  );
+};
 
-export default MeshSelector
+export default MeshSelector;

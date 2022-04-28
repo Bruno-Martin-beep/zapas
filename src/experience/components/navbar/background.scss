@@ -1,8 +1,10 @@
+@use "../../../styles/animations";
+
 .background {
   position: absolute;
   top: 25px;
   right: 15%;
-  width: 120px;
+  width: 110px;
   height: 60px;
   z-index: 10;
 }
@@ -25,16 +27,20 @@
 }
 
 .background-arrow {
-  flex-grow: 1;
-  font-size: 2rem;
-  font-family: "Montserrat", sans-serif;
-  text-align: center;
-  text-transform: uppercase;
-  color: hsl(0, 0%, 10%);
-  transform: rotate(90deg);
-  transition: transform 200ms ease-in-out;
+  width: 36px;
+  height: 36px;
+  margin: 7px;
+  transition: padding-top 200ms ease-in-out;
 }
 
-.background-arrow.active {
-  transform: rotate(-90deg);
+.background-arrow > path {
+  fill: hsl(0, 0%, 10%);
+}
+
+.background-arrow.active > path {
+  animation: expand-to-less 200ms ease-in-out forwards;
+}
+
+.background-arrow.disable > path {
+  animation: expand-to-more 200ms ease-in-out forwards;
 }

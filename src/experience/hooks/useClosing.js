@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export const useClosing = (handleOpen) => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(null);
   const [closing, setClosing] = useState(false);
 
   const close = () => {
