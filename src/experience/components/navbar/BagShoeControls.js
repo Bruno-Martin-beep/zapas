@@ -1,10 +1,7 @@
 import React from "react";
-import "./bagShoeControls.scss"
+import "./bagShoeControls.scss";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  selectCurrentShoe,
-  updateShoe,
-} from "../../features/modelsListSlice";
+import { selectCurrentShoe, updateShoe } from "../../features/modelsListSlice";
 import { addShoe, selectShoeList } from "../../features/shoeListSlice";
 import Dialog from "./Dialog";
 
@@ -14,18 +11,22 @@ const BagShoeControls = ({ shoe, handleDone, handleRemove }) => {
   const dispatch = useDispatch();
 
   const handleEdit = () => {
-    const currentShoe = bag.find((elem) => elem.index === currentModel.index);
-    if (currentShoe) {
-      dispatch(addShoe({ ...currentShoe, editing: false }));
-    }
-    dispatch(updateShoe({ ...shoe, editing: !shoe.editing}));
-    dispatch(addShoe({ ...shoe, editing: !shoe.editing}));
+    setTimeout(() => {
+      const currentShoe = bag.find((elem) => elem.index === currentModel.index);
+      if (currentShoe) {
+        dispatch(addShoe({ ...currentShoe, editing: false }));
+      }
+      dispatch(updateShoe({ ...shoe, editing: !shoe.editing }));
+      dispatch(addShoe({ ...shoe, editing: !shoe.editing }));
+    });
   };
 
   const handleEditConfirm = () => {
-    handleDone();
-    dispatch(updateShoe({ ...shoe, editing: !shoe.editing}));
-    dispatch(addShoe({ ...shoe, editing: !shoe.editing}));
+    setTimeout(() => {
+      handleDone();
+      dispatch(updateShoe({ ...shoe, editing: !shoe.editing }));
+      dispatch(addShoe({ ...shoe, editing: !shoe.editing }));
+    });
   };
 
   const handleCopy = () => {
@@ -33,12 +34,14 @@ const BagShoeControls = ({ shoe, handleDone, handleRemove }) => {
   };
 
   const handleSave = () => {
-    handleDone();
+    setTimeout(() => {
+      handleDone();
+    });
   };
 
   const handleDiscard = () => {
-    dispatch(updateShoe({ ...shoe, editing: false}));
-    dispatch(addShoe({ ...shoe, editing: false}));
+    dispatch(updateShoe({ ...shoe, editing: false }));
+    dispatch(addShoe({ ...shoe, editing: false }));
   };
 
   return (

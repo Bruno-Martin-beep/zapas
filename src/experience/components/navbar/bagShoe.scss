@@ -4,7 +4,8 @@
   display: flex;
   width: auto;
   margin: 15px;
-  animation: fade-in 350ms ease-in-out forwards;
+  animation: fade-in 350ms ease-in-out;
+  transition: background-color 350ms ease-in-out;
 }
 
 .bag-shoe.editing {
