@@ -16,12 +16,14 @@
 }
 
 .back {
+  display: flex;
   top: 0%;
   left: 0%;
-  width: 48px;
-  height: 48px;
   margin: 25px;
+  font-size: 2rem;
+  font-family: "Montserrat", sans-serif;
   opacity: 0%;
+  color: hsl(0, 0%, 95%);
   visibility: hidden;
   transition: opacity 200ms ease-in-out;
   user-select: none;
@@ -33,7 +35,12 @@
   visibility: visible;
 }
 
-.back > path {
+.back > svg {
+  width: 48px;
+  height: 48px;
+}
+
+.back > svg > path {
   fill: hsl(0, 0%, 95%);
 }
 
