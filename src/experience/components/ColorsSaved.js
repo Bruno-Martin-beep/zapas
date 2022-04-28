@@ -9,8 +9,7 @@ const ColorsSaved = ({ classParent, classChild, action }) => {
 
   useEffect(() => {
     saveToLocalStorage("colors", colorsList);
-  }, [colorsList])
-  
+  }, [colorsList]);
 
   const handleRemove = (e, color) => {
     e.preventDefault();
@@ -19,10 +18,10 @@ const ColorsSaved = ({ classParent, classChild, action }) => {
 
   return (
     <div className={classParent}>
-      {colorsList.map((color, index) => {
+      {colorsList.map((color) => {
         return (
           <div
-            key={index}
+            key={color}
             onClick={() => action(color)}
             onContextMenu={(e) => handleRemove(e, color)}
             style={{ backgroundColor: color }}

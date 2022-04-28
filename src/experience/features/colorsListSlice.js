@@ -7,6 +7,7 @@ export const colorsListSlice = createSlice({
   name: "colorsList",
   initialState: [],
   reducers: {
+    
     addColor: (state, action) => {
       if (!state.some((color) => color === action.payload)) {
         state = [action.payload, ...state];
@@ -14,10 +15,12 @@ export const colorsListSlice = createSlice({
       return state;
     },
     removeColor: (state, action) => {
-      const index = state.findIndex(
-        (elem) => elem === action.payload
-      );
+      const index = state.findIndex((elem) => elem === action.payload);
       state.splice(index, 1);
+    },
+    addList: (state, action) => {
+      state = [...state, ...action.payload];
+      return state;
     },
     clearList: (state) => {
       state = [];
@@ -33,6 +36,6 @@ export const selectcolorsList = (state) => state.colorsList;
 // Exports
 ///////////////////////////////////////
 
-export const { addColor, removeColor, clearList } = colorsListSlice.actions;
+export const { addColor, removeColor, addList, clearList } = colorsListSlice.actions;
 
 export default colorsListSlice.reducer;

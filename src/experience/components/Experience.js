@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateShoe, selectCurrentShoe } from "../features/modelsListSlice";
 import { addShoe } from "../features/shoeListSlice";
-import { addColor } from "../features/colorsListSlice";
+import { addList } from "../features/colorsListSlice";
 import { loadFromLocalStorage } from "../localStorage";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { nanoid } from "nanoid";
@@ -12,24 +12,9 @@ import Panel from "./panel/Panel";
 import Done from "./Done";
 import Share from "./Share";
 import Checkout from "./Checkout";
+import colors from "../mocks/defaultColors";
 
 import { PerspectiveCamera } from "three";
-
-const colors = [
-  "#000000",
-  "#6A5ACD",
-  "#9370DB",
-  "#32CD32",
-  "#ffff82",
-  "#FFE764",
-  "#FFD700",
-  "#663399",
-  "#7FFF00",
-  "#FFF8DC",
-  "#4682B4",
-  "#cd5c5c",
-  "#668655",
-];
 
 const Experience = () => {
   const [baseModel, setBaseModel] = useState({});
@@ -52,13 +37,9 @@ const Experience = () => {
     }
     const colorsList = loadFromLocalStorage("colors");
     if (colorsList) {
-      colorsList.forEach((color) => {
-        dispatch(addColor(color));
-      });
+      dispatch(addList(colorsList));
     } else {
-      colors.forEach((color) => {
-        dispatch(addColor(color));
-      });
+      dispatch(addList(colors));
     }
   }, [dispatch]);
 

@@ -1,3 +1,5 @@
+@use "../../../styles/animations";
+
 .panel {
   display: flex;
   flex-direction: column;
@@ -23,6 +25,7 @@
   justify-items: center;
   gap: 25px;
   margin: 50px 25px;
+  overflow-y: auto;
 }
 
 .select-color {
