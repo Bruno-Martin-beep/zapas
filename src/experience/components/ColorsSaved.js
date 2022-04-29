@@ -18,10 +18,10 @@ const ColorsSaved = ({ classParent, classChild, action }) => {
 
   return (
     <div className={classParent}>
-      {colorsList.map((color) => {
+      {colorsList.map((color, index) => {
         return (
           <div
-            key={color}
+            key={index}
             onClick={() => action(color)}
             onContextMenu={(e) => handleRemove(e, color)}
             style={{ backgroundColor: color }}
