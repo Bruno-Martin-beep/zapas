@@ -33,7 +33,7 @@ const BackgroundPicker = ({
           onChange={setBackground}
           prefixed
         />
-        <ColorsControls className="custom-color-copy" color={background} />
+        <ColorsControls className="colors-controls-back" color={background} />
       </div>
       <ColorsSaved
         classParent={"colors-back"}

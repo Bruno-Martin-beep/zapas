@@ -27,7 +27,7 @@ const ColorPickerPanel = ({ currentModel, handleColor }) => {
         onChange={handleColor}
         prefixed
       />
-      <ColorsControls className="custom-color-copy" color={currentModel.currentMesh.color} />
+      <ColorsControls className="colors-controls-panel" color={currentModel.currentMesh.color} />
     </div>
   );
 };

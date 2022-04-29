@@ -7,7 +7,13 @@ import { selectShoeList } from "../../features/shoeListSlice";
 import Bag from "./Bag";
 import Background from "./Background";
 
-const Navbar = ({ currentModel, handleDone, openCheckout }) => {
+const Navbar = ({
+  currentModel,
+  background,
+  setBackground,
+  handleDone,
+  openCheckout,
+}) => {
   const dispatch = useDispatch();
   const bag = useSelector(selectShoeList);
 
@@ -38,7 +44,7 @@ const Navbar = ({ currentModel, handleDone, openCheckout }) => {
         </svg>
         back
       </div>
-      <Background />
+      <Background background={background} setBackground={setBackground} />
       <h2 className="navbar bag-info" onClick={open}>
         bag {bag.length}
       </h2>

@@ -1,4 +1,5 @@
 @use "../../../styles/animations";
+@use "../../../styles/colors" as *;
 
 .bag {
   display: flex;
@@ -8,8 +9,11 @@
   right: 0%;
   height: 100vh;
   width: 25%;
-  background-color: hsl(0, 0%, 95%);
+  @include themed {
+    background-color: t("bg");
+  }
   z-index: 10;
+  transition: background-color 350ms ease;
   animation: bag-in 350ms ease-in-out;
 }
 
@@ -20,6 +24,13 @@
 .bag-title {
   display: flex;
   justify-content: space-between;
+}
+
+.bag-title > h3 {
+  @include themed {
+    color: t("text");
+  }
+  transition: color 350ms ease;
 }
 
 .close {
@@ -39,6 +50,9 @@
   height: 100px;
   font-size: 1.5rem;
   font-family: "Montserrat", sans-serif;
-  background-color: hsl(0, 0%, 10%);
-  color: hsl(0, 0%, 95%);
+  @include themed {
+    color: t("bg");
+    background-color: t("text");
+  }
+  transition: color 350ms ease, background-color 350ms ease;
 }

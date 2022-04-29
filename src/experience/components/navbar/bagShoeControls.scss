@@ -1,5 +1,11 @@
+@use "../../../styles/colors" as *;
+
 .bag-shoe-control {
   position: relative;
+  @include themed {
+    color: t("text");
+  }
+  transition: color 350ms ease;
   text-decoration: underline;
   user-select: none;
   cursor: pointer;

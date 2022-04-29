@@ -1,16 +1,17 @@
 @use "../../../styles/animations";
+@use "../../../styles/colors" as *;
 
 .bag-shoe {
   display: flex;
   width: auto;
   margin: 15px;
+  border-radius: 8px;
   animation: fade-in 350ms ease-in-out;
   transition: background-color 350ms ease-in-out;
 }
 
 .bag-shoe.editing {
-  border-radius: 8px;
-  background-color: #D1D1D1;
+  background-color: hsla(0, 0%, 50%, 0.5);
 }
 
 .bag-shoe.closing {
@@ -31,6 +32,15 @@
   justify-content: space-between;
   flex-grow: 1;
   margin: 15px;
+}
+.bag-shoe-info > *,
+.bag-shoe-info2 > *,
+.bag-shoe-info2 > * > *
+ {
+  @include themed {
+    color: t("text");
+  }
+  transition: color 350ms ease;
 }
 
 .bag-shoe-info2 {

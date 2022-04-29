@@ -1,15 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./background.scss";
 import classNames from "classnames";
 import BackgroundPicker from "./BackgroundPicker";
 
-const Background = () => {
-  const [background, setBackground] = useState("#a7c7e7");
-
-  useEffect(() => {
-    document.body.style.backgroundColor = background;
-  }, [background]);
-
+const Background = ({ background, setBackground }) => {
   const [open, setOpen] = useState(() => {});
 
   const [showPicker, setShowPicker] = useState(null);
@@ -26,7 +20,11 @@ const Background = () => {
           style={{ backgroundColor: background }}
         />
         <svg
-          className={classNames("background-arrow", { active: showPicker }, { disable: showPicker === false })}
+          className={classNames(
+            "background-arrow",
+            { active: showPicker },
+            { disable: showPicker === false }
+          )}
           name="expand more"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 48 48"

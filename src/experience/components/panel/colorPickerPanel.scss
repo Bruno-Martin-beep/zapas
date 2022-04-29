@@ -1,4 +1,5 @@
 @use "../../../styles/animations";
+@use "../../../styles/colors" as *;
 
 .custom-color {
   display: flex;
@@ -40,10 +41,18 @@
   font-size: 1.2rem;
   font-family: "Montserrat", sans-serif;
   text-transform: uppercase;
-  color: hsl(0, 0%, 10%);
+  @include themed {
+    color: t("text");
+    background-color: t("bg");
+  }
+  transition: color 350ms ease, background-color 350ms ease;
 }
 
-.custom-color-copy {
+.colors-controls-panel {
+  @include themed {
+    color: t("text");
+  }
+  transition: color 350ms ease;
   user-select: none;
   cursor: pointer;
 }

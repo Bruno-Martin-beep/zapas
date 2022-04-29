@@ -1,3 +1,5 @@
+@use "../../styles/colors" as *;
+
 .controls {
   position: absolute;
   bottom: 0%;
@@ -23,8 +25,11 @@
   font-size: 2rem;
   font-family: "Montserrat", sans-serif;
   text-align: center;
-  background-color: hsl(0, 0%, 10%);
-  color: hsl(0, 0%, 95%);
+  @include themed {
+    color: t("bg");
+    background-color: t("text");
+  }
+  transition: background-color 350ms ease, color 350ms ease;
   user-select: none;
   cursor: pointer;
 }

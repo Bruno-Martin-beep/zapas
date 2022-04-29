@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateShoe, selectCurrentShoe } from "../features/modelsListSlice";
 import { addShoe } from "../features/shoeListSlice";
 import { addList } from "../features/colorsListSlice";
-import { loadFromLocalStorage } from "../localStorage";
+import { loadFromLocalStorage, saveToLocalStorage } from "../localStorage";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { nanoid } from "nanoid";
 import Navbar from "./navbar/Navbar";
@@ -16,11 +16,43 @@ import colors from "../mocks/defaultColors";
 
 import { PerspectiveCamera } from "three";
 
+function getTextColor(bgColor) {
+  function getRGB(c) {
+    return parseInt(c, 16) || c;
+  }
+
+  function getsRGB(c) {
+    return getRGB(c) / 255 <= 0.03928
+      ? getRGB(c) / 255 / 12.92
+      : Math.pow((getRGB(c) / 255 + 0.055) / 1.055, 2.4);
+  }
+
+  function getLuminance(hexColor) {
+    return (
+      0.2126 * getsRGB(hexColor.substr(1, 2)) +
+      0.7152 * getsRGB(hexColor.substr(3, 2)) +
+      0.0722 * getsRGB(hexColor.substr(-2))
+    );
+  }
+
+  function getContrast(f, b) {
+    const L1 = getLuminance(f);
+    const L2 = getLuminance(b);
+    return (Math.max(L1, L2) + 0.05) / (Math.min(L1, L2) + 0.05);
+  }
+
+  const whiteContrast = getContrast(bgColor, "#f2f2f2");
+  const blackContrast = getContrast(bgColor, "#1a1a1a");
+
+  return whiteContrast > blackContrast ? "theme--dark" : "theme--light";
+}
+
 const Experience = () => {
   const [baseModel, setBaseModel] = useState({});
   const [renderer, setRenderer] = useState(null);
   const [scene, setScene] = useState(null);
   const [camera, setCamera] = useState(null);
+  const [background, setBackground] = useState("#a7c7e7");
 
   const dispatch = useDispatch();
   const currentModel = useSelector(selectCurrentShoe);
@@ -41,7 +73,17 @@ const Experience = () => {
     } else {
       dispatch(addList(colors));
     }
+    const backgroundStored = loadFromLocalStorage("background");
+    if (!!backgroundStored) {
+      setBackground(backgroundStored);
+    }
   }, [dispatch]);
+
+  useEffect(() => {
+    document.body.style.backgroundColor = background;
+    document.body.className = getTextColor(background);
+    saveToLocalStorage("background", background);
+  }, [background]);
 
   const onFirstRender = () => {
     const gltfLoader = new GLTFLoader();
@@ -131,6 +173,8 @@ const Experience = () => {
     <>
       <Navbar
         currentModel={currentModel}
+        background={background}
+        setBackground={setBackground}
         handleDone={handleDone}
         openCheckout={openCheckout}
       />

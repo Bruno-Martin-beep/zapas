@@ -1,12 +1,19 @@
 @use "../../../styles/animations";
+@use "../../../styles/colors" as *;
 
 .background-picker {
+  display: flex;
+  flex-direction: column;
   position: relative;
   top: 5%;
   width: 220px;
+  max-height: 40vh;
   padding: 10px;
   border-radius: 8px;
-  background-color: hsl(0, 0%, 95%);
+  @include themed {
+    background-color: t("text");
+  }
+  transition: background-color 350ms ease;
   box-shadow:  0px 0px 60px 30px #4d4d4d20;
   animation: fade-in 350ms ease-in-out;
 }
@@ -19,9 +26,22 @@
   animation: fade-out 350ms ease-in-out forwards;
 }
 
+.background-picker .react-colorful {
+  flex-shrink: 0;
+ }
+
 .background-controls {
   display: flex;
   justify-content: space-around;
+}
+
+.colors-controls-back{
+  @include themed {
+    color: t("bg");
+  }
+  transition: color 350ms ease;
+  user-select: none;
+  cursor: pointer;
 }
 
 .colors-back {
@@ -29,6 +49,7 @@
   grid-template-columns: repeat(auto-fit, minmax(25px, 1fr));
   justify-items: center;
   gap: 7.5px;
+  overflow-y: auto;
 }
 
 .color-saved-back {

@@ -1,13 +1,14 @@
+@use "../../../styles/colors" as *;
+
 .navbar {
   position: absolute;
   z-index: 10;
-  mix-blend-mode: difference;
+  // mix-blend-mode: difference;
 }
 
 .logo {
   top: 0%;
   left: 0%;
-  color: hsl(0, 0%, 95%);
   opacity: 0%;
   visibility: hidden;
   transition: opacity 200ms ease-in-out;
@@ -23,9 +24,11 @@
   font-size: 2rem;
   font-family: "Montserrat", sans-serif;
   opacity: 0%;
-  color: hsl(0, 0%, 95%);
+  @include themed {
+    color: t("text");
+  }
   visibility: hidden;
-  transition: opacity 200ms ease-in-out;
+  transition: opacity 200ms ease-in-out, color 350ms ease;
   user-select: none;
   cursor: pointer;
 }
@@ -41,7 +44,10 @@
 }
 
 .back > svg > path {
-  fill: hsl(0, 0%, 95%);
+  @include themed {
+    fill: t("text");
+  }
+  transition: fill 350ms ease;
 }
 
 .logo.visible {
@@ -52,13 +58,11 @@
 .beta {
   bottom: 0%;
   left: 0%;
-  color: hsl(0, 0%, 95%);
 }
 
 .bag-info {
   top: 0%;
   right: 0%;
-  color: hsl(0, 0%, 95%);
   user-select: none;
   cursor: pointer;
 }

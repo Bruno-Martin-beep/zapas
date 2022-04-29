@@ -1,10 +1,4 @@
-@use "../colors" as *;
-
-html,
-body {
-  overflow: hidden;
-  // transition: background-color 350ms ease;
-}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
 
 h2 {
   font-size: 2rem;
@@ -12,10 +6,7 @@ h2 {
   font-family: "Montserrat", sans-serif;
   text-align: center;
   text-transform: uppercase;
-  @include themed {
-    color: t("text");
-  }
-  transition: color 350ms ease;
+  color: hsl(0, 0%, 10%);
 }
 
 h3 {
