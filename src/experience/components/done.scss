@@ -26,10 +26,16 @@
   font-family: "Montserrat", sans-serif;
   text-align: center;
   @include themed {
-    color: t("bg");
-    background-color: t("text");
+    color: t("text");
   }
-  transition: background-color 350ms ease, color 350ms ease;
+  border: 2px solid transparent;
+  transition: color 350ms ease, border 350ms ease;
   user-select: none;
   cursor: pointer;
+}
+
+.done:hover {
+  @include themed {
+    border: 2px solid t("text");
+  }
 }

@@ -16,8 +16,6 @@ import colors from "../mocks/defaultColors";
 import { PerspectiveCamera } from "three";
 import getContrastTheme from "../utils/getContrastTheme";
 
-
-
 const Experience = () => {
   const [baseModel, setBaseModel] = useState({});
   const [renderer, setRenderer] = useState(null);
@@ -27,7 +25,7 @@ const Experience = () => {
 
   const dispatch = useDispatch();
   const currentModel = useSelector(selectCurrentShoe);
-
+  
   const [openCheckout, setOpenCheckout] = useState(() => {});
 
   useEffect(() => {
