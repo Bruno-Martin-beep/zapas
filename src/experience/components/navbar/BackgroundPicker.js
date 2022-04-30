@@ -29,7 +29,7 @@ const BackgroundPicker = ({
       <div className="background-controls">
         <HexColorInput
           color={background}
-          style={{ width: "75px" }}
+          className={"hexColorInput-bg"}
           onChange={setBackground}
           prefixed
         />

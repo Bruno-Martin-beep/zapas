@@ -33,10 +33,10 @@
 }
 
 .color-picker.closing {
-  animation: fade-out 350ms ease-in-out forwards;
+  animation: fade-out 350ms ease-in-out;
 }
 
-.custom-color-input {
+.hexColorInput-panel {
   width: 110px;
   padding: 5px;
   border: none;
@@ -48,10 +48,10 @@
     color: t("text");
   }
   background-color: hsla(0, 0%, 50%, 0.3);
-  transition: color 350ms ease, background-color 350ms ease;
+  transition: color 350ms ease;
 }
 
-.custom-color-input:focus-visible {
+.hexColorInput-panel:focus-visible {
   outline: none;
 }
 

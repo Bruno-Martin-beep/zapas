@@ -22,7 +22,7 @@ const ColorPickerPanel = ({ currentModel, handleColor }) => {
         <HexColorPickerPanel setOpen={setOpen} currentModel={currentModel} handleColor={handleColor} />
       </div>
       <HexColorInput
-        className="custom-color-input"
+        className="hexColorInput-panel"
         color={currentModel.currentMesh.color}
         onChange={handleColor}
         prefixed

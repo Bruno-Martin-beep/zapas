@@ -35,6 +35,24 @@
   justify-content: space-around;
 }
 
+.hexColorInput-bg {
+  width: 90px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  @include themed {
+    color: t("bg");
+  }
+  background-color: hsla(0, 0%, 50%, 0.3);
+  transition: color 350ms ease;
+}
+
+.hexColorInput-bg:focus-visible {
+  outline: none;
+}
+
 .colors-controls-back{
   @include themed {
     color: t("bg");
