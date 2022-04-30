@@ -19,7 +19,7 @@ export const colorsListSlice = createSlice({
       state.splice(index, 1);
     },
     addList: (state, action) => {
-      state = [...state, ...action.payload];
+      state = [...action.payload];
       return state;
     },
     clearList: (state) => {
