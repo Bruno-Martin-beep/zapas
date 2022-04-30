@@ -1,5 +1,14 @@
+@use "../../../styles/colors" as *;
+
 .subtotal-cont {
   display: flex;
   justify-content: space-between;
   margin: 30px;
+}
+
+.subtotal-cont > p {
+  @include themed {
+    color: t("text");
+  }
+  transition: color 350ms ease;
 }
