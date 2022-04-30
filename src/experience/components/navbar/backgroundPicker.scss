@@ -45,7 +45,7 @@
   @include themed {
     color: t("bg");
   }
-  background-color: hsla(0, 0%, 50%, 0.3);
+  background-color: $grey-500-300;
   transition: color 350ms ease;
 }
 

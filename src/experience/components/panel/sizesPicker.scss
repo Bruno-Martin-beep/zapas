@@ -1,3 +1,5 @@
+@use "../../../styles/colors" as *;
+
 .sizes {
   display: flex;
   width: 100%;
@@ -17,5 +19,5 @@
 
 .numberSelected {
   border-radius: 15px;
-  background-color: hsla(0, 0%, 50%, 0.5);
+  background-color: $grey-500-300;
 }
