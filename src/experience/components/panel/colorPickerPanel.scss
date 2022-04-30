@@ -37,15 +37,22 @@
 }
 
 .custom-color-input {
-  width: 100px;
+  width: 110px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
   font-size: 1.2rem;
   font-family: "Montserrat", sans-serif;
   text-transform: uppercase;
   @include themed {
     color: t("text");
-    background-color: t("bg");
   }
+  background-color: hsla(0, 0%, 50%, 0.3);
   transition: color 350ms ease, background-color 350ms ease;
+}
+
+.custom-color-input:focus-visible {
+  outline: none;
 }
 
 .colors-controls-panel {
