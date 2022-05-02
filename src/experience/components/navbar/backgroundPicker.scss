@@ -6,20 +6,20 @@
   flex-direction: column;
   position: relative;
   top: 5%;
-  width: 220px;
-  max-height: 40vh;
-  padding: 10px;
-  border-radius: 8px;
+  width: 12em;
+  max-height: 22em;
+  padding: 0.5em;
+  border-radius: 0.5em;
   @include themed {
     background-color: t("text");
   }
   transition: background-color 350ms ease;
-  box-shadow:  0px 0px 60px 30px #4d4d4d20;
+  box-shadow: 0px 0px 60px 30px #4d4d4d20;
   animation: fade-in 350ms ease-in-out;
 }
 
 .background-picker > * + * {
-  margin-top: 10px;
+  margin-top: 0.5em;
 }
 
 .background-picker.closing {
@@ -28,18 +28,22 @@
 
 .background-picker .react-colorful {
   flex-shrink: 0;
- }
+  width: 11em;
+  height: 11em;
+}
 
 .background-controls {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .hexColorInput-bg {
-  width: 90px;
-  padding: 5px;
+  width: 5.5em;
+  padding: 0.25em;
   border: none;
-  border-radius: 5px;
+  border-radius: 0.25em;
+  font-size: 1em;
   font-family: "Montserrat", sans-serif;
   text-transform: uppercase;
   @include themed {
@@ -53,7 +57,7 @@
   outline: none;
 }
 
-.colors-controls-back{
+.colors-controls-back {
   @include themed {
     color: t("bg");
   }
@@ -64,16 +68,17 @@
 
 .colors-back {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(25px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(1.5em, 1fr));
   justify-items: center;
-  gap: 7.5px;
+  gap: 0.5em;
+  min-height: 2em;
   overflow-y: auto;
 }
 
 .color-saved-back {
-  width: 25px;
-  height: 25px;
-  border-radius: 25px;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 1.5em;
   user-select: none;
   cursor: pointer;
 }

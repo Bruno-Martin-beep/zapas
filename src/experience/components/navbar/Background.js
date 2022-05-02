@@ -3,7 +3,7 @@ import "./background.scss";
 import classNames from "classnames";
 import BackgroundPicker from "./BackgroundPicker";
 
-const Background = ({ background, setBackground }) => {
+const Background = ({ background, setBackground, ...restProps }) => {
   const [open, setOpen] = useState(() => {});
 
   const [showPicker, setShowPicker] = useState(null);
@@ -13,7 +13,7 @@ const Background = ({ background, setBackground }) => {
   };
 
   return (
-    <div className="background">
+    <div {...restProps} >
       <div className="background-button" onClick={() => handlePicker()}>
         <div
           className="background-selected"

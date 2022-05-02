@@ -44,7 +44,7 @@ const Navbar = ({
         </svg>
         back
       </div>
-      <Background background={background} setBackground={setBackground} />
+      <Background className="navbar background" background={background} setBackground={setBackground} />
       <h2 className="navbar bag-info" onClick={open}>
         bag {bag.length}
       </h2>
