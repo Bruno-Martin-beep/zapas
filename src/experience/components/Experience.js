@@ -21,7 +21,7 @@ const Experience = () => {
   const [renderer, setRenderer] = useState(null);
   const [scene, setScene] = useState(null);
   const [camera, setCamera] = useState(null);
-  const [background, setBackground] = useState("#a7c7e7");
+  const [background, setBackground] = useState("#2f5a76");
 
   const dispatch = useDispatch();
   const currentModel = useSelector(selectCurrentShoe);
