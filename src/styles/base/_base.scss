@@ -1,13 +1,13 @@
 @use "../colors" as *;
 
-html,
 body {
+  font-size: 1vw;
   overflow: hidden;
   // transition: background-color 350ms ease;
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: 2em;
   margin: 25px;
   font-family: "Montserrat", sans-serif;
   text-align: center;
@@ -19,7 +19,7 @@ h2 {
 }
 
 h3 {
-  font-size: 1.5rem;
+  font-size: 1.5em;
   margin: 15px;
   font-family: "Montserrat", sans-serif;
   text-align: center;
@@ -27,7 +27,7 @@ h3 {
 }
 
 p {
-  font-size: 1.2rem;
+  font-size: 1.2em;
   font-family: "Montserrat", sans-serif;
   color: hsl(0, 0%, 10%);
 }
