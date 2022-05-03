@@ -3,11 +3,11 @@
 .mesh-panel {
   display: flex;
   justify-content: space-between;
+  margin: 1.5em;
 }
 
 .mesh-panel-button {
   font-size: 2em;
-  margin: 25px;
   font-family: "Montserrat", sans-serif;
   background-color: transparent;
   border: none;
@@ -16,8 +16,8 @@
 }
 
 .mesh-panel-button > svg {
-  width: 48px;
-  height: 48px;
+  width: 1.5em;
+  height: 1.5em;
 }
 
 .mesh-panel-button > svg > path {
@@ -29,4 +29,8 @@
 
 .mesh-panel-name {
   display: flex;
+}
+
+.mesh-panel-name > h2 + h2 {
+  margin-left: 0.4em;
 }

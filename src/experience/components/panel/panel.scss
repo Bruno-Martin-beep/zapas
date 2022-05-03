@@ -5,15 +5,14 @@
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 0;
-  right: -25%;
-  width: 25%;
+  top: 0vh;
+  right: -25vw;
+  width: 25vw;
   height: 100vh;
-  padding-top: 100px;
+  padding-top: 5em;
   @include themed {
     background-color: t("bg");
   }
-  overflow: auto;
   transition: right 350ms ease-in-out, background-color 350ms ease;
   z-index: 5;
 }
@@ -24,17 +23,19 @@
 
 .selectors {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(3em, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(3em, 1fr));
+  flex-grow: 1;
   justify-items: center;
-  gap: 25px;
-  margin: 50px 25px;
+  gap: 1em;
+  margin: 3em 1.5em;
   overflow-y: auto;
 }
 
 .select-color {
-  width: 50px;
-  height: 50px;
-  border-radius: 50px;
+  width: 3em;
+  height: 3em;
+  border-radius: 3em;
   user-select: none;
   cursor: pointer;
 }
