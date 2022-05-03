@@ -5,10 +5,10 @@
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 0%;
-  right: 0%;
+  top: 0vh;
+  right: 0vw;
   height: 100vh;
-  width: 25%;
+  width: 25vw;
   @include themed {
     background-color: t("bg");
   }
@@ -24,6 +24,7 @@
 .bag-title {
   display: flex;
   justify-content: space-between;
+  margin: 1em;
 }
 
 .bag-title > h3 {
@@ -41,13 +42,13 @@
 .bag-content {
   flex-grow: 1;
   overflow-y: auto;
-}
+} 
 
 .checkout {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px;
+  height: 3.5em;
   font-size: 1.5em;
   font-family: "Montserrat", sans-serif;
   @include themed {
