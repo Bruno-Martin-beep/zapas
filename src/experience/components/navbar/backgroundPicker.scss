@@ -7,7 +7,7 @@
   position: relative;
   top: 5%;
   width: 12em;
-  max-height: 22em;
+  max-height: 24em;
   padding: 0.5em;
   border-radius: 0.5em;
   @include themed {
@@ -65,13 +65,72 @@
   cursor: pointer;
 }
 
+.colors-saved-back {
+  flex-shrink: 0;
+  flex-grow: 1;
+  position: relative;
+  height: 5em;
+}
+
+.colors-saved-back::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0.25em;
+  content: '';
+  @include themed {
+    background: linear-gradient(t("text-gradient"));
+  }
+  z-index: 14;
+}
+
+.colors-saved-back::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0.25em;
+  content: '';
+  @include themed {
+    background: linear-gradient(to top, t("text-gradient"));
+  }
+  z-index: 14;
+}
+
 .colors-back {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(1.5em, 1fr));
   justify-items: center;
   gap: 0.5em;
-  min-height: 2em;
+  // min-height: 2em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+  scrollbar-width: thin;
   overflow-y: auto;
+}
+
+.colors-back::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+.colors-back::-webkit-scrollbar-button {
+  height: 0.25em;
+}
+
+.colors-back::-webkit-scrollbar-track {
+  border-radius: 0.5em;
+  background-color: $grey-500-300;
+}
+
+.colors-back::-webkit-scrollbar-thumb {
+  border-radius: 0.5em;
+  background-color: $grey-500-500;
 }
 
 .color-saved-back {

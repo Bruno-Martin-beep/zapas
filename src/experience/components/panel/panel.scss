@@ -21,15 +21,73 @@
   right: 0%;
 }
 
+.colors-saved-panel {
+  flex-grow: 1;
+  position: relative;
+  margin: 1em 1em;
+  overflow: hidden;
+}
+
+.colors-saved-panel::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2em;
+  content: '';
+  @include themed {
+    background: linear-gradient(t("bg-gradient"));
+  }
+  z-index: 7;
+}
+
+.colors-saved-panel::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2em;
+  content: '';
+  @include themed {
+    background: linear-gradient(to top, t("bg-gradient"));
+  }
+  z-index: 7;
+}
+
 .selectors {
   display: grid;
   grid-template-rows: repeat(auto-fill, minmax(3em, 1fr));
   grid-template-columns: repeat(auto-fit, minmax(3em, 1fr));
-  flex-grow: 1;
   justify-items: center;
   gap: 1em;
-  margin: 3em 1.5em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  scrollbar-width: thin;
   overflow-y: auto;
+}
+
+
+.selectors::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+.selectors::-webkit-scrollbar-button {
+  height: 0.25em;
+}
+
+.selectors::-webkit-scrollbar-track {
+  border-radius: 0.5em;
+  background-color: $grey-500-300;
+}
+
+.selectors::-webkit-scrollbar-thumb {
+  border-radius: 0.5em;
+  background-color: $grey-500-500;
 }
 
 .select-color {

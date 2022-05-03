@@ -35,11 +35,13 @@ const BackgroundPicker = ({
         />
         <ColorsControls className="colors-controls-back" color={background} />
       </div>
-      <ColorsSaved
-        classParent={"colors-back"}
-        classChild={"color-saved-back"}
-        action={setBackground}
-      />
+      <div className="colors-saved-back">
+        <ColorsSaved
+          classParent={"colors-back"}
+          classChild={"color-saved-back"}
+          action={setBackground}
+        />
+      </div>
     </Modal>
   );
 };

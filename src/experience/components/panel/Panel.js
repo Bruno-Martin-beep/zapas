@@ -25,11 +25,13 @@ const Panel = ({ currentModel }) => {
     <div className={classNames("panel", { visible: currentModel.editing })}>
       <MeshSelector currentModel={currentModel} />
       <ColorPickerPanel currentModel={currentModel} handleColor={handleColor} />
+      <div className="colors-saved-panel">
       <ColorsSaved
         classParent={"selectors"}
         classChild={"select-color"}
         action={handleColor}
       />
+      </div>
       <SizesPicker currentModel={currentModel} />
     </div>
   );
