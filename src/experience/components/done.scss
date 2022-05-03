@@ -2,9 +2,8 @@
 
 .controls {
   position: absolute;
-  bottom: 0%;
-  right: 25%;
-  margin: 25px;
+  bottom: 2vh;
+  right: 26vw;
   visibility: hidden;
   opacity: 0;
   transition: opacity 200ms ease-in-out;
@@ -16,26 +15,28 @@
 }
 
 .controls > * + * {
-  margin-top: 25px;
+  margin-top: 0.5em;
 }
 
 .done {
-  padding: 15px 30px;
-  border-radius: 50px;
+  padding: 0.4em;
+  border-radius: 5em;
   font-size: 2em;
   font-family: "Montserrat", sans-serif;
   text-align: center;
   @include themed {
     color: t("text");
   }
-  border: 2px solid transparent;
-  transition: color 350ms ease, border 350ms ease;
+  border-width: 0.1em;
+  border-style: solid;
+  border-color: transparent;
+  transition: color 350ms ease, border-color 350ms ease;
   user-select: none;
   cursor: pointer;
 }
 
 .done:hover {
   @include themed {
-    border: 2px solid t("text");
+    border-color: t("text");
   }
 }
