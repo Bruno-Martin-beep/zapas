@@ -29,10 +29,15 @@
 .color-picker {
   position: relative;
   top: 5%;
-  left: 50%;
+  left: 60%;
   width: 11em;
   transform: translate(-50%, 0%);
   animation: fade-in 350ms ease-in-out;
+  z-index: 10;
+}
+
+.color-picker.closing {
+  animation: fade-out 350ms ease-in-out;
 }
 
 .color-picker .react-colorful {
@@ -40,8 +45,20 @@
   height: 11em;
 }
 
-.color-picker.closing {
-  animation: fade-out 350ms ease-in-out;
+.color-picker .react-colorful__saturation {
+  border-bottom-width: 0.6em;
+  border-radius: 0.5em 0.5em 0 0;
+}
+
+.color-picker .react-colorful__hue {
+  height: 1.2em;
+  border-radius: 0 0 0.5em 0.5em;
+}
+
+.color-picker .react-colorful__pointer {
+  width: 1.4em;
+  height: 1.4em;
+  border: 0.15em solid #fff;
 }
 
 .hexColorInput-panel {

@@ -31,6 +31,22 @@
   height: 11em;
 }
 
+.background-picker .react-colorful__saturation {
+  border-bottom-width: 0.6em;
+  border-radius: 0.5em 0.5em 0 0;
+}
+
+.background-picker .react-colorful__hue {
+  height: 1.2em;
+  border-radius: 0 0 0.5em 0.5em;
+}
+
+.background-picker .react-colorful__pointer {
+  width: 1.4em;
+  height: 1.4em;
+  border: 0.15em solid #fff;
+}
+
 .background-controls {
   display: flex;
   justify-content: space-between;
