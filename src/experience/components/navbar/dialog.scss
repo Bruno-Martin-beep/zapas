@@ -1,17 +1,50 @@
 @use "../../../styles/animations";
+@use "../../../styles/colors" as *;
+@use "../../../styles/media-queries" as *;
 
 .question {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   position: absolute;
   top: 105%;
-  width: 220px;
-  padding: 10px;
-  border-radius: 8px;
+  width: 15em;
+  height: 5em;
+  padding: 0.5em;
+  border-radius: 0.5em;
   text-align: center;
-  background-color: hsl(0, 0%, 95%);
-  box-shadow:  0px 0px 60px 30px #4d4d4d20;
+  @include themed {
+    background-color: t("bg");
+  }
+  box-shadow: 0px 0px 4em 2em $grey-500-300;
   animation: fade-in 350ms ease-in-out;
+  @include portrait {
+    width: 60em;
+    height: 22em;
+    padding: 1.25em;
+    border-radius: 1.25em;
+    transform: translate(-5%, 0%);
+  }
 }
 
 .question.closing {
   animation: fade-out 350ms ease-in-out forwards;
 }
+
+.question > p {
+  @include portrait{
+    font-size: 4em;
+  }
+} 
+
+.question-controls {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.question-controls > p {
+  @include portrait{
+    font-size: 4em;
+  }
+} 

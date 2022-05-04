@@ -78,7 +78,7 @@ const Dialog = ({ name, actionDefault, actionConfirm, ...restProps }) => {
           close={close}
         >
           <p>{title}</p>
-          <div className="background-controls">
+          <div className="question-controls">
             <p onClick={() => handleConfirm()}>{confirm}</p>
             <p onClick={() => handleDiscard()}>Discard</p>
           </div>
