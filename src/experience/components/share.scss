@@ -1,3 +1,8 @@
-.share {
+@use "../../styles/media-queries" as *;
+
+.share  {
   right: 1vw;
+  @include portrait {
+    bottom: 2vh;
+  }
 }

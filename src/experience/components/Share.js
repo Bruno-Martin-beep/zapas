@@ -5,7 +5,7 @@ const Share = ({ handleShare }) => {
   return (
     <div className={"controls visible share"}>
       <div className="done" onClick={() => handleShare()}>
-        Screenshot
+        Share
       </div>
     </div>
   );
