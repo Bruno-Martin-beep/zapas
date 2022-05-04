@@ -5,12 +5,19 @@
   position: absolute;
   width: 100vw;
   height: 100vh;
-  top: 0%;
-  left: 0%;
+  top: 0vh;
+  left: 0vw;
   transition: left 350ms ease-in-out;
   user-select: none;
+  @include portrait {
+    transition: top 350ms ease-in-out;
+  }
 }
 
 .canvas.editing {
   left: -12.5vw;
+  @include portrait {
+    left: 0vw;
+    top: -30vh;
+  }
 }

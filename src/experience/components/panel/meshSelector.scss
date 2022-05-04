@@ -1,9 +1,13 @@
 @use "../../../styles/colors" as *;
+@use "../../../styles/media-queries" as *;
 
 .mesh-panel {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin: 1.5em;
+  @include portrait {
+    margin: 3.75em;
+  }
 }
 
 .mesh-panel-button {
@@ -13,6 +17,9 @@
   border: none;
   user-select: none;
   cursor: pointer;
+  @include portrait {
+    font-size: 5em;
+  }
 }
 
 .mesh-panel-button > svg {

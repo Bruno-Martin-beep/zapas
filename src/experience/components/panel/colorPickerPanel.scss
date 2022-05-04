@@ -1,21 +1,32 @@
 @use "../../../styles/animations";
 @use "../../../styles/colors" as *;
+@use "../../../styles/media-queries" as *;
 
 .custom-color {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0 1.5em;
+  @include portrait {
+    margin: 0 3.75em;
+  }
 }
 
 .custom-color > * + * {
   margin-left: 1em;
+  @include portrait {
+    margin-left: 1.5em;
+  }
 }
 
 .color-selector {
   position: relative;
   width: 6em;
   height: 6em;
+  @include portrait {
+    width: 21em;
+    height: 21em;
+  }
 }
 
 .color-selected {
@@ -24,6 +35,9 @@
   border-radius: 6em;
   user-select: none;
   cursor: pointer;
+  @include portrait {
+    border-radius: 21em;
+  }
 }
 
 .color-picker {
@@ -34,6 +48,10 @@
   transform: translate(-50%, 0%);
   animation: fade-in 350ms ease-in-out;
   z-index: 10;
+  @include portrait {
+    left: 55%;
+    width: 30em;
+  }
 }
 
 .color-picker.closing {
@@ -41,24 +59,42 @@
 }
 
 .color-picker .react-colorful {
+  flex-shrink: 0;
   width: 11em;
   height: 11em;
+  @include portrait {
+    width: 30em;
+    height: 30em;
+  }
 }
 
 .color-picker .react-colorful__saturation {
   border-bottom-width: 0.6em;
   border-radius: 0.5em 0.5em 0 0;
+  @include portrait {
+    border-bottom-width: 1.2em;
+    border-radius: 1em 1em 0 0;
+  }
 }
 
 .color-picker .react-colorful__hue {
   height: 1.2em;
   border-radius: 0 0 0.5em 0.5em;
+  @include portrait {
+    height: 2.4em;
+    border-radius: 0 0 1em 1em;
+  }
 }
 
 .color-picker .react-colorful__pointer {
   width: 1.4em;
   height: 1.4em;
   border: 0.15em solid #fff;
+  @include portrait {
+    width: 3.5em;
+    height: 3.5em;
+    border: 0.4em solid #fff;
+  }
 }
 
 .hexColorInput-panel {
@@ -74,6 +110,9 @@
   }
   background-color: $grey-500-300;
   transition: color 350ms ease;
+  @include portrait {
+    font-size: 4em;
+  }
 }
 
 .hexColorInput-panel:focus-visible {
@@ -87,4 +126,7 @@
   transition: color 350ms ease;
   user-select: none;
   cursor: pointer;
+  @include portrait {
+    font-size: 4em;
+  }
 }

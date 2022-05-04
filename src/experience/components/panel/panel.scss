@@ -1,5 +1,6 @@
 @use "../../../styles/animations";
 @use "../../../styles/colors" as *;
+@use "../../../styles/media-queries" as *;
 
 .panel {
   display: flex;
@@ -15,10 +16,21 @@
   }
   transition: right 350ms ease-in-out, background-color 350ms ease;
   z-index: 5;
+  @include portrait {
+    top: 100vh;
+    right: 0vw;
+    width: 100vw;
+    height: 60vh;
+    padding-top: 0;
+    transition: top 350ms ease-in-out, background-color 350ms ease;
+  }
 }
 
 .panel.visible {
-  right: 0%;
+  right: 0vw;
+  @include portrait {
+    top: 40vh;
+  }
 }
 
 .colors-saved-panel {
@@ -26,6 +38,9 @@
   position: relative;
   margin: 1em 1em;
   overflow: hidden;
+  @include portrait {
+    margin: 2.5em 2.5em;
+  }
 }
 
 .colors-saved-panel::before {
@@ -34,11 +49,14 @@
   left: 0;
   width: 100%;
   height: 2em;
-  content: '';
+  content: "";
   @include themed {
     background: linear-gradient(t("bg-gradient"));
   }
   z-index: 7;
+  @include portrait {
+    height: 5em;
+  }
 }
 
 .colors-saved-panel::after {
@@ -47,11 +65,14 @@
   left: 0;
   width: 100%;
   height: 2em;
-  content: '';
+  content: "";
   @include themed {
     background: linear-gradient(to top, t("bg-gradient"));
   }
   z-index: 7;
+  @include portrait {
+    height: 5em;
+  }
 }
 
 .selectors {
@@ -69,25 +90,43 @@
   padding-bottom: 2em;
   scrollbar-width: thin;
   overflow-y: auto;
+  @include portrait {
+    grid-template-rows: repeat(auto-fill, minmax(12em, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(12em, 1fr));
+    gap: 3em;
+    padding-top: 5em;
+    padding-bottom: 5em;
+  }
 }
-
 
 .selectors::-webkit-scrollbar {
   width: 0.5em;
+  @include portrait {
+    width: 1.25em;
+  }
 }
 
 .selectors::-webkit-scrollbar-button {
   height: 0.25em;
+  @include portrait {
+    height: 0.5125em;
+  }
 }
 
 .selectors::-webkit-scrollbar-track {
   border-radius: 0.5em;
   background-color: $grey-500-300;
+  @include portrait {
+    border-radius: 1.25em;
+  }
 }
 
 .selectors::-webkit-scrollbar-thumb {
   border-radius: 0.5em;
   background-color: $grey-500-500;
+  @include portrait {
+    border-radius: 1.25em;
+  }
 }
 
 .select-color {
@@ -96,4 +135,9 @@
   border-radius: 3em;
   user-select: none;
   cursor: pointer;
+  @include portrait {
+    width: 12em;
+    height: 12em;
+    border-radius: 12em;
+  }
 }

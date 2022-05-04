@@ -83,6 +83,11 @@
   bottom: 2vh;
   left: 1vw;
   text-transform: uppercase;
+  transition: bottom 350ms ease-in-out;
+}
+
+.beta.editing {
+  bottom: 60vh;
 }
 
 .bag-info {

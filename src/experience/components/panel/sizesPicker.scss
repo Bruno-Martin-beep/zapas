@@ -1,9 +1,13 @@
 @use "../../../styles/colors" as *;
+@use "../../../styles/media-queries" as *;
 
 .sizes {
   display: flex;
   width: 100%;
   margin: 0 1.5em;
+  @include portrait {
+    margin: 0 3.75em;
+  }
 }
 
 .sizes-numbers {
@@ -11,6 +15,9 @@
   width: 100%;
   margin-left: 1em;
   overflow-x: scroll;
+  @include portrait {
+    margin-left: 2em;
+  }
 }
 
 .numbers {
