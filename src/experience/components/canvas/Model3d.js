@@ -26,7 +26,6 @@ const Model3d = ({ baseModel, setRenderer, setScene, setCamera }) => {
   };
 
   return (
-    <>
       <div className={classNames("canvas", { editing: currentModel.editing })}>
         <Canvas
           dpr={[1, 2]}
@@ -59,14 +58,6 @@ const Model3d = ({ baseModel, setRenderer, setScene, setCamera }) => {
           />
         </Canvas>
       </div>
-      <div
-        className={classNames("canvas-name", {
-          visible: !currentModel.editing,
-        })}
-      >
-        {currentModel.name}
-      </div>
-    </>
   );
 };
 

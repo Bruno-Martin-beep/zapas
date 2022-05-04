@@ -1,4 +1,5 @@
 @use "../../../styles/colors" as *;
+@use "../../../styles/media-queries" as *;
 
 .canvas {
   position: absolute;
@@ -12,27 +13,4 @@
 
 .canvas.editing {
   left: -12.5vw;
-}
-
-.canvas-name {
-  position: absolute;
-  left: 50vw;
-  bottom: 2vh;
-  transform: translate(-50%, 0%);
-  margin: 0.5em;
-  font-size: 2em;
-  font-family: "Montserrat", sans-serif;
-  font-weight: bold;
-  @include themed {
-    color: t("text");
-  }
-  opacity: 0%;
-  visibility: hidden;
-  transition: opacity 200ms ease-in-out, color 350ms ease;
-  user-select: none;
-}
-
-.canvas-name.visible {
-  opacity: 100%;
-  visibility: visible;
 }

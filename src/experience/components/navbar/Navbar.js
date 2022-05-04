@@ -53,6 +53,13 @@ const Navbar = ({
         handleDone={handleDone}
         openCheckout={openCheckout}
       />
+      <div
+        className={classNames("canvas-name", {
+          visible: !currentModel.editing,
+        })}
+      >
+        <h2>{currentModel.name}</h2>
+      </div>
     </>
   );
 };
