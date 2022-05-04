@@ -87,7 +87,9 @@
 }
 
 .beta.editing {
-  bottom: 60vh;
+  @include portrait {
+    bottom: 60vh;
+  }
 }
 
 .bag-info {

@@ -26,38 +26,41 @@ const Model3d = ({ baseModel, setRenderer, setScene, setCamera }) => {
   };
 
   return (
-      <div className={classNames("canvas", { editing: currentModel.editing })}>
-        <Canvas
-          dpr={[1, 2]}
-          camera={{ fov: 45, position: [0, 0, 2.75], near: 1, far: 5 }}
-        >
-          <ambientLight intensity={0.75} />
-          <directionalLight
-            position={[2, 2, 2]}
-            color="#ffffff"
-            intensity={0.25}
-          />
-          <directionalLight
-            position={[-2, -2, -2]}
-            color="#ffffff"
-            intensity={0.25}
-          />
-          <Shoe
-            currentModel={currentModel}
-            baseModel={baseModel}
-            handleSelectedObject={handleSelectedObject}
-            handleEdit={handleEdit}
-            setRenderer={setRenderer}
-            setScene={setScene}
-            setCamera={setCamera}
-          />
-          <OrbitControls
-            enablePan={false}
-            minDistance={2.25}
-            maxDistance={3.5}
-          />
-        </Canvas>
-      </div>
+    <div className={classNames("canvas", { editing: currentModel.editing })}>
+      <Canvas
+        dpr={[1, 2]}
+        camera={{
+          fov: 45,
+          position: [
+            0,
+            0,
+            window.innerWidth / window.innerHeight > 1 ? 2.75 : 6,
+          ],
+        }}
+      >
+        <ambientLight intensity={0.75} />
+        <directionalLight
+          position={[2, 2, 2]}
+          color="#ffffff"
+          intensity={0.25}
+        />
+        <directionalLight
+          position={[-2, -2, -2]}
+          color="#ffffff"
+          intensity={0.25}
+        />
+        <Shoe
+          currentModel={currentModel}
+          baseModel={baseModel}
+          handleSelectedObject={handleSelectedObject}
+          handleEdit={handleEdit}
+          setRenderer={setRenderer}
+          setScene={setScene}
+          setCamera={setCamera}
+        />
+        <OrbitControls enablePan={false} minDistance={1} maxDistance={15} />
+      </Canvas>
+    </div>
   );
 };
 
