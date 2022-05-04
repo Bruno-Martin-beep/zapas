@@ -1,5 +1,6 @@
 @use "../../../styles/animations";
 @use "../../../styles/colors" as *;
+@use "../../../styles/media-queries" as *;
 
 .bag {
   display: flex;
@@ -14,17 +15,27 @@
   }
   z-index: 10;
   transition: background-color 350ms ease;
-  animation: bag-in 350ms ease-in-out;
+  animation: bag-in 350ms ease-in-out, width 350ms ease-in-out;
+  @include portrait {
+    width: 100vw;
+    animation: bag-in-port 350ms ease-in-out;
+  }
 }
 
 .bag.closing {
   animation: bag-out 350ms ease-in-out forwards;
+  @include portrait {
+    animation: bag-out-port 350ms ease-in-out forwards;
+  }
 }
 
 .bag-title {
   display: flex;
   justify-content: space-between;
   margin: 1em;
+  @include portrait {
+    margin: 4em;
+  }
 }
 
 .bag-title > h3 {
@@ -56,4 +67,7 @@
     background-color: t("text");
   }
   transition: color 350ms ease, background-color 350ms ease;
+  @include portrait {
+    font-size: 5em;
+  }
 }

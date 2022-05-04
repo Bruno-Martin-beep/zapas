@@ -1,9 +1,13 @@
 @use "../../../styles/colors" as *;
+@use "../../../styles/media-queries" as *;
 
 .subtotal-cont {
   display: flex;
   justify-content: space-between;
   margin: 1.6em;
+  @include portrait {
+    margin: 7.2em;
+  }
 }
 
 .subtotal-cont > p {
@@ -11,4 +15,7 @@
     color: t("text");
   }
   transition: color 350ms ease;
+  @include portrait {
+    font-size: 4em;
+  }
 }

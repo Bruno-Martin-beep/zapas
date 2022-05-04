@@ -1,4 +1,5 @@
 @use "../../../styles/colors" as *;
+@use "../../../styles/media-queries" as *;
 
 .bag-shoe-control {
   position: relative;
@@ -9,4 +10,10 @@
   text-decoration: underline;
   user-select: none;
   cursor: pointer;
+}
+
+.bag-shoe-control > p {
+  @include portrait {
+    font-size: 4em;
+  }
 }

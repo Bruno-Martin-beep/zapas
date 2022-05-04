@@ -34,7 +34,7 @@
   0% {
     d: path("M12 28.6 24 16.6 36 28.55 33.85 30.7 24 20.85 14.15 30.75Z");
   }
-  
+
   50% {
     d: path("M10 22.5 24 22.5 38 22.5 38 25.5 24 25.5 10 25.5Z");
   }
@@ -46,7 +46,16 @@
 
 @keyframes bag-in {
   0% {
-    right: -25%;
+    right: -25vw;
+  }
+  100% {
+    right: 0%;
+  }
+}
+
+@keyframes bag-in-port {
+  0% {
+    right: -100vw;
   }
   100% {
     right: 0%;
@@ -58,6 +67,15 @@
     right: 0%;
   }
   100% {
-    right: -25%;
+    right: -25vw;
+  }
+}
+
+@keyframes bag-out-port {
+  0% {
+    right: 0%;
+  }
+  100% {
+    right: -100vw;
   }
 }

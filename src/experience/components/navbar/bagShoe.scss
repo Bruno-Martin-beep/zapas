@@ -1,5 +1,6 @@
 @use "../../../styles/animations";
 @use "../../../styles/colors" as *;
+@use "../../../styles/media-queries" as *;
 
 .bag-shoe {
   display: flex;
@@ -8,6 +9,10 @@
   border-radius: 0.4em;
   animation: fade-in 350ms ease-in-out;
   transition: background-color 350ms ease-in-out;
+  @include portrait {
+    margin: 3.6em;
+    border-radius: 1.8em;
+  }
 }
 
 .bag-shoe.editing {
@@ -24,6 +29,12 @@
   margin: 0.8em;
   border-radius: 0.4em;
   background-color: #ffffff;
+  @include portrait {
+    width: 24em;
+    height: 24em;
+    margin: 3.6em;
+    border-radius: 1.8em;
+  }
 }
 
 .bag-shoe-info {
@@ -32,16 +43,26 @@
   justify-content: space-between;
   flex-grow: 1;
   margin: 0.8em;
+  @include portrait {
+    margin: 3.6em;
+  }
 }
 
 .bag-shoe-info > *,
 .bag-shoe-info2 > *,
-.bag-shoe-info2 > * > *
- {
+.bag-shoe-info2 > * > * {
   @include themed {
     color: t("text");
   }
   transition: color 350ms ease;
+}
+
+.bag-shoe-info > p,
+.bag-shoe-info2 > p,
+.bag-shoe-info2 > div > p  {
+  @include portrait {
+    font-size: 4em;
+  }
 }
 
 .bag-shoe-info2 {
@@ -52,4 +73,7 @@
 .bag-shoe-info2 > div {
   display: flex;
   gap: 0.8em;
+  @include portrait {
+    gap: 3.6em;
+  }
 }
