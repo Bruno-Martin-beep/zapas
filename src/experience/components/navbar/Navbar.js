@@ -42,7 +42,7 @@ const Navbar = ({
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
           <path d="M28.05 36 16 23.95 28.05 11.9 30.2 14.05 20.3 23.95 30.2 33.85Z" />
         </svg>
-        back
+        <h2>back</h2>
       </div>
       <Background className="navbar background" background={background} setBackground={setBackground} />
       <h2 className="navbar bag-info" onClick={open}>

@@ -1,4 +1,5 @@
 @use "../colors" as *;
+@use "../media-queries" as *;
 
 body {
   position: fixed;
@@ -14,22 +15,28 @@ h2 {
   font-size: 2em;
   font-family: "Montserrat", sans-serif;
   text-align: center;
-  text-transform: uppercase;
   @include themed {
     color: t("text");
   }
   transition: color 350ms ease;
+  @include portrait {
+    font-size: 5em;
+  }
 }
 
 h3 {
   font-size: 1.5em;
   font-family: "Montserrat", sans-serif;
   text-align: center;
-  color: hsl(0, 0%, 10%);
+  @include portrait {
+    font-size: 5em;
+  }
 }
 
 p {
   font-size: 1em;
   font-family: "Montserrat", sans-serif;
-  color: hsl(0, 0%, 10%);
+  @include portrait {
+    font-size: 2.5em;
+  }
 }

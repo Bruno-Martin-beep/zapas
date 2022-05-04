@@ -1,5 +1,6 @@
 @use "../../../styles/animations";
 @use "../../../styles/colors" as *;
+@use "../../../styles/media-queries" as *;
 
 .background-button {
   display: flex;
@@ -9,15 +10,24 @@
     background-color: t("text");
   }
   transition: background-color 350ms ease;
+  @include portrait {
+    border-radius: 7.5em;
+  }
 }
 
-.background-selected{
+.background-selected {
   width: 2.4em;
   height: 2.4em;
   margin: 0.3em;
   border-radius: 1.25em;
   user-select: none;
   cursor: pointer;
+  @include portrait {
+    width: 6.1em;
+    height: 6.1em;
+    margin: 0.75em;
+    border-radius: 3.2em;
+  }
 }
 
 .background-arrow {
@@ -25,6 +35,11 @@
   height: 2em;
   margin: 0.25em;
   transition: padding-top 200ms ease-in-out;
+  @include portrait {
+    width: 5.5em;
+    height: 5.5em;
+    margin: 0.5em;
+  }
 }
 
 .background-arrow > path {
