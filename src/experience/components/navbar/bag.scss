@@ -55,6 +55,18 @@
   overflow-y: auto;
 } 
 
+.bag-text {
+  margin: 1.6em;
+  @include themed {
+    color: t("text");
+  }
+  transition: color 350ms ease;
+  @include portrait {
+    
+    font-size: 4em;
+  }
+}
+
 .checkout {
   display: flex;
   justify-content: center;

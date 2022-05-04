@@ -28,7 +28,7 @@ const Bag = ({ setOpen, handleDone, openCheckout }) => {
         </h3>
       </div>
       <div className="bag-content">
-        {bag.length === 0 && <p>Your bag is currently empty.</p>}
+        {bag.length === 0 && <p className="bag-text">Your bag is currently empty.</p>}
         {bag.map((shoe) => {
           return (
             <BagShoe
