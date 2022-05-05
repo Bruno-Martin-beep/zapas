@@ -17,17 +17,18 @@
   transition: background-color 350ms ease;
   animation: fade-in 350ms ease-in-out;
   @include portrait {
-    width: 32em;
-    max-height: 64em;
-    padding: 1em;
-    border-radius: 1em;
+    width: 53.2em;
+    max-height: 90em;
+    padding: 1.6em;
+    border-radius: 1.6em;
+    transform: translate(-25%, 0%);
   }
 }
 
 .background-picker > * + * {
   margin-top: 0.5em;
   @include portrait {
-    margin-top: 1em;
+    margin-top: 1.6em;
   }
 }
 
@@ -40,8 +41,8 @@
   width: 11em;
   height: 11em;
   @include portrait {
-    width: 30em;
-    height: 30em;
+    width: 50em;
+    height: 50em;
   }
 }
 
@@ -49,8 +50,8 @@
   border-bottom-width: 0.6em;
   border-radius: 0.5em 0.5em 0 0;
   @include portrait {
-    border-bottom-width: 1.2em;
-    border-radius: 1em 1em 0 0;
+    border-bottom-width: 2.6em;
+    border-radius: 1.6em 1.6em 0 0;
   }
 }
 
@@ -58,8 +59,8 @@
   height: 1.2em;
   border-radius: 0 0 0.5em 0.5em;
   @include portrait {
-    height: 2.4em;
-    border-radius: 0 0 1em 1em;
+    height: 6em;
+    border-radius: 0 0 1.6em 1.6em;
   }
 }
 
@@ -68,9 +69,9 @@
   height: 1.4em;
   border: 0.15em solid #fff;
   @include portrait {
-    width: 3.5em;
-    height: 3.5em;
-    border: 0.4em solid #fff;
+    width: 7em;
+    height: 7em;
+    border: 0.8em solid #fff;
   }
 }
 
@@ -97,7 +98,7 @@
     width: 5.5em;
     padding: 0.25em;
     border-radius: 0.25em;
-    font-size: 2.5em;
+    font-size: 4em;
   }
 }
 
@@ -120,7 +121,7 @@
   position: relative;
   height: 5em;
   @include portrait {
-    height: 15em;
+    height: 26em;
   }
 }
 
@@ -136,7 +137,7 @@
   }
   z-index: 14;
   @include portrait {
-    height: 0.5em;
+    height: 0.8em;
   }
 }
 
@@ -152,7 +153,7 @@
   }
   z-index: 14;
   @include portrait {
-    height: 0.5em;
+    height: 0.8em;
   }
 }
 
@@ -171,10 +172,10 @@
   scrollbar-width: thin;
   overflow-y: auto;
   @include portrait {
-    grid-template-columns: repeat(auto-fit, minmax(4.5em, 1fr));
-    gap: 1.25em;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
+    grid-template-columns: repeat(auto-fit, minmax(7em, 1fr));
+    gap: 1.8em;
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
   }
 }
 
@@ -215,8 +216,8 @@
   user-select: none;
   cursor: pointer;
   @include portrait {
-    width: 4.5em;
-  height: 4.5em;
-  border-radius: 4.5em;
+    width: 7em;
+  height: 7em;
+  border-radius: 7em;
   }
 }

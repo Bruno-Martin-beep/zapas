@@ -71,7 +71,7 @@ const Experience = () => {
       index: nanoid(),
     };
 
-    gltfLoader.load("shoe.glb", (gltf) => {
+    gltfLoader.load("zapas/shoe.glb", (gltf) => {
       gltf.scene.children.forEach((elem, index) => {
         return (
           (loadModel.meshes = [

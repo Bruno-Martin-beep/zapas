@@ -49,8 +49,9 @@
   animation: fade-in 350ms ease-in-out;
   z-index: 10;
   @include portrait {
-    left: 55%;
-    width: 30em;
+    left: 0%;
+    width: 50em;
+    transform: translate(0%, 0%);
   }
 }
 
@@ -63,8 +64,8 @@
   width: 11em;
   height: 11em;
   @include portrait {
-    width: 30em;
-    height: 30em;
+    width: 50em;
+    height: 50em;
   }
 }
 
@@ -72,8 +73,8 @@
   border-bottom-width: 0.6em;
   border-radius: 0.5em 0.5em 0 0;
   @include portrait {
-    border-bottom-width: 1.2em;
-    border-radius: 1em 1em 0 0;
+    border-bottom-width: 2.6em;
+    border-radius: 1.6em 1.6em 0 0;
   }
 }
 
@@ -81,8 +82,8 @@
   height: 1.2em;
   border-radius: 0 0 0.5em 0.5em;
   @include portrait {
-    height: 2.4em;
-    border-radius: 0 0 1em 1em;
+    height: 6em;
+    border-radius: 0 0 1.6em 1.6em;
   }
 }
 
@@ -91,9 +92,9 @@
   height: 1.4em;
   border: 0.15em solid #fff;
   @include portrait {
-    width: 3.5em;
-    height: 3.5em;
-    border: 0.4em solid #fff;
+    width: 7em;
+    height: 7em;
+    border: 0.8em solid #fff;
   }
 }
 
