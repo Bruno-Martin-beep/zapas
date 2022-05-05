@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/zapas/static/css/main.33e3a782.css",
-    "main.js": "/zapas/static/js/main.457faa68.js",
+    "main.css": "/zapas/static/css/main.fd36d49c.css",
+    "main.js": "/zapas/static/js/main.5a8d8130.js",
     "index.html": "/zapas/index.html",
-    "main.33e3a782.css.map": "/zapas/static/css/main.33e3a782.css.map",
-    "main.457faa68.js.map": "/zapas/static/js/main.457faa68.js.map"
+    "main.fd36d49c.css.map": "/zapas/static/css/main.fd36d49c.css.map",
+    "main.5a8d8130.js.map": "/zapas/static/js/main.5a8d8130.js.map"
   },
   "entrypoints": [
-    "static/css/main.33e3a782.css",
-    "static/js/main.457faa68.js"
+    "static/css/main.fd36d49c.css",
+    "static/js/main.5a8d8130.js"
   ]
 }
