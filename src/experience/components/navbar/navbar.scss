@@ -85,12 +85,7 @@
   left: 1vw;
   text-transform: uppercase;
   transition: bottom 350ms ease-in-out;
-}
-
-.beta.editing {
-  @include portrait {
-    bottom: 60vh;
-  }
+  z-index: 0;
 }
 
 .bag-info {

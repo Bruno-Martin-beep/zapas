@@ -32,13 +32,7 @@ const Navbar = ({
       >
         zapaz
       </h2>
-      <h2
-        className={classNames("navbar beta", {
-          editing: currentModel.editing,
-        })}
-      >
-        beta
-      </h2>
+      <h2 className="navbar beta">beta</h2>
       <div
         className={classNames("navbar back", {
           visible: currentModel.editing,
