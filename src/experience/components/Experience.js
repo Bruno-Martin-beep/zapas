@@ -153,8 +153,8 @@ const Experience = () => {
         setScene={setScene}
         setCamera={setCamera}
       />
-      <Panel currentModel={currentModel} />
-      <Done currentModel={currentModel} handleDone={handleDone} />
+      <Panel handleDone={handleDone} />
+      <Done />
       <Share currentModel={currentModel} handleShare={handleShare} />
       <Checkout setOpen={setOpenCheckout} />
     </>

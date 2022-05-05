@@ -143,3 +143,14 @@
     border-radius: 14em;
   }
 }
+
+
+.Add-to-bag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5em;
+  @include portrait {
+    height: 15em;
+  }
+}
