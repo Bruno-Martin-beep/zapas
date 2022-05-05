@@ -1,3 +1,4 @@
+@use "../../../styles/animations" as *;
 @use "../../../styles/colors" as *;
 @use "../../../styles/media-queries" as *;
 
@@ -100,7 +101,7 @@
   cursor: pointer;
 }
 
-.canvas-name {
+.shoe-name {
   position: absolute;
   left: 50vw;
   bottom: 2vh;
@@ -109,6 +110,7 @@
   @include themed {
     color: t("text");
   }
+  text-align: center;
   opacity: 0%;
   visibility: hidden;
   transition: opacity 200ms ease-in-out, color 350ms ease;
@@ -118,7 +120,15 @@
   }
 }
 
-.canvas-name.visible {
+.shoe-name.visible {
   opacity: 100%;
   visibility: visible;
+}
+
+.shoe-name > h2::first-letter {
+  text-transform: uppercase;
+}
+
+.shoe-click {
+  animation: fade-in 3s ease-in-out alternate infinite;
 }

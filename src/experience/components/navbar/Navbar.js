@@ -32,9 +32,13 @@ const Navbar = ({
       >
         zapaz
       </h2>
-      <h2 className={classNames("navbar beta", {
+      <h2
+        className={classNames("navbar beta", {
           editing: currentModel.editing,
-        })}>beta</h2>
+        })}
+      >
+        beta
+      </h2>
       <div
         className={classNames("navbar back", {
           visible: currentModel.editing,
@@ -46,7 +50,11 @@ const Navbar = ({
         </svg>
         <h2>back</h2>
       </div>
-      <Background className="navbar background" background={background} setBackground={setBackground} />
+      <Background
+        className="navbar background"
+        background={background}
+        setBackground={setBackground}
+      />
       <h2 className="navbar bag-info" onClick={open}>
         bag {bag.length}
       </h2>
@@ -56,10 +64,11 @@ const Navbar = ({
         openCheckout={openCheckout}
       />
       <div
-        className={classNames("canvas-name", {
+        className={classNames("shoe-name", {
           visible: !currentModel.editing,
         })}
       >
+        <p className="shoe-click">Click shoe to edit</p>
         <h2>{currentModel.name}</h2>
       </div>
     </>
