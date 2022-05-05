@@ -159,8 +159,11 @@
 
 .colors-back {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(1.5em, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(1.5em, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(1.5em, 1fr));
+  justify-content: center;
   justify-items: center;
+  align-items: center;
   gap: 0.5em;
   position: absolute;
   top: 0;
@@ -172,7 +175,8 @@
   scrollbar-width: thin;
   overflow-y: auto;
   @include portrait {
-    grid-template-columns: repeat(auto-fit, minmax(7em, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(7em, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(7em, 1fr));
     gap: 1.8em;
     padding-top: 0.8em;
     padding-bottom: 0.8em;
