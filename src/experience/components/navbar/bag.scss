@@ -78,6 +78,8 @@
     color: t("bg");
     background-color: t("text");
   }
+  user-select: none;
+  cursor: pointer;
   transition: color 350ms ease, background-color 350ms ease;
   @include portrait {
     font-size: 5em;
