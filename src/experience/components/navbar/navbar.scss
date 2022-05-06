@@ -90,7 +90,6 @@
   left: 1vw;
   text-transform: uppercase;
   transition: bottom 350ms ease-in-out;
-  z-index: 0;
 }
 
 .bag-info {
@@ -115,6 +114,7 @@
   visibility: hidden;
   transition: opacity 200ms ease-in-out, color 350ms ease;
   user-select: none;
+  z-index: 10;
   @include portrait {
     margin: 2.5em;
   }
