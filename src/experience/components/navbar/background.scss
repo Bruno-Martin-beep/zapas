@@ -9,6 +9,8 @@
   @include themed {
     background-color: t("text");
   }
+  user-select: none;
+  cursor: pointer;
   transition: background-color 350ms ease;
   @include portrait {
     border-radius: 7.5em;
@@ -20,8 +22,6 @@
   height: 2.4em;
   margin: 0.3em;
   border-radius: 1.25em;
-  user-select: none;
-  cursor: pointer;
   @include portrait {
     width: 6.1em;
     height: 6.1em;
