@@ -26,6 +26,11 @@
   visibility: visible;
 }
 
+.flip-horizontally {
+  display: inline-block;
+  transform: scaleX(-1);
+}
+
 .back {
   display: flex;
   top: 0vh;

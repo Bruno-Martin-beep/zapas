@@ -30,7 +30,7 @@ const Navbar = ({
           visible: !currentModel.editing,
         })}
       >
-        zapaz
+        Zapa<span className="flip-horizontally">Z</span>
       </h2>
       <h2 className="navbar beta">beta</h2>
       <div
