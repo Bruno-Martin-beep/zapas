@@ -8,7 +8,7 @@ const ColorsSaved = ({ classParent, classChild, action }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    saveToLocalStorage("colors", colorsList);
+    saveToLocalStorage("zapaz-colors", colorsList);
   }, [colorsList]);
 
   const handleRemove = (e, color) => {

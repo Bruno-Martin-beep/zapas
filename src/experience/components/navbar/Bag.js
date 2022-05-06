@@ -15,7 +15,7 @@ const Bag = ({ setOpen, handleDone, openCheckout }) => {
   const [showBag, closing, close] = useClosing(setOpen);
 
   useEffect(() => {
-    saveToLocalStorage("bag", bag);
+    saveToLocalStorage("zapaz-bag", bag);
   }, [bag]);
 
   if (!showBag) return <></>;

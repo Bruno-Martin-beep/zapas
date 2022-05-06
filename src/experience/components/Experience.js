@@ -29,20 +29,20 @@ const Experience = () => {
   const [openCheckout, setOpenCheckout] = useState(() => {});
 
   useEffect(() => {
-    const bag = loadFromLocalStorage("bag");
+    const bag = loadFromLocalStorage("zapaz-bag");
     if (bag) {
       bag.forEach((shoe) => {
         const newShoe = { ...shoe, editing: false };
         dispatch(addShoe(newShoe));
       });
     }
-    const colorsList = loadFromLocalStorage("colors");
+    const colorsList = loadFromLocalStorage("zapaz-colors");
     if (colorsList) {
       dispatch(addList(colorsList));
     } else {
       dispatch(addList(colors));
     }
-    const backgroundStored = loadFromLocalStorage("background");
+    const backgroundStored = loadFromLocalStorage("zapaz-background");
     if (backgroundStored) {
       setBackground(backgroundStored);
     }
@@ -51,7 +51,7 @@ const Experience = () => {
   useEffect(() => {
     document.body.style.backgroundColor = background;
     document.body.className = getContrastTheme(background);
-    saveToLocalStorage("background", background);
+    saveToLocalStorage("zapaz-background", background);
   }, [background]);
 
   const onFirstRender = () => {
