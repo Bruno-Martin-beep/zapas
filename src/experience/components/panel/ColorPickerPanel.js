@@ -16,18 +16,18 @@ const ColorPickerPanel = ({ currentModel, handleColor }) => {
       <div className="color-selector">
         <div
           className="color-selected"
-          style={{ backgroundColor: currentModel.currentMesh.color }}
+          style={{ backgroundColor: currentModel?.currentMesh.color }}
           onClick={() => handlePicker()}
         />
         <HexColorPickerPanel setOpen={setOpen} currentModel={currentModel} handleColor={handleColor} />
       </div>
       <HexColorInput
         className="hexColorInput-panel"
-        color={currentModel.currentMesh.color}
+        color={currentModel?.currentMesh.color}
         onChange={handleColor}
         prefixed
       />
-      <ColorsControls className="colors-controls-panel" color={currentModel.currentMesh.color} />
+      <ColorsControls className="colors-controls-panel" color={currentModel?.currentMesh.color} />
     </div>
   );
 };

@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./bag.scss";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
-import { saveToLocalStorage } from "../../localStorage";
 import { selectShoeList } from "../../features/shoeListSlice";
 import Modal from "../Modal";
 import BagShoe from "./BagShoe";
@@ -14,10 +13,6 @@ const Bag = ({ setOpen, handleDone, openCheckout }) => {
 
   const [showBag, closing, close] = useClosing(setOpen);
 
-  useEffect(() => {
-    saveToLocalStorage("zapaz-bag", bag);
-  }, [bag]);
-
   if (!showBag) return <></>;
   return (
     <Modal className={classNames("bag", { closing: closing })} close={close}>
@@ -28,7 +23,9 @@ const Bag = ({ setOpen, handleDone, openCheckout }) => {
         </h3>
       </div>
       <div className="bag-content">
-        {bag.length === 0 && <p className="bag-text">Your bag is currently empty.</p>}
+        {bag.length === 0 && (
+          <p className="bag-text">Your bag is currently empty.</p>
+        )}
         {bag.map((shoe) => {
           return (
             <BagShoe
@@ -41,7 +38,9 @@ const Bag = ({ setOpen, handleDone, openCheckout }) => {
         })}
       </div>
       <SubTotal bag={bag} />
-      <div className="checkout" onClick={openCheckout}>Checkout</div>
+      <div className="checkout" onClick={openCheckout}>
+        Checkout
+      </div>
     </Modal>
   );
 };

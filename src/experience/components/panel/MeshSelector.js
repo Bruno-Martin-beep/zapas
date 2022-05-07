@@ -31,9 +31,9 @@ const MeshSelector = ({ currentModel }) => {
         </svg>
       </button>
       <div className="mesh-panel-name">
-        <h2 className="active">{currentModel.currentMesh.name}</h2>
+        <h2 className="active">{currentModel?.currentMesh.name}</h2>
         <h2>
-          {currentModel.currentMesh.index + 1}/{currentModel.meshes.length}
+          {currentModel?.currentMesh.index + 1}/{currentModel?.meshes.length}
         </h2>
       </div>
       <button

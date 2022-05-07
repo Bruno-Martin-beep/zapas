@@ -9,7 +9,7 @@ const AddToBag = ({ handleDone }) => {
 
   return (
     <div className="Add-to-bag" onClick={() => handleDone()}>
-        <h3>{bag.some((shoe) => shoe.index === currentModel.index)
+        <h3>{bag.some((shoe) => shoe.index === currentModel?.index)
           ? "Save"
           : "Add to bag"}</h3>
       </div>

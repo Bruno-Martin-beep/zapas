@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateShoe, selectCurrentShoe } from "../features/modelsListSlice";
-import { addShoe } from "../features/shoeListSlice";
-import { addList } from "../features/colorsListSlice";
+import { addShoe, selectShoeList } from "../features/shoeListSlice";
+import { addList, selectcolorsList } from "../features/colorsListSlice";
 import { loadFromLocalStorage, saveToLocalStorage } from "../localStorage";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { nanoid } from "nanoid";
 import Navbar from "./navbar/Navbar";
 import Model3d from "./canvas/Model3d";
@@ -17,15 +16,17 @@ import { PerspectiveCamera } from "three";
 import getContrastTheme from "../utils/getContrastTheme";
 
 const Experience = () => {
-  const [baseModel, setBaseModel] = useState({});
   const [renderer, setRenderer] = useState(null);
   const [scene, setScene] = useState(null);
   const [camera, setCamera] = useState(null);
   const [background, setBackground] = useState("#9dc8cf");
 
+  const bag = useSelector(selectShoeList);
+  const colorsList = useSelector(selectcolorsList);
+
   const dispatch = useDispatch();
   const currentModel = useSelector(selectCurrentShoe);
-  
+
   const [openCheckout, setOpenCheckout] = useState(() => {});
 
   useEffect(() => {
@@ -49,55 +50,18 @@ const Experience = () => {
   }, [dispatch]);
 
   useEffect(() => {
+    saveToLocalStorage("zapaz-bag", bag);
+  }, [bag]);
+
+  useEffect(() => {
+    saveToLocalStorage("zapaz-colors", colorsList);
+  }, [colorsList]);
+
+  useEffect(() => {
     document.body.style.backgroundColor = background;
     document.body.className = getContrastTheme(background);
     saveToLocalStorage("zapaz-background", background);
   }, [background]);
-
-  const onFirstRender = () => {
-    const gltfLoader = new GLTFLoader();
-
-    const loadModel = {
-      name: "super shoe",
-      meshes: [],
-    };
-
-    const loadShoe = {
-      name: "super shoe",
-      price: 100,
-      editing: false,
-      size: 39,
-      meshes: [],
-      index: nanoid(),
-    };
-
-    gltfLoader.load("zapaz/shoe.glb", (gltf) => {
-      gltf.scene.children.forEach((elem, index) => {
-        return (
-          (loadModel.meshes = [
-            ...loadModel.meshes,
-            {
-              name: elem.name,
-              geometry: elem.geometry,
-              material: elem.material,
-            },
-          ]),
-          (loadShoe.meshes = [
-            ...loadShoe.meshes,
-            {
-              name: elem.name,
-              color: "#ffffff",
-              index,
-            },
-          ])
-        );
-      });
-      setBaseModel(loadModel);
-      dispatch(updateShoe(loadShoe));
-    });
-  };
-
-  useEffect(onFirstRender, [dispatch]);
 
   const handleShare = () => {
     const link = document.createElement("a");
@@ -136,7 +100,7 @@ const Experience = () => {
     dispatch(updateShoe(newShoe));
   };
 
-  if (!currentModel) return <></>;
+  // if (!currentModel) return <></>;
 
   return (
     <>
@@ -148,7 +112,6 @@ const Experience = () => {
         openCheckout={openCheckout}
       />
       <Model3d
-        baseModel={baseModel}
         setRenderer={setRenderer}
         setScene={setScene}
         setCamera={setCamera}

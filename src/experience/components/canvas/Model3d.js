@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense, useCallback } from "react";
 import "./model3d.scss";
 import classNames from "classnames";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,8 +11,9 @@ import {
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import Shoe from "./Shoe";
+import { nanoid } from "nanoid";
 
-const Model3d = ({ baseModel, setRenderer, setScene, setCamera }) => {
+const Model3d = ({ setRenderer, setScene, setCamera }) => {
   const currentModel = useSelector(selectCurrentShoe);
   const dispatch = useDispatch();
 
@@ -25,8 +26,49 @@ const Model3d = ({ baseModel, setRenderer, setScene, setCamera }) => {
     dispatch(updateShoe({ ...currentModel, editing: true }));
   };
 
+  const addToCurrentModel = useCallback(
+    (shoe) => {
+      const loadModel = {
+        name: "super shoe",
+        meshes: [],
+      };
+
+      const loadShoe = {
+        name: "super shoe",
+        price: 100,
+        editing: false,
+        size: 39,
+        meshes: [],
+        index: nanoid(),
+      };
+
+      shoe.scene.children.forEach((elem, index) => {
+        return (
+          (loadModel.meshes = [
+            ...loadModel.meshes,
+            {
+              name: elem.name,
+              geometry: elem.geometry,
+              material: elem.material,
+            },
+          ]),
+          (loadShoe.meshes = [
+            ...loadShoe.meshes,
+            {
+              name: elem.name,
+              color: "#ffffff",
+              index,
+            },
+          ])
+        );
+      });
+      dispatch(updateShoe(loadShoe));
+    },
+    [dispatch]
+  );
+
   return (
-    <div className={classNames("canvas", { editing: currentModel.editing })}>
+    <div className={classNames("canvas", { editing: currentModel?.editing })}>
       <Canvas
         dpr={[1, 2]}
         camera={{
@@ -49,15 +91,17 @@ const Model3d = ({ baseModel, setRenderer, setScene, setCamera }) => {
           color="#ffffff"
           intensity={0.25}
         />
-        <Shoe
-          currentModel={currentModel}
-          baseModel={baseModel}
-          handleSelectedObject={handleSelectedObject}
-          handleEdit={handleEdit}
-          setRenderer={setRenderer}
-          setScene={setScene}
-          setCamera={setCamera}
-        />
+        <Suspense fallback={null}>
+          <Shoe
+            currentModel={currentModel}
+            addToCurrentModel={addToCurrentModel}
+            handleSelectedObject={handleSelectedObject}
+            handleEdit={handleEdit}
+            setRenderer={setRenderer}
+            setScene={setScene}
+            setCamera={setCamera}
+          />
+        </Suspense>
         <OrbitControls enablePan={false} minDistance={1} maxDistance={15} />
       </Canvas>
     </div>

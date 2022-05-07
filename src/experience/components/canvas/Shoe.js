@@ -1,22 +1,30 @@
 import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { useFrame, useThree } from "@react-three/fiber";
+import { useGLTF } from "@react-three/drei";
+import shoeModel from "../../../assets/shoe.glb";
 
 const Shoe = ({
   currentModel,
-  baseModel,
+  addToCurrentModel,
   handleSelectedObject,
   handleEdit,
   setRenderer,
   setScene,
-  setCamera
+  setCamera,
 }) => {
   const { gl, scene, camera } = useThree();
+
+  const shoe = useGLTF(shoeModel);
+
+  useEffect(() => {
+    addToCurrentModel(shoe);
+  }, [addToCurrentModel, shoe]);
 
   useEffect(() => {
     setRenderer(gl);
     setScene(scene);
-    setCamera(camera)
+    setCamera(camera);
   }, [gl, scene, camera, setRenderer, setScene, setCamera]);
 
   const group = useRef();
@@ -52,7 +60,7 @@ const Shoe = ({
   useEffect(() => {
     if (
       group.current.children &&
-      currentModel.prevMesh.index !== currentModel.currentMesh.index
+      currentModel?.prevMesh.index !== currentModel?.currentMesh.index
     ) {
       group.current.children[currentModel.currentMesh.index].material.color.set(
         hexToHSL(currentModel.currentMesh.color) ? "#ffffff" : "#666666"
@@ -65,7 +73,7 @@ const Shoe = ({
       group.current.children.forEach((mesh, index) =>
         mesh.material.color.lerp(
           new THREE.Color(
-            currentModel.meshes[index].color
+            currentModel?.meshes[index].color
           ).convertSRGBToLinear(),
           0.075
         )
@@ -75,14 +83,14 @@ const Shoe = ({
 
   return (
     <group position={[0, 0.15, 0]} ref={group}>
-      {currentModel.meshes.map((elem, index) => {
+      {shoe.scene.children.map((elem, index) => {
         return (
           <mesh
-            key={elem.index}
+            key={index}
             name={elem.name}
-            geometry={baseModel.meshes[index].geometry}
-            material={baseModel.meshes[index].material}
-            material-color={elem.color}
+            geometry={elem.geometry}
+            material={elem.material}
+            material-color={currentModel?.meshes[index].color}
             onClick={(e) => {
               e.stopPropagation();
               if (!currentModel.editing) {
@@ -109,3 +117,5 @@ const Shoe = ({
 };
 
 export default Shoe;
+
+useGLTF.preload(shoeModel);

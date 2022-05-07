@@ -27,7 +27,7 @@ const Navbar = ({
     <>
       <h2
         className={classNames("navbar logo", {
-          visible: !currentModel.editing,
+          visible: !currentModel?.editing,
         })}
       >
         Zapa<span className="flip-horizontally">Z</span>
@@ -35,7 +35,7 @@ const Navbar = ({
       <h2 className="navbar beta">beta</h2>
       <div
         className={classNames("navbar back", {
-          visible: currentModel.editing,
+          visible: currentModel?.editing,
         })}
         onClick={HandleBack}
       >
@@ -59,11 +59,11 @@ const Navbar = ({
       />
       <div
         className={classNames("shoe-name", {
-          visible: !currentModel.editing,
+          visible: !currentModel?.editing,
         })}
       >
         <p className="shoe-click">Click shoe to edit</p>
-        <h2>{currentModel.name}</h2>
+        <h2>{currentModel?.name}</h2>
       </div>
     </>
   );

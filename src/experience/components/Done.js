@@ -2,10 +2,7 @@ import React from "react";
 import "./done.scss";
 import classNames from "classnames";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  selectCurrentShoe,
-  updateShoe,
-} from "../features/modelsListSlice";
+import { selectCurrentShoe, updateShoe } from "../features/modelsListSlice";
 
 const Done = () => {
   const dispatch = useDispatch();
@@ -26,7 +23,7 @@ const Done = () => {
   };
 
   return (
-    <div className={classNames("controls", { visible: currentModel.editing })}>
+    <div className={classNames("controls", { visible: currentModel?.editing })}>
       <div className="done" onClick={() => handleReset()}>
         Reset
       </div>

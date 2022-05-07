@@ -1,15 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectcolorsList, removeColor } from "../features/colorsListSlice";
-import { saveToLocalStorage } from "../localStorage";
 
 const ColorsSaved = ({ classParent, classChild, action }) => {
   const colorsList = useSelector(selectcolorsList);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    saveToLocalStorage("zapaz-colors", colorsList);
-  }, [colorsList]);
 
   const handleRemove = (e, color) => {
     e.preventDefault();

@@ -28,7 +28,7 @@ const Panel = ({ handleDone }) => {
   };
 
   return (
-    <div className={classNames("panel", { visible: currentModel.editing })}>
+    <div className={classNames("panel", { visible: currentModel?.editing })}>
       <MeshSelector currentModel={currentModel} />
       <ColorPickerPanel currentModel={currentModel} handleColor={handleColor} />
       <div className="colors-saved-panel">
