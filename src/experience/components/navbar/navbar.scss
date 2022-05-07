@@ -89,6 +89,7 @@
   bottom: 2vh;
   left: 1vw;
   text-transform: uppercase;
+  z-index: 2;
   transition: bottom 350ms ease-in-out;
 }
 
@@ -114,7 +115,7 @@
   visibility: hidden;
   transition: opacity 200ms ease-in-out, color 350ms ease;
   user-select: none;
-  z-index: 8;
+  z-index: 2;
   @include portrait {
     margin: 2.5em;
   }
