@@ -3,6 +3,7 @@ import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 import shoeModel from "../../../assets/shoe.glb";
+import { useSpring, animated, config } from "@react-spring/three";
 
 const Shoe = ({
   currentModel,
@@ -11,12 +12,16 @@ const Shoe = ({
   handleEdit,
 }) => {
   const shoe = useGLTF(shoeModel);
+  const group = useRef();
 
   useEffect(() => {
     addToCurrentModel(shoe);
   }, [addToCurrentModel, shoe]);
 
-  const group = useRef();
+  const { scale } = useSpring({
+    scale: group.current ? 1 : 0,
+    config: config.gentle,
+  });
 
   function hexToHSL(H) {
     // Convert hex to RGB first
@@ -71,7 +76,7 @@ const Shoe = ({
   });
 
   return (
-    <group position={[0, 0.15, 0]} ref={group}>
+    <animated.group scale={scale} position={[0, 0.15, 0]} ref={group}>
       {shoe.scene.children.map((elem, index) => {
         return (
           <mesh
@@ -101,7 +106,7 @@ const Shoe = ({
           />
         );
       })}
-    </group>
+    </animated.group>
   );
 };
 
