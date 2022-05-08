@@ -2,20 +2,20 @@ import React, { useState } from "react";
 import "./navbar.scss";
 import classNames from "classnames";
 import { useSelector, useDispatch } from "react-redux";
-import { updateShoe } from "../../features/modelsListSlice";
+import { selectCurrentShoe, updateShoe } from "../../features/modelsListSlice";
 import { selectShoeList } from "../../features/shoeListSlice";
 import Bag from "./Bag";
 import Background from "./Background";
 import ShoeName from "./ShoeName";
 
 const Navbar = ({
-  currentModel,
   background,
   setBackground,
   handleDone,
   openCheckout,
 }) => {
   const dispatch = useDispatch();
+  const currentModel = useSelector(selectCurrentShoe);
   const bag = useSelector(selectShoeList);
 
   const [open, setOpen] = useState(() => {});

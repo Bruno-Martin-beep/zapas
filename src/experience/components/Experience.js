@@ -19,7 +19,6 @@ const Experience = () => {
   const colorsList = useSelector(selectcolorsList);
 
   const dispatch = useDispatch();
-  const currentModel = useSelector(selectCurrentShoe);
 
   const [openCheckout, setOpenCheckout] = useState(() => {});
 
@@ -63,7 +62,6 @@ const Experience = () => {
   return (
     <>
       <Navbar
-        currentModel={currentModel}
         background={background}
         setBackground={setBackground}
         handleDone={handleShoe}
