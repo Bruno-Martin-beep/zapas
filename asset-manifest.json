@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/zapaz/static/css/main.75df74e7.css",
-    "main.js": "/zapaz/static/js/main.e002542e.js",
+    "main.css": "/zapaz/static/css/main.de4beb87.css",
+    "main.js": "/zapaz/static/js/main.07a9cd55.js",
     "static/media/shoe.glb": "/zapaz/static/media/shoe.e6ab046aa1681c2dad78.glb",
     "index.html": "/zapaz/index.html",
-    "main.75df74e7.css.map": "/zapaz/static/css/main.75df74e7.css.map",
-    "main.e002542e.js.map": "/zapaz/static/js/main.e002542e.js.map"
+    "main.de4beb87.css.map": "/zapaz/static/css/main.de4beb87.css.map",
+    "main.07a9cd55.js.map": "/zapaz/static/js/main.07a9cd55.js.map"
   },
   "entrypoints": [
-    "static/css/main.75df74e7.css",
-    "static/js/main.e002542e.js"
+    "static/css/main.de4beb87.css",
+    "static/js/main.07a9cd55.js"
   ]
 }
