@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
-import { useFrame, useThree } from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 import shoeModel from "../../../assets/shoe.glb";
 
@@ -9,23 +9,12 @@ const Shoe = ({
   addToCurrentModel,
   handleSelectedObject,
   handleEdit,
-  setRenderer,
-  setScene,
-  setCamera,
 }) => {
-  const { gl, scene, camera } = useThree();
-
   const shoe = useGLTF(shoeModel);
 
   useEffect(() => {
     addToCurrentModel(shoe);
   }, [addToCurrentModel, shoe]);
-
-  useEffect(() => {
-    setRenderer(gl);
-    setScene(scene);
-    setCamera(camera);
-  }, [gl, scene, camera, setRenderer, setScene, setCamera]);
 
   const group = useRef();
 

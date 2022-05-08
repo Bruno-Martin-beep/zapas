@@ -1,4 +1,4 @@
-import React, { Suspense, useCallback } from "react";
+import React, { Suspense, useCallback, useEffect, useState } from "react";
 import "./model3d.scss";
 import classNames from "classnames";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,10 +12,14 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import Shoe from "./Shoe";
 import { nanoid } from "nanoid";
+import { addShoe } from "../../features/shoeListSlice";
+import GetInfo from "./GetInfo";
+import { PerspectiveCamera } from "three";
 
-const Model3d = ({ setRenderer, setScene, setCamera }) => {
+const Model3d = ({ setHandleShoe, setHandleShare }) => {
   const currentModel = useSelector(selectCurrentShoe);
   const dispatch = useDispatch();
+  const [canvasInfo, setCanvasInfo] = useState({});
 
   const handleSelectedObject = (newMesh) => {
     dispatch(changePrevMesh(currentModel.currentMesh));
@@ -25,6 +29,50 @@ const Model3d = ({ setRenderer, setScene, setCamera }) => {
   const handleEdit = () => {
     dispatch(updateShoe({ ...currentModel, editing: true }));
   };
+
+  useEffect(() => {
+    setHandleShare(() => () => {
+      const link = document.createElement("a");
+      document.body.appendChild(link); //Firefox requires the link to be in the body
+      link.setAttribute("download", currentModel.name);
+      canvasInfo.gl.render(canvasInfo.scene, canvasInfo.camera);
+      link.setAttribute("href", canvasInfo.gl.domElement.toDataURL("image/png"));
+      link.click();
+      document.body.removeChild(link);
+    })
+    console.log("share")
+  }, [setHandleShare, canvasInfo, currentModel?.name])
+
+  useEffect(() => {
+    setHandleShoe(() => () => {
+        const oldCamera = canvasInfo.camera.clone();
+        const camera1 = new PerspectiveCamera(45, 1, 2, 5);
+        camera1.position.set(0, 0.15, 2.75);
+    
+        canvasInfo.gl.setSize(400, 400);
+    
+        canvasInfo.gl.render(canvasInfo.scene, camera1);
+    
+        const image = canvasInfo.gl.domElement.toDataURL("image/webp");
+    
+        oldCamera.aspect = window.innerWidth / window.innerHeight;
+        oldCamera.updateProjectionMatrix();
+    
+        canvasInfo.gl.setSize(window.innerWidth, window.innerHeight);
+    
+        canvasInfo.gl.render(canvasInfo.scene, oldCamera);
+    
+        const newShoe = {
+          ...currentModel,
+          editing: false,
+          index: nanoid(),
+        };
+        dispatch(addShoe({ ...currentModel, editing: false, image }));
+        dispatch(updateShoe(newShoe));
+    })
+    console.log("shoe")
+  }, [dispatch, setHandleShoe, canvasInfo, currentModel]);
+
 
   const addToCurrentModel = useCallback(
     (shoe) => {
@@ -80,6 +128,7 @@ const Model3d = ({ setRenderer, setScene, setCamera }) => {
           ],
         }}
       >
+        <GetInfo setCanvasInfo={setCanvasInfo} />
         <ambientLight intensity={0.75} />
         <directionalLight
           position={[2, 2, 2]}
@@ -97,9 +146,6 @@ const Model3d = ({ setRenderer, setScene, setCamera }) => {
             addToCurrentModel={addToCurrentModel}
             handleSelectedObject={handleSelectedObject}
             handleEdit={handleEdit}
-            setRenderer={setRenderer}
-            setScene={setScene}
-            setCamera={setCamera}
           />
         </Suspense>
         <OrbitControls enablePan={false} minDistance={1} maxDistance={15} />
