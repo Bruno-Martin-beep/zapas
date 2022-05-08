@@ -5,7 +5,7 @@ import { selectCurrentShoe, updateShoe } from "../../features/modelsListSlice";
 import { addShoe, selectShoeList } from "../../features/shoeListSlice";
 import Dialog from "./Dialog";
 
-const BagShoeControls = ({ shoe, handleDone, handleRemove }) => {
+const BagShoeControls = ({ shoe, handleShoe, handleRemove }) => {
   const bag = useSelector(selectShoeList);
   const currentModel = useSelector(selectCurrentShoe);
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const BagShoeControls = ({ shoe, handleDone, handleRemove }) => {
 
   const handleEditConfirm = () => {
     setTimeout(() => {
-      handleDone();
+      handleShoe();
       dispatch(updateShoe({ ...shoe, editing: !shoe.editing }));
       dispatch(addShoe({ ...shoe, editing: !shoe.editing }));
     });
@@ -35,7 +35,7 @@ const BagShoeControls = ({ shoe, handleDone, handleRemove }) => {
 
   const handleSave = () => {
     setTimeout(() => {
-      handleDone();
+      handleShoe();
     });
   };
 

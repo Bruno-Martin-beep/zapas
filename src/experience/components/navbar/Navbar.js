@@ -1,24 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import "./navbar.scss";
 import classNames from "classnames";
 import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentShoe, updateShoe } from "../../features/modelsListSlice";
 import { selectShoeList } from "../../features/shoeListSlice";
-import Bag from "./Bag";
 import Background from "./Background";
 import ShoeName from "./ShoeName";
 
 const Navbar = ({
   background,
   setBackground,
-  handleDone,
-  openCheckout,
+  openBag,
 }) => {
   const dispatch = useDispatch();
   const currentModel = useSelector(selectCurrentShoe);
   const bag = useSelector(selectShoeList);
-
-  const [open, setOpen] = useState(() => {});
 
   const HandleBack = () => {
     dispatch(updateShoe({ ...currentModel, editing: false }));
@@ -50,14 +46,9 @@ const Navbar = ({
         background={background}
         setBackground={setBackground}
       />
-      <h2 className="navbar bag-info" onClick={open}>
+      <h2 className="navbar bag-info" onClick={openBag}>
         bag {bag.length}
       </h2>
-      <Bag
-        setOpen={setOpen}
-        handleDone={handleDone}
-        openCheckout={openCheckout}
-      />
       <ShoeName />
     </>
   );

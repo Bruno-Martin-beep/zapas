@@ -8,10 +8,10 @@ import BagShoe from "./BagShoe";
 import SubTotal from "./SubTotal";
 import { useClosing } from "../../hooks/useClosing";
 
-const Bag = ({ setOpen, handleDone, openCheckout }) => {
+const Bag = ({ setOpenBag, handleShoe, openCheckout }) => {
   const bag = useSelector(selectShoeList);
 
-  const [showBag, closing, close] = useClosing(setOpen);
+  const [showBag, closing, close] = useClosing(setOpenBag);
 
   if (!showBag) return <></>;
   return (
@@ -32,7 +32,7 @@ const Bag = ({ setOpen, handleDone, openCheckout }) => {
               key={shoe.index}
               shoe={shoe}
               close={close}
-              handleDone={handleDone}
+              handleShoe={handleShoe}
             />
           );
         })}

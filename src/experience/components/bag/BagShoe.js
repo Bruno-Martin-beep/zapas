@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { removeShoe } from "../../features/shoeListSlice";
 import BagShoeControls from "./BagShoeControls";
 
-const BagShoe = ({ shoe, close, handleDone }) => {
+const BagShoe = ({ shoe, close, handleShoe }) => {
   const [closing, setClosing] = useState(false);
   const dispatch = useDispatch();
 
@@ -27,7 +27,7 @@ const BagShoe = ({ shoe, close, handleDone }) => {
           <p>${shoe.price}</p>
         </div>
         <p>Size {shoe.size}</p>
-        <BagShoeControls shoe={shoe} closeBag={close} handleDone={handleDone} handleRemove={handleRemove} />
+        <BagShoeControls shoe={shoe} closeBag={close} handleShoe={handleShoe} handleRemove={handleRemove} />
       </div>
     </div>
   );

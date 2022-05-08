@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCurrentShoe } from "../features/modelsListSlice";
 import { addShoe, selectShoeList } from "../features/shoeListSlice";
 import { addList, selectcolorsList } from "../features/colorsListSlice";
 import { loadFromLocalStorage, saveToLocalStorage } from "../localStorage";
 import Navbar from "./navbar/Navbar";
+import Bag from "./bag/Bag";
 import Model3d from "./canvas/Model3d";
 import Panel from "./panel/Panel";
 import Done from "./Done";
@@ -14,13 +14,10 @@ import colors from "../mocks/defaultColors";
 import getContrastTheme from "../utils/getContrastTheme";
 
 const Experience = () => {
-  const [background, setBackground] = useState("#9dc8cf");
+  const dispatch = useDispatch();
   const bag = useSelector(selectShoeList);
   const colorsList = useSelector(selectcolorsList);
-
-  const dispatch = useDispatch();
-
-  const [openCheckout, setOpenCheckout] = useState(() => {});
+  const [background, setBackground] = useState("#9dc8cf");
 
   useEffect(() => {
     const bag = loadFromLocalStorage("zapaz-bag");
@@ -56,6 +53,9 @@ const Experience = () => {
     saveToLocalStorage("zapaz-background", background);
   }, [background]);
 
+  const [openBag, setOpenBag] = useState(() => {});
+  const [openCheckout, setOpenCheckout] = useState(() => {});
+
   const [handleShare, setHandleShare] = useState(() => {});
   const [handleShoe, setHandleShoe] = useState(() => {});
 
@@ -64,7 +64,11 @@ const Experience = () => {
       <Navbar
         background={background}
         setBackground={setBackground}
-        handleDone={handleShoe}
+        openBag={openBag}
+      />
+      <Bag
+        setOpenBag={setOpenBag}
+        handleShoe={handleShoe}
         openCheckout={openCheckout}
       />
       <Model3d setHandleShoe={setHandleShoe} setHandleShare={setHandleShare} />
