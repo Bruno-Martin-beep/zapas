@@ -72,7 +72,7 @@ const Experience = () => {
       <Model3d setHandleShoe={setHandleShoe} setHandleShare={setHandleShare} />
       <Panel handleDone={handleShoe} />
       <Done />
-      <Share currentModel={currentModel} handleShare={handleShare} />
+      <Share handleShare={handleShare} />
       <Checkout setOpen={setOpenCheckout} />
     </>
   );

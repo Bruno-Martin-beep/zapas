@@ -1,9 +1,16 @@
 import React from "react";
 import "./share.scss";
+import classNames from "classnames";
+import { useSelector } from "react-redux";
+import { selectCurrentShoe } from "../features/modelsListSlice";
 
 const Share = ({ handleShare }) => {
+  const currentModel = useSelector(selectCurrentShoe);
+
   return (
-    <div className={"controls visible share"}>
+    <div className={classNames("controls", {
+      visible: currentModel,
+    }, "share")}>
       <div className="done" onClick={() => handleShare()}>
         Share
       </div>
