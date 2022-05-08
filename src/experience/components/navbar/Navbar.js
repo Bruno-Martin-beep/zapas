@@ -6,6 +6,7 @@ import { updateShoe } from "../../features/modelsListSlice";
 import { selectShoeList } from "../../features/shoeListSlice";
 import Bag from "./Bag";
 import Background from "./Background";
+import ShoeName from "./ShoeName";
 
 const Navbar = ({
   currentModel,
@@ -57,14 +58,7 @@ const Navbar = ({
         handleDone={handleDone}
         openCheckout={openCheckout}
       />
-      <div
-        className={classNames("shoe-name", {
-          visible: !currentModel?.editing,
-        })}
-      >
-        <p className="shoe-click">Click shoe to edit</p>
-        <h2>{currentModel?.name}</h2>
-      </div>
+      <ShoeName />
     </>
   );
 };

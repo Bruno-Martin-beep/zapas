@@ -1,4 +1,4 @@
-@use "../../../styles/animations" as *;
+@use "../../../styles/animations";
 @use "../../../styles/colors" as *;
 @use "../../../styles/media-queries" as *;
 
@@ -101,35 +101,4 @@
   cursor: pointer;
 }
 
-.shoe-name {
-  position: absolute;
-  left: 50vw;
-  bottom: 2vh;
-  transform: translate(-50%, 0%);
-  margin: 1em;
-  @include themed {
-    color: t("text");
-  }
-  text-align: center;
-  opacity: 0%;
-  visibility: hidden;
-  transition: opacity 200ms ease-in-out, color 350ms ease;
-  user-select: none;
-  z-index: 2;
-  @include portrait {
-    margin: 2.5em;
-  }
-}
 
-.shoe-name.visible {
-  opacity: 100%;
-  visibility: visible;
-}
-
-.shoe-name > h2::first-letter {
-  text-transform: uppercase;
-}
-
-.shoe-click {
-  animation: fade-in 3s ease-in-out alternate infinite;
-}
