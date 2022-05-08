@@ -40,7 +40,6 @@ const Model3d = ({ setHandleShoe, setHandleShare }) => {
       link.click();
       document.body.removeChild(link);
     })
-    console.log("share")
   }, [setHandleShare, canvasInfo, currentModel?.name])
 
   useEffect(() => {
@@ -70,7 +69,6 @@ const Model3d = ({ setHandleShoe, setHandleShare }) => {
         dispatch(addShoe({ ...currentModel, editing: false, image }));
         dispatch(updateShoe(newShoe));
     })
-    console.log("shoe")
   }, [dispatch, setHandleShoe, canvasInfo, currentModel]);
 
 

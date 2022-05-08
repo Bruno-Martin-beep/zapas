@@ -6,7 +6,6 @@ const GetInfo = ({ setCanvasInfo }) => {
 
   useEffect(() => {
     setCanvasInfo({ gl, scene, camera });
-    console.log("render");
   }, [gl, scene, camera, setCanvasInfo]);
 
   return null;
