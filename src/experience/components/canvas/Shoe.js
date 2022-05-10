@@ -42,7 +42,7 @@ const Shoe = ({
         getContrastTheme(currentModel.currentMesh.color) ? "#f2f2f2" : "#1a1a1a"
       );
     }
-  }, [currentModel]);
+  }, [currentModel?.currentMesh, currentModel?.prevMesh]);
 
   useFrame(() => {
     if (group.current.children) {
