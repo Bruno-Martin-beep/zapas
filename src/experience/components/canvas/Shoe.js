@@ -18,13 +18,16 @@ const Shoe = ({
     addToCurrentModel(shoe);
   }, [addToCurrentModel, shoe]);
 
-  const { scale } = useSpring(
-    {
-      scale: group.current ? 1 : 0,
-      config: config.gentle,
-    },
-    [group.current]
-  );
+  const [style, api] = useSpring({
+    scale: 0,
+    config: config.gentle,
+  }, []);
+
+  useEffect(() => {
+    if (group.current) {
+      api.start({ scale: 1 });
+    }
+  }, [group, api]);
 
   function hexToHSL(H) {
     // Convert hex to RGB first
@@ -87,20 +90,20 @@ const Shoe = ({
       hexToHSL(currentModel.currentMesh.color) ? "#ffffff" : "#666666"
     );
     handleSelectedObject(index);
-  }
+  };
 
-  const handlePointerOver =(e) => {
+  const handlePointerOver = (e) => {
     e.stopPropagation();
     document.body.style.cursor = "pointer";
-  }
+  };
 
   const handlePointerOut = (e) => {
     e.stopPropagation();
     document.body.style.cursor = "default";
-  }
+  };
 
   return (
-    <animated.group scale={scale} position={[0, 0.15, 0]} ref={group}>
+    <animated.group scale={style.scale} position={[0, 0.15, 0]} ref={group}>
       {shoe.scene.children.map((elem, index) => {
         return (
           <mesh
