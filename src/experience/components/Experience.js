@@ -49,7 +49,7 @@ const Experience = () => {
 
   useEffect(() => {
     document.body.style.backgroundColor = background;
-    document.body.className = getContrastTheme(background);
+    document.body.className = getContrastTheme(background) ? "theme--dark" : "theme--light";
     saveToLocalStorage("zapaz-background", background);
   }, [background]);
 

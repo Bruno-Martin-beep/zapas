@@ -1,4 +1,4 @@
-export function getContrastTheme(bgColor) {
+export function getContrastTheme(color) {
   function getRGB(c) {
     return parseInt(c, 16) || c;
   }
@@ -23,10 +23,10 @@ export function getContrastTheme(bgColor) {
     return (Math.max(L1, L2) + 0.05) / (Math.min(L1, L2) + 0.05);
   }
 
-  const whiteContrast = getContrast(bgColor, "#f2f2f2");
-  const blackContrast = getContrast(bgColor, "#1a1a1a");
+  const whiteContrast = getContrast(color, "#f2f2f2");
+  const blackContrast = getContrast(color, "#1a1a1a");
 
-  return whiteContrast > blackContrast ? "theme--dark" : "theme--light";
+  return whiteContrast > blackContrast;
 }
 
 export default getContrastTheme;
