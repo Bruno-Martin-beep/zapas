@@ -18,10 +18,13 @@ const Shoe = ({
     addToCurrentModel(shoe);
   }, [addToCurrentModel, shoe]);
 
-  const { scale } = useSpring({
-    scale: group.current ? 1 : 0,
-    config: config.gentle,
-  });
+  const { scale } = useSpring(
+    {
+      scale: group.current ? 1 : 0,
+      config: config.gentle,
+    },
+    [group.current]
+  );
 
   function hexToHSL(H) {
     // Convert hex to RGB first
@@ -75,6 +78,27 @@ const Shoe = ({
     }
   });
 
+  const handleClick = (e, index) => {
+    e.stopPropagation();
+    if (!currentModel.editing) {
+      handleEdit();
+    }
+    e.eventObject.material.color.set(
+      hexToHSL(currentModel.currentMesh.color) ? "#ffffff" : "#666666"
+    );
+    handleSelectedObject(index);
+  }
+
+  const handlePointerOver =(e) => {
+    e.stopPropagation();
+    document.body.style.cursor = "pointer";
+  }
+
+  const handlePointerOut = (e) => {
+    e.stopPropagation();
+    document.body.style.cursor = "default";
+  }
+
   return (
     <animated.group scale={scale} position={[0, 0.15, 0]} ref={group}>
       {shoe.scene.children.map((elem, index) => {
@@ -85,24 +109,9 @@ const Shoe = ({
             geometry={elem.geometry}
             material={elem.material}
             material-color={currentModel?.meshes[index].color}
-            onClick={(e) => {
-              e.stopPropagation();
-              if (!currentModel.editing) {
-                return handleEdit();
-              }
-              e.eventObject.material.color.set(
-                hexToHSL(currentModel.currentMesh.color) ? "#ffffff" : "#666666"
-              );
-              return handleSelectedObject(index);
-            }}
-            onPointerOver={(e) => {
-              e.stopPropagation();
-              document.body.style.cursor = "pointer";
-            }}
-            onPointerOut={(e) => {
-              e.stopPropagation();
-              document.body.style.cursor = "default";
-            }}
+            onClick={(e) => handleClick(e, index)}
+            onPointerOver={handlePointerOver}
+            onPointerOut={handlePointerOut}
           />
         );
       })}
