@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addShoe, selectShoeList } from "../features/shoeListSlice";
 import { addList, selectcolorsList } from "../features/colorsListSlice";
@@ -19,7 +19,7 @@ const Experience = () => {
   const colorsList = useSelector(selectcolorsList);
   const [background, setBackground] = useState("#9dc8cf");
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const bag = loadFromLocalStorage("zapaz-bag");
     if (bag) {
       bag.forEach((shoe) => {
