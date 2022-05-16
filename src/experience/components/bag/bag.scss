@@ -18,15 +18,11 @@
   animation: bag-in 350ms ease-in-out, width 350ms ease-in-out;
   @include portrait {
     width: 100vw;
-    animation: bag-in-port 350ms ease-in-out;
   }
 }
 
 .bag.closing {
   animation: bag-out 350ms ease-in-out forwards;
-  @include portrait {
-    animation: bag-out-port 350ms ease-in-out forwards;
-  }
 }
 
 .bag-title {

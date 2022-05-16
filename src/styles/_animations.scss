@@ -46,36 +46,18 @@
 
 @keyframes bag-in {
   0% {
-    right: -25vw;
+    transform: translateX(100%);
   }
   100% {
-    right: 0%;
-  }
-}
-
-@keyframes bag-in-port {
-  0% {
-    right: -100vw;
-  }
-  100% {
-    right: 0%;
+    transform: translateX(0%);
   }
 }
 
 @keyframes bag-out {
   0% {
-    right: 0%;
+    transform: translateX(0%);
   }
   100% {
-    right: -25vw;
-  }
-}
-
-@keyframes bag-out-port {
-  0% {
-    right: 0%;
-  }
-  100% {
-    right: -100vw;
+    transform: translateX(100%);
   }
 }
