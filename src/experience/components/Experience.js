@@ -2,7 +2,7 @@ import React, { useState, useEffect, useLayoutEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addShoe, selectShoeList } from "../features/shoeListSlice";
 import { addList, selectcolorsList } from "../features/colorsListSlice";
-import { loadFromLocalStorage, saveToLocalStorage } from "../localStorage";
+import { loadFromLocalStorage, saveToLocalStorage } from "../utils/localStorage";
 import Navbar from "./navbar/Navbar";
 import Bag from "./bag/Bag";
 import Model3d from "./canvas/Model3d";
