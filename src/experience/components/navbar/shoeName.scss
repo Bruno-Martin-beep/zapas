@@ -4,8 +4,8 @@
 
 .shoe-name {
   position: absolute;
-  left: 50vw;
-  bottom: 2vh;
+  left: 50%;
+  bottom: 2%;
   transform: translate(-50%, 0%);
   margin: 1em;
   @include themed {

@@ -6,10 +6,10 @@
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 0vh;
-  right: 0vw;
-  height: 100vh;
-  width: 25vw;
+  top: 0%;
+  right: 0%;
+  height: 100%;
+  width: 25%;
   @include themed {
     background-color: t("bg");
   }
@@ -17,7 +17,7 @@
   transition: background-color 350ms ease;
   animation: bag-in 350ms ease-in-out, width 350ms ease-in-out;
   @include portrait {
-    width: 100vw;
+    width: 100%;
   }
 }
 
@@ -49,7 +49,7 @@
 .bag-content {
   flex-grow: 1;
   overflow-y: auto;
-} 
+}
 
 .bag-text {
   margin: 1.6em;
@@ -58,7 +58,6 @@
   }
   transition: color 350ms ease;
   @include portrait {
-    
     font-size: 4em;
   }
 }

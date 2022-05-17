@@ -3,14 +3,14 @@
 
 .controls {
   position: absolute;
-  bottom: 2vh;
-  right: 26vw;
+  bottom: 2%;
+  right: 26%;
   visibility: hidden;
   opacity: 0;
   transition: opacity 200ms ease-in-out;
   @include portrait {
-    bottom: 60vh;
-    right: 1vw;
+    bottom: 60%;
+    right: 1%;
   }
 }
 

@@ -1,8 +1,8 @@
 @use "../../styles/media-queries" as *;
 
 .share  {
-  right: 1vw;
+  right: 1%;
   @include portrait {
-    bottom: 2vh;
+    bottom: 2%;
   }
 }

@@ -1,12 +1,16 @@
 @use "../colors" as *;
 @use "../media-queries" as *;
 
+html {
+  height: -webkit-fill-available;
+}
+
 body {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  min-height: -webkit-fill-available;
   font-size: 1vw;
   overflow: hidden;
 }
