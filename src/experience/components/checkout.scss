@@ -1,4 +1,3 @@
-@use "../../styles/animations";
 @use "../../styles/colors" as *;
 @use "../../styles/media-queries" as *;
 
@@ -18,7 +17,6 @@
     background-color: t("bg");
   }
   box-shadow: 0px 0px 4em 2em $grey-500-300;
-  animation: fade-in 350ms ease-in-out;
   z-index: 20;
   @include portrait {
     width: 90em;
@@ -28,8 +26,23 @@
   }
 }
 
-.checkout-cont.closing {
-  animation: fade-out 350ms ease-in-out forwards;
+.checkout-cont.enter {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.9);
+}
+.checkout-cont.enter-active {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  transition: opacity 300ms, transform 300ms;
+}
+.checkout-cont.exit {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+.checkout-cont.exit-active {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.9);
+  transition: opacity 300ms, transform 300ms;
 }
 
 .checkout-text-1 {
