@@ -1,25 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import "./bagShoe.scss";
 import classNames from "classnames";
-import { useDispatch } from "react-redux";
-import { removeShoe } from "../../features/shoeListSlice";
 import BagShoeControls from "./BagShoeControls";
 
 const BagShoe = ({ shoe, close, handleShoe }) => {
-  const [closing, setClosing] = useState(false);
-  const dispatch = useDispatch();
-
-  const handleRemove = () => {
-    setClosing(true);
-    setTimeout(() => {
-      dispatch(removeShoe(shoe));
-    }, 350);
-  };
-
   return (
-    <div
-      className={classNames("bag-shoe", { editing: shoe.editing, closing: closing })}
-    >
+    <div className={classNames("bag-shoe", { editing: shoe.editing })}>
       <img className="bag-shoe-image" src={shoe.image} alt={"Shoe"} />
       <div className="bag-shoe-info">
         <div className="bag-shoe-info2">
@@ -27,7 +13,7 @@ const BagShoe = ({ shoe, close, handleShoe }) => {
           <p>${shoe.price}</p>
         </div>
         <p>Size {shoe.size}</p>
-        <BagShoeControls shoe={shoe} closeBag={close} handleShoe={handleShoe} handleRemove={handleRemove} />
+        <BagShoeControls shoe={shoe} closeBag={close} handleShoe={handleShoe} />
       </div>
     </div>
   );

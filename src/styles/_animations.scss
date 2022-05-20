@@ -43,21 +43,3 @@
     d: path("M14.15 16.6 24 26.5 33.85 16.65 36 18.8 24 30.75 12 18.75Z");
   }
 }
-
-@keyframes bag-in {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(0%);
-  }
-}
-
-@keyframes bag-out {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
-}

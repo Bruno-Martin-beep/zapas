@@ -2,10 +2,14 @@ import React from "react";
 import "./bagShoeControls.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentShoe, updateShoe } from "../../features/modelsListSlice";
-import { addShoe, selectShoeList } from "../../features/shoeListSlice";
+import {
+  addShoe,
+  removeShoe,
+  selectShoeList,
+} from "../../features/shoeListSlice";
 import Dialog from "./Dialog";
 
-const BagShoeControls = ({ shoe, handleShoe, handleRemove }) => {
+const BagShoeControls = ({ shoe, handleShoe }) => {
   const bag = useSelector(selectShoeList);
   const currentModel = useSelector(selectCurrentShoe);
   const dispatch = useDispatch();
@@ -42,6 +46,10 @@ const BagShoeControls = ({ shoe, handleShoe, handleRemove }) => {
   const handleDiscard = () => {
     dispatch(updateShoe({ ...shoe, editing: false }));
     dispatch(addShoe({ ...shoe, editing: false }));
+  };
+
+  const handleRemove = () => {
+    dispatch(removeShoe(shoe));
   };
 
   return (

@@ -1,4 +1,3 @@
-@use "../../../styles/animations";
 @use "../../../styles/colors" as *;
 @use "../../../styles/media-queries" as *;
 
@@ -15,14 +14,25 @@
   }
   z-index: 10;
   transition: background-color 350ms ease;
-  animation: bag-in 350ms ease-in-out, width 350ms ease-in-out;
   @include portrait {
     width: 100%;
   }
 }
 
-.bag.closing {
-  animation: bag-out 350ms ease-in-out forwards;
+.bag.enter {
+  transform: translateX(100%);
+}
+.bag.enter-active {
+  transform: translateX(0);
+  transition: transform 300ms;
+}
+
+.bag.exit {
+  transform: translateX(0);
+}
+.bag.exit-active {
+  transform: translateX(100%);
+  transition: transform 300ms;
 }
 
 .bag-title {
