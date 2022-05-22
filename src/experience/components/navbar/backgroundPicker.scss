@@ -15,7 +15,6 @@
     background-color: t("text");
   }
   transition: background-color 350ms ease;
-  animation: fade-in 350ms ease-in-out;
   @include portrait {
     width: 53.2em;
     max-height: 90em;
@@ -25,15 +24,27 @@
   }
 }
 
+.background-picker.enter {
+  opacity: 0;
+}
+.background-picker.enter-active {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+
+.background-picker.exit {
+  opacity: 1;
+}
+.background-picker.exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
 .background-picker > * + * {
   margin-top: 0.5em;
   @include portrait {
     margin-top: 1.6em;
   }
-}
-
-.background-picker.closing {
-  animation: fade-out 350ms ease-in-out forwards;
 }
 
 .background-picker .react-colorful {

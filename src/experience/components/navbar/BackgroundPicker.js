@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import classNames from "classnames";
 import "./backgroundPicker.scss";
+import { CSSTransition } from "react-transition-group";
 import Modal from "../Modal";
 import { HexColorPicker, HexColorInput } from "react-colorful";
-import { useClosing } from "../../hooks/useClosing";
 import ColorsControls from "../ColorsControls";
 import ColorsSaved from "../ColorsSaved";
+import { useModal } from "../../hooks/useModal";
 
 const BackgroundPicker = ({
   setOpen,
@@ -13,36 +13,40 @@ const BackgroundPicker = ({
   background,
   setBackground,
 }) => {
-  const [showPicker, closing, close] = useClosing(setOpen);
+  const [showPicker, close] = useModal(setOpen);
 
   useEffect(() => {
     setShowPicker(showPicker);
   }, [showPicker, setShowPicker]);
 
-  if (!showPicker) return <></>;
   return (
-    <Modal
-      className={classNames("background-picker", { closing: closing })}
-      close={close}
+    <CSSTransition
+      in={showPicker}
+      timeout={300}
+      className="background-picker"
+      unmountOnExit={true}
+      enter={true}
     >
-      <HexColorPicker color={background} onChange={setBackground} />
-      <div className="background-controls">
-        <HexColorInput
-          color={background}
-          className={"hexColorInput-bg"}
-          onChange={setBackground}
-          prefixed
-        />
-        <ColorsControls className="colors-controls-back" color={background} />
-      </div>
-      <div className="colors-saved-back">
-        <ColorsSaved
-          classParent={"colors-back"}
-          classChild={"color-saved-back"}
-          action={setBackground}
-        />
-      </div>
-    </Modal>
+      <Modal close={close}>
+        <HexColorPicker color={background} onChange={setBackground} />
+        <div className="background-controls">
+          <HexColorInput
+            color={background}
+            className={"hexColorInput-bg"}
+            onChange={setBackground}
+            prefixed
+          />
+          <ColorsControls className="colors-controls-back" color={background} />
+        </div>
+        <div className="colors-saved-back">
+          <ColorsSaved
+            classParent={"colors-back"}
+            classChild={"color-saved-back"}
+            action={setBackground}
+          />
+        </div>
+      </Modal>
+    </CSSTransition>
   );
 };
 

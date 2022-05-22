@@ -4,17 +4,18 @@ import classNames from "classnames";
 import BackgroundPicker from "./BackgroundPicker";
 
 const Background = ({ background, setBackground, ...restProps }) => {
+  const [showPicker, setShowPicker] = useState(null);
   const [open, setOpen] = useState(() => {});
 
-  const [showPicker, setShowPicker] = useState(null);
-
   const handlePicker = () => {
-    open();
+    if(!showPicker) {
+      open();
+    }
   };
 
   return (
     <div {...restProps} >
-      <div className="background-button" onClick={() => handlePicker()}>
+      <div className="background-button" onClick={handlePicker}>
         <div
           className="background-selected"
           style={{ backgroundColor: background }}
