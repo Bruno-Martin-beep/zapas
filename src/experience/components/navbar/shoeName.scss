@@ -12,9 +12,7 @@
     color: t("text");
   }
   text-align: center;
-  opacity: 0%;
-  visibility: hidden;
-  transition: opacity 200ms ease-in-out, color 350ms ease;
+  transition: color 350ms ease;
   user-select: none;
   z-index: 2;
   @include portrait {
@@ -22,9 +20,24 @@
   }
 }
 
-.shoe-name.visible {
-  opacity: 100%;
-  visibility: visible;
+.shoe-name.enter,
+.shoe-name > div.enter {
+  opacity: 0;
+}
+.shoe-name.enter-active,
+.shoe-name > div.enter-active {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+
+.shoe-name.exit,
+.shoe-name > div.exit {
+  opacity: 1;
+}
+.shoe-name.exit-active,
+.shoe-name > div.exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
 }
 
 .shoe-name > h2::first-letter {

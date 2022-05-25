@@ -1,4 +1,3 @@
-@use "../../../styles/animations";
 @use "../../../styles/colors" as *;
 @use "../../../styles/media-queries" as *;
 
@@ -46,7 +45,6 @@
   left: 60%;
   width: 11em;
   transform: translate(-50%, 0%);
-  animation: fade-in 350ms ease-in-out;
   z-index: 10;
   @include portrait {
     left: 0%;
@@ -55,8 +53,20 @@
   }
 }
 
-.color-picker.closing {
-  animation: fade-out 350ms ease-in-out;
+.color-picker.enter {
+  opacity: 0;
+}
+.color-picker.enter-active {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+
+.color-picker.exit {
+  opacity: 1;
+}
+.color-picker.exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
 }
 
 .color-picker .react-colorful {
