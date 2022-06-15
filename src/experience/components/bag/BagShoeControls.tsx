@@ -1,4 +1,3 @@
-import React from "react";
 import "./bagShoeControls.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentShoe, updateShoe } from "../../features/modelsListSlice";
@@ -9,6 +8,7 @@ import {
   selectShoeList,
 } from "../../features/shoeListSlice";
 import Dialog from "./Dialog";
+import { nanoid } from "nanoid";
 
 const BagShoeControls = ({
   shoe,
@@ -28,23 +28,26 @@ const BagShoeControls = ({
         dispatch(
           addShoe({
             ...currentShoe,
-            currentMesh: currentModel.currentMesh.index,
             editing: false,
+            currentMesh: currentModel.currentMesh.index,
+            prevMesh: currentModel.currentMesh,
           })
         );
       }
       dispatch(
         updateShoe({
           ...shoe,
-          currentMesh: currentModel.currentMesh.index,
           editing: !shoe.editing,
+          currentMesh: currentModel.currentMesh.index,
+          prevMesh: currentModel.currentMesh,
         })
       );
       dispatch(
         addShoe({
           ...shoe,
-          currentMesh: currentModel.currentMesh.index,
           editing: !shoe.editing,
+          currentMesh: currentModel.currentMesh.index,
+          prevMesh: currentModel.currentMesh,
         })
       );
     });
@@ -54,14 +57,14 @@ const BagShoeControls = ({
     setTimeout(() => {
       handleShoe();
       dispatch(
-        updateShoe({
+        addShoe({
           ...shoe,
           currentMesh: currentModel.currentMesh.index,
           editing: !shoe.editing,
         })
       );
       dispatch(
-        addShoe({
+        updateShoe({
           ...shoe,
           currentMesh: currentModel.currentMesh.index,
           editing: !shoe.editing,
@@ -74,8 +77,9 @@ const BagShoeControls = ({
     dispatch(
       updateShoe({
         ...currentModel,
-        currentMesh: currentModel.currentMesh.index,
         meshes: shoe.meshes,
+        currentMesh: currentModel.currentMesh.index,
+        prevMesh: currentModel.currentMesh,
       })
     );
   };
@@ -90,8 +94,9 @@ const BagShoeControls = ({
     dispatch(
       updateShoe({
         ...shoe,
-        currentMesh: currentModel.currentMesh.index,
         editing: false,
+        currentMesh: currentModel.currentMesh.index,
+        index: nanoid(),
       })
     );
     dispatch(
@@ -122,7 +127,6 @@ const BagShoeControls = ({
         ) : (
           <>
             <Dialog
-              name={"Edit"}
               actionDefault={() => handleEdit()}
               actionConfirm={() => handleEditConfirm()}
             />
