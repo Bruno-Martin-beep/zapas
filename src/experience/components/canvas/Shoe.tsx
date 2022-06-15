@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
 import { Color } from "three";
 import { ThreeEvent, useFrame } from "@react-three/fiber";
-import { useGLTF } from "@react-three/drei";
-import { GLTF } from 'three-stdlib';
+import { useGLTF, useProgress } from "@react-three/drei";
+import { GLTF } from "three-stdlib";
 import shoeModel from "../../../assets/shoe.glb";
-import { useSpring, animated, config } from "@react-spring/three";
+import { useSpring, animated } from "@react-spring/three";
 import getContrastTheme from "../../utils/getContrastTheme";
 import { Model } from "../../features/modelsListSlice";
 
@@ -21,6 +21,7 @@ const Shoe = ({
 }) => {
   const shoe = useGLTF(shoeModel) as GLTF;
   const group = useRef<THREE.Group>(null);
+  const { progress } = useProgress();
 
   useEffect(() => {
     addToCurrentModel(shoe);
@@ -28,17 +29,20 @@ const Shoe = ({
 
   const [style, api] = useSpring(
     {
-      scale: 0,
-      config: config.gentle,
+      val: 0,
+      config: { mass: 1, tension: 170, friction: 140, precision: 0.0001 },
     },
     []
   );
 
   useEffect(() => {
-    if (group.current) {
-      api.start({ scale: 1 });
+    if (progress === 100) {
+      api.start({
+        val: 1,
+        delay: 1800,
+      });
     }
-  }, [group, api]);
+  }, [progress, api]);
 
   useEffect(() => {
     if (
@@ -57,9 +61,7 @@ const Shoe = ({
   useFrame(() => {
     if (group.current?.children) {
       (group.current.children as THREE.Mesh[]).forEach((mesh, index) =>
-        (
-          mesh.material as THREE.MeshStandardMaterial
-        ).color.lerp(
+        (mesh.material as THREE.MeshStandardMaterial).color.lerp(
           new Color(currentModel?.meshes[index].color).convertSRGBToLinear(),
           0.075
         )
@@ -90,8 +92,23 @@ const Shoe = ({
     document.body.style.cursor = "default";
   };
 
+  const scale = style.val.to([0, 1], [1.5, 1]);
+  const rotationX = style.val.to([0, 1], [Math.PI / 16, 0]);
+  const rotationY = style.val.to(
+    [0, 1],
+    [-(Math.PI / 24) * 21, -(Math.PI * 2)]
+  );
+  const rotationZ = style.val.to([0, 1], [-(Math.PI / 6), 0]);
+
   return (
-    <animated.group scale={style.scale} position={[0, 0.15, 0]} ref={group}>
+    <animated.group
+      scale={scale}
+      position={[0, 0.15, 0]}
+      rotation-x={rotationX}
+      rotation-y={rotationY}
+      rotation-z={rotationZ}
+      ref={group}
+    >
       {(shoe.scene.children as THREE.Mesh[]).map((mesh, index) => {
         return (
           <mesh

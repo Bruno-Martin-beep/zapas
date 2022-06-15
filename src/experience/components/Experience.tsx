@@ -1,8 +1,16 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addShoe, selectShoeList, StandardModel } from "../features/shoeListSlice";
+import {
+  addShoe,
+  selectShoeList,
+  StandardModel,
+} from "../features/shoeListSlice";
 import { addList, selectcolorsList } from "../features/colorsListSlice";
-import { loadFromLocalStorage, saveToLocalStorage } from "../utils/localStorage";
+import {
+  loadFromLocalStorage,
+  saveToLocalStorage,
+} from "../utils/localStorage";
+import Loader from "./Loader";
 import Navbar from "./navbar/Navbar";
 import Bag from "./bag/Bag";
 import Model3d from "./canvas/Model3d";
@@ -49,7 +57,9 @@ const Experience = () => {
 
   useEffect(() => {
     document.body.style.backgroundColor = background;
-    document.body.className = getContrastTheme(background) ? "theme--dark" : "theme--light";
+    document.body.className = getContrastTheme(background)
+      ? "theme--dark"
+      : "theme--light";
     saveToLocalStorage("zapaz-background", background);
   }, [background]);
 
@@ -61,6 +71,7 @@ const Experience = () => {
 
   return (
     <>
+      <Loader />
       <Navbar
         background={background}
         setBackground={setBackground}
