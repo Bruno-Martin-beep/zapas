@@ -8,19 +8,14 @@ import { useModal } from "../../hooks/useModal";
 import Modal from "../Modal";
 
 const Dialog = ({
-  name,
   actionDefault,
   actionConfirm,
 }: {
-  name: string;
   actionDefault: Function;
   actionConfirm: Function;
 }) => {
   const bag = useSelector(selectShoeList);
   const currentModel = useSelector(selectCurrentShoe);
-
-  const [title, setTitle] = useState("Save current shoe?");
-  const [confirm, setConfirm] = useState("Save");
 
   const [open, setOpen] = useState<Function>(() => {});
 
@@ -36,48 +31,29 @@ const Dialog = ({
     close();
   };
 
-  //TODO: Refactor in to a single dialog
-
   const checkShoe = () => {
-    const shoe = bag.find((shoe) => shoe.index === currentModel.index);
-    if (shoe) {
-      const isSameShoe = shoe.meshes.every(
-        (mesh) => mesh.color === currentModel.meshes[mesh.index].color
-      );
+    const currentShoe = bag.find((shoe) => shoe.index === currentModel.index);
 
-      if (isSameShoe) {
-        actionDefault();
-        return;
-      }
-
-      setTitle("Save current shoe?");
-      setConfirm("Save");
-      open();
-      return;
-    }
+    const hasNoChanges = currentShoe?.meshes.every(
+      (mesh) => mesh.color === currentModel.meshes[mesh.index].color
+    );
 
     const isDefault = currentModel.meshes.every(
       (mesh) => mesh.color === "#ffffff"
     );
-    const isAlreadySaved = bag.some((shoe) =>
-      shoe.meshes.every(
-        (mesh) => mesh.color === currentModel.meshes[mesh.index].color
-      )
-    );
 
-    if (isDefault || isAlreadySaved) {
+    if ((currentShoe && hasNoChanges) || (!currentShoe && isDefault)) {
       actionDefault();
       return;
     }
-    setTitle("Add to bag current shoe?");
-    setConfirm("Add to bag");
+    
     open();
   };
 
   return (
     <div className="bag-shoe-control">
       <p className="bag-shoe-control" onClick={() => checkShoe()}>
-        {name}
+        Edit
       </p>
       <CSSTransition
         in={showQuestion}
@@ -87,9 +63,9 @@ const Dialog = ({
         enter={true}
       >
         <Modal close={close}>
-          <p>{title}</p>
+          <p>Save current shoe?</p>
           <div className="question-controls">
-            <p onClick={() => handleConfirm()}>{confirm}</p>
+            <p onClick={() => handleConfirm()}>Save</p>
             <p onClick={() => handleDiscard()}>Discard</p>
           </div>
         </Modal>
