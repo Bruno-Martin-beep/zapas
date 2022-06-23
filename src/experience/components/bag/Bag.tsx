@@ -82,7 +82,7 @@ const Bag = ({
           })}
         </TransitionGroup>
         <SubTotal />
-        <div className="checkout" onClick={() => openCheckout}>
+        <div className="checkout" onClick={() => openCheckout()}>
           Checkout
         </div>
       </Modal>
