@@ -1,11 +1,12 @@
 import { useState } from "react";
 import "./dialog.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentShoe } from "../../features/modelsListSlice";
 import { selectShoeList } from "../../features/shoeListSlice";
 import { CSSTransition } from "react-transition-group";
 import { useModal } from "../../hooks/useModal";
 import Modal from "../Modal";
+import { activeDialog, changeDialog, desableDialog } from "../../features/dialogSlice";
 
 const Dialog = ({
   actionDefault,
@@ -21,13 +22,17 @@ const Dialog = ({
 
   const [showQuestion, close] = useModal(setOpen);
 
+  const dispatch = useDispatch();
+
   const handleConfirm = () => {
     actionConfirm();
+    dispatch(desableDialog());
     close();
   };
 
   const handleDiscard = () => {
     actionDefault();
+    dispatch(desableDialog());
     close();
   };
 
@@ -46,7 +51,9 @@ const Dialog = ({
       actionDefault();
       return;
     }
-    
+    dispatch(activeDialog());
+    dispatch(changeDialog(<p>test</p>));
+
     open();
   };
 

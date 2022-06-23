@@ -20,6 +20,7 @@ import Share from "./Share";
 import Checkout from "./Checkout";
 import colors from "../mocks/defaultColors";
 import getContrastTheme from "../utils/getContrastTheme";
+import Dialog from "./Dialog";
 
 const Experience = () => {
   const dispatch = useDispatch();
@@ -72,6 +73,7 @@ const Experience = () => {
   return (
     <>
       <Loader />
+      <Dialog />
       <Navbar
         background={background}
         setBackground={setBackground}

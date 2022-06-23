@@ -1,6 +1,7 @@
 import { MouseEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectcolorsList, removeColor } from "../features/colorsListSlice";
+import { activeDialog, changeDialog } from "../features/dialogSlice";
 
 const ColorsSaved = ({ classParent, classChild, action }: { classParent: string, classChild: string, action: Function }) => {
   const colorsList = useSelector(selectcolorsList);
@@ -8,6 +9,8 @@ const ColorsSaved = ({ classParent, classChild, action }: { classParent: string,
 
   const handleRemove = (e: MouseEvent, color: string) => {
     e.preventDefault();
+    dispatch(activeDialog());
+    dispatch(changeDialog(<p>delet {color}</p>));
     dispatch(removeColor(color));
   };
 
