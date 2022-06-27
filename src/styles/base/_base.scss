@@ -25,7 +25,7 @@ h2 {
   }
   transition: color 350ms ease;
   @include portrait {
-    font-size: 5em;
+    font-size: 5rem;
   }
 }
 
@@ -37,7 +37,7 @@ h3 {
     color: t("text");
   }
   @include portrait {
-    font-size: 5em;
+    font-size: 5rem;
   }
 }
 
@@ -48,6 +48,6 @@ p {
     color: t("text");
   }
   @include portrait {
-    font-size: 4em;
+    font-size: 4rem;
   }
 }
