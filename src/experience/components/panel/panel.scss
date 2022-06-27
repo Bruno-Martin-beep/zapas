@@ -134,7 +134,7 @@
 
 .selectors::-webkit-scrollbar-track {
   border-radius: 0.5em;
-  background-color: $grey-500-300;
+  background-color: $gray-500-300;
   @include portrait {
     border-radius: 1.25em;
   }
@@ -142,7 +142,7 @@
 
 .selectors::-webkit-scrollbar-thumb {
   border-radius: 0.5em;
-  background-color: $grey-500-500;
+  background-color: $gray-500-500;
   @include portrait {
     border-radius: 1.25em;
   }

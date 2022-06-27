@@ -119,7 +119,7 @@
   @include themed {
     color: t("text");
   }
-  background-color: $grey-500-300;
+  background-color: $gray-500-300;
   transition: color 350ms ease;
   @include portrait {
     font-size: 4em;

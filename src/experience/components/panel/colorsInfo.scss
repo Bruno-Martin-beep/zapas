@@ -17,7 +17,7 @@
 }
 
 .colors-saved-panel-info > svg > path {
-  fill: $grey-500-500;
+  fill: $gray-500-500;
 }
 
 .colors-saved-panel-info > p {
@@ -32,7 +32,7 @@
     background-color: t("bg");
   }
   text-align: center;
-  box-shadow: 0px 0px 4em 2em $grey-500-300;
+  box-shadow: 0px 0px 4em 2em $gray-500-300;
   transform: translate(0%, -50%);
 }
 

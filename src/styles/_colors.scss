@@ -22,8 +22,13 @@ $light-gradient: hsl(0, 0%, 95%) 0%, hsla(0, 0%, 95%, 0.987) 9.7%,
   hsla(0, 0%, 95%, 0.104) 81.4%, hsla(0, 0%, 95%, 0.049) 87.3%,
   hsla(0, 0%, 95%, 0.013) 93.4%, hsla(0, 0%, 95%, 0) 100%;
 
-$grey-500-300: hsla(0, 0%, 50%, 0.3);
-$grey-500-500: hsla(0, 0%, 50%, 0.5);
+$gray-500-200: hsla(0, 0%, 50%, 0.2);
+$gray-500-300: hsla(0, 0%, 50%, 0.3);
+$gray-500-500: hsla(0, 0%, 50%, 0.5);
+
+$gray-500: hsla(0, 0%, 50%, 1);
+
+
 
 $text--light: $light;
 $text--dark: $dark;
@@ -36,12 +41,14 @@ $themes: (
     bg-gradient: $light-gradient,
     text: $text--dark,
     text-gradient: $dark-gradient,
+    gray: $gray-500,
   ),
   dark: (
     bg: $bg--dark,
     bg-gradient: $dark-gradient,
     text: $text--light,
     text-gradient: $light-gradient,
+    gray: $gray-500,
   ),
 );
 
