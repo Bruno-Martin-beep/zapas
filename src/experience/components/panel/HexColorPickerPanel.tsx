@@ -1,11 +1,17 @@
 import { CSSTransition } from "react-transition-group";
-import Modal from "../Modal";
 import { HexColorPicker } from "react-colorful";
 import { useModal } from "../../hooks/useModal";
+import Modal from "../Modal";
 import { useSelector } from "react-redux";
 import { selectCurrentShoe } from "../../features/modelsListSlice";
 
-const HexColorPickerPanel = ({ setOpen, handleColor }: { setOpen: Function, handleColor: Function }) => {
+const HexColorPickerPanel = ({
+  setOpen,
+  handleColor,
+}: {
+  setOpen: Function;
+  handleColor: Function;
+}) => {
   const currentModel = useSelector(selectCurrentShoe);
   const [showPicker, close] = useModal(setOpen);
 
