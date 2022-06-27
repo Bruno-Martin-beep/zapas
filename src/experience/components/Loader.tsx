@@ -22,7 +22,6 @@ const Loader = () => {
     if (progress === 100) {
       setShowLoader(false);
     }
-    console.log(progress);
   }, [progress, api]);
 
   return (
