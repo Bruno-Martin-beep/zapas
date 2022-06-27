@@ -1,21 +1,41 @@
 import { MouseEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectcolorsList, removeColor } from "../features/colorsListSlice";
-import { activeDialog, changeDialog } from "../features/dialogSlice";
+import { selectcolorsList } from "../features/colorsListSlice";
+import {
+  activeDialog,
+  changeColor,
+  changeMousePosition,
+} from "../features/dialogSlice";
 
-const ColorsSaved = ({ classParent, classChild, action }: { classParent: string, classChild: string, action: Function }) => {
+const ColorsSaved = ({
+  classParent,
+  classChild,
+  action,
+}: {
+  classParent: string;
+  classChild: string;
+  action: Function;
+}) => {
   const colorsList = useSelector(selectcolorsList);
   const dispatch = useDispatch();
 
-  const handleRemove = (e: MouseEvent, color: string) => {
+  const openContextMenu = (e: MouseEvent) => {
     e.preventDefault();
     dispatch(activeDialog());
-    dispatch(changeDialog(<p>delet {color}</p>));
-    dispatch(removeColor(color));
+    dispatch(changeMousePosition([e.clientX, e.clientY]));
+    dispatch(changeColor(""));
+  };
+
+  const handleRemove = (e: MouseEvent, color: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    dispatch(activeDialog());
+    dispatch(changeMousePosition([e.clientX, e.clientY]));
+    dispatch(changeColor(color));
   };
 
   return (
-    <div className={classParent}>
+    <div className={classParent} onContextMenu={(e) => openContextMenu(e)}>
       {colorsList.map((color: string, index: number) => {
         return (
           <div

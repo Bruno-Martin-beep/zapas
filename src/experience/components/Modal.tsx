@@ -5,7 +5,7 @@ const Modal = ({ close, children, ...restProps }: { close: Function, children: J
 
   useEffect(() => {
     function handleOutsideClick(event: MouseEvent) {
-      if (modal.current && !modal.current.contains(event.target as HTMLElement)) {
+      if (modal.current && !modal.current.contains(event.target as HTMLElement) && !(event.target as HTMLElement).classList.contains("Dialog")) {
         close();
       }
     }

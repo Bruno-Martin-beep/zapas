@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
+import colors from "../mocks/defaultColors";
 
 // Slice Object
 ///////////////////////////////////////
@@ -20,12 +21,17 @@ export const colorsListSlice = createSlice({
       const index = state.findIndex((color) => color === action.payload);
       state.splice(index, 1);
     },
-    addList: (state, action : PayloadAction<string[]>) => {
+    addColorList: (state, action: PayloadAction<string[]>) => {
       state = [...action.payload];
       return state;
     },
-    clearList: (state) => {
+    resetColorList: (state) => {
+      state = colors;
+      return state;
+    },
+    clearColorList: (state) => {
       state = [];
+      return state;
     },
   },
 });
@@ -38,6 +44,12 @@ export const selectcolorsList = (state: RootState) => state.colorsList;
 // Exports
 ///////////////////////////////////////
 
-export const { addColor, removeColor, addList, clearList } = colorsListSlice.actions;
+export const {
+  addColor,
+  removeColor,
+  addColorList,
+  resetColorList,
+  clearColorList,
+} = colorsListSlice.actions;
 
 export default colorsListSlice.reducer;

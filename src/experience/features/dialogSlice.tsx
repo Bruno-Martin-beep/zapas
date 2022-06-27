@@ -1,13 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ReactElement } from "react";
 import { RootState } from "../../store";
 
 // Slice Object
 ///////////////////////////////////////
 
-let initialState: { isvisible: boolean; jsx: ReactElement } = {
+let initialState: {
+  isvisible: boolean;
+  mousePosition: [number, number];
+  color: string;
+} = {
   isvisible: false,
-  jsx: <></>,
+  mousePosition: [0, 0],
+  color: "",
 };
 
 export const dialogSlice = createSlice({
@@ -20,21 +24,29 @@ export const dialogSlice = createSlice({
     desableDialog: (state) => {
       state.isvisible = false;
     },
-    changeDialog: (state, action: PayloadAction<ReactElement>) => {
-      state.jsx = action.payload;
+    changeMousePosition: (state, action: PayloadAction<[number, number]>) => {
+      state.mousePosition = action.payload;
     },
+    changeColor: (state, action: PayloadAction<string>) => {
+      state.color = action.payload;
+    },
+
   },
 });
 
 // Selectors
 ///////////////////////////////////////
 
-export const selectDialogIsVisible = (state: RootState) => state.dialog.isvisible;
-export const selectDialogJsx = (state: RootState) => state.dialog.jsx;
+export const selectDialogIsVisible = (state: RootState) =>
+  state.dialog.isvisible;
+
+export const selectMousePosition = (state: RootState) => state.dialog.mousePosition;
+export const selectDialogColor = (state: RootState) => state.dialog.color;
 
 // Exports
 ///////////////////////////////////////
 
-export const { activeDialog, desableDialog, changeDialog } = dialogSlice.actions;
+export const { activeDialog, desableDialog, changeMousePosition, changeColor } =
+  dialogSlice.actions;
 
 export default dialogSlice.reducer;

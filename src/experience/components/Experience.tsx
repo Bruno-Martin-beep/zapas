@@ -5,7 +5,7 @@ import {
   selectShoeList,
   StandardModel,
 } from "../features/shoeListSlice";
-import { addList, selectcolorsList } from "../features/colorsListSlice";
+import { addColorList, selectcolorsList } from "../features/colorsListSlice";
 import {
   loadFromLocalStorage,
   saveToLocalStorage,
@@ -20,7 +20,7 @@ import Share from "./Share";
 import Checkout from "./Checkout";
 import colors from "../mocks/defaultColors";
 import getContrastTheme from "../utils/getContrastTheme";
-import Dialog from "./Dialog";
+import ContextMenu from "./ContextMenu";
 
 const Experience = () => {
   const dispatch = useDispatch();
@@ -38,9 +38,9 @@ const Experience = () => {
     }
     const colorsList: string[] = loadFromLocalStorage("zapaz-colors");
     if (colorsList) {
-      dispatch(addList(colorsList));
+      dispatch(addColorList(colorsList));
     } else {
-      dispatch(addList(colors));
+      dispatch(addColorList(colors));
     }
     const backgroundStored: string = loadFromLocalStorage("zapaz-background");
     if (backgroundStored) {
@@ -73,7 +73,7 @@ const Experience = () => {
   return (
     <>
       <Loader />
-      <Dialog />
+      <ContextMenu />
       <Navbar
         background={background}
         setBackground={setBackground}
