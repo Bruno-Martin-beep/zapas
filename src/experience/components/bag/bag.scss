@@ -72,6 +72,21 @@
   }
 }
 
+.bag-text.enter {
+  margin: 0;
+  font-size: 0;
+  opacity: 0;
+}
+.bag-text.enter-active {
+  font-size: 1rem;
+  margin: 1.6em;
+  opacity: 1;
+  transition: font-size 0ms 300ms, margin 0ms 300ms, opacity 500ms 300ms; 
+  @include portrait {
+    font-size: 4rem;
+  }
+}
+
 .checkout {
   display: flex;
   justify-content: center;

@@ -52,9 +52,14 @@ const Bag = ({
             Close
           </h3>
         </div>
-        {bag.length === 0 ? (
+        <CSSTransition
+          in={bag.length === 0}
+          timeout={800}
+          unmountOnExit={true}
+          exit={false}
+        >
           <p className="bag-text">Your bag is currently empty.</p>
-        ) : <></>}
+        </CSSTransition>
         <TransitionGroup className="bag-content">
           {bag.map((shoe, index: number) => {
             return (
