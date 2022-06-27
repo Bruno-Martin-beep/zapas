@@ -35,8 +35,6 @@ const Bag = ({
     }
   };
 
-  //TODO Add SwitchTransition
-
   return (
     <CSSTransition
       in={showBag}
