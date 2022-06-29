@@ -7,18 +7,18 @@ import {
   resetColorList,
 } from "../features/colorsListSlice";
 import {
-  selectDialogIsVisible,
-  selectDialogColor,
   desableContextMenu,
-  selectMousePosition,
+  selectContextMenuIsVisible,
+  selectContextMenuMousePosition,
+  selectContextMenuColor,
 } from "../features/contextMenuSlice";
 import { useEffect, useRef } from "react";
 import copyToClipboard from "../utils/copyToClipboard";
 
 const ContextMenu = () => {
-  const isVisible = useSelector(selectDialogIsVisible);
-  const mousePosition = useSelector(selectMousePosition);
-  const color = useSelector(selectDialogColor);
+  const isVisible = useSelector(selectContextMenuIsVisible);
+  const mousePosition = useSelector(selectContextMenuMousePosition);
+  const color = useSelector(selectContextMenuColor);
 
   const dispatch = useDispatch();
 

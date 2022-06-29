@@ -37,11 +37,11 @@ export const contextMenuSlice = createSlice({
 // Selectors
 ///////////////////////////////////////
 
-export const selectDialogIsVisible = (state: RootState) =>
+export const selectContextMenuIsVisible = (state: RootState) =>
   state.contextMenu.isvisible;
 
-export const selectMousePosition = (state: RootState) => state.contextMenu.mousePosition;
-export const selectDialogColor = (state: RootState) => state.contextMenu.color;
+export const selectContextMenuMousePosition = (state: RootState) => state.contextMenu.mousePosition;
+export const selectContextMenuColor = (state: RootState) => state.contextMenu.color;
 
 // Exports
 ///////////////////////////////////////
