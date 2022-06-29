@@ -9,9 +9,9 @@ import {
 import {
   selectDialogIsVisible,
   selectDialogColor,
-  desableDialog,
+  desableContextMenu,
   selectMousePosition,
-} from "../features/dialogSlice";
+} from "../features/contextMenuSlice";
 import { useEffect, useRef } from "react";
 import copyToClipboard from "../utils/copyToClipboard";
 
@@ -62,7 +62,7 @@ const ContextMenu = () => {
         dialog.current &&
         !dialog.current.contains(event.target as HTMLElement)
       ) {
-        dispatch(desableDialog());
+        dispatch(desableContextMenu());
       }
     }
     document.addEventListener("click", handleOutsideClick);
@@ -71,22 +71,22 @@ const ContextMenu = () => {
 
   const handleCopyColor = () => {
     copyToClipboard(color);
-    dispatch(desableDialog());
+    dispatch(desableContextMenu());
   };
 
   const handleRemoveColor = () => {
     dispatch(removeColor(color));
-    dispatch(desableDialog());
+    dispatch(desableContextMenu());
   };
 
   const handleResetColor = () => {
     dispatch(resetColorList());
-    dispatch(desableDialog());
+    dispatch(desableContextMenu());
   };
 
   const handleDeleteAll = () => {
     dispatch(clearColorList());
-    dispatch(desableDialog());
+    dispatch(desableContextMenu());
   };
 
   const preventDefault = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {

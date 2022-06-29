@@ -14,14 +14,14 @@ let initialState: {
   color: "",
 };
 
-export const dialogSlice = createSlice({
-  name: "dialog",
+export const contextMenuSlice = createSlice({
+  name: "contextMenu",
   initialState,
   reducers: {
-    activeDialog: (state) => {
+    activeContextMenu: (state) => {
       state.isvisible = true;
     },
-    desableDialog: (state) => {
+    desableContextMenu: (state) => {
       state.isvisible = false;
     },
     changeMousePosition: (state, action: PayloadAction<[number, number]>) => {
@@ -38,15 +38,15 @@ export const dialogSlice = createSlice({
 ///////////////////////////////////////
 
 export const selectDialogIsVisible = (state: RootState) =>
-  state.dialog.isvisible;
+  state.contextMenu.isvisible;
 
-export const selectMousePosition = (state: RootState) => state.dialog.mousePosition;
-export const selectDialogColor = (state: RootState) => state.dialog.color;
+export const selectMousePosition = (state: RootState) => state.contextMenu.mousePosition;
+export const selectDialogColor = (state: RootState) => state.contextMenu.color;
 
 // Exports
 ///////////////////////////////////////
 
-export const { activeDialog, desableDialog, changeMousePosition, changeColor } =
-  dialogSlice.actions;
+export const { activeContextMenu, desableContextMenu, changeMousePosition, changeColor } =
+contextMenuSlice.actions;
 
-export default dialogSlice.reducer;
+export default contextMenuSlice.reducer;

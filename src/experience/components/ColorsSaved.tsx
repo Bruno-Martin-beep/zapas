@@ -2,10 +2,10 @@ import { MouseEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectcolorsList } from "../features/colorsListSlice";
 import {
-  activeDialog,
+  activeContextMenu,
   changeColor,
   changeMousePosition,
-} from "../features/dialogSlice";
+} from "../features/contextMenuSlice";
 
 const ColorsSaved = ({
   classParent,
@@ -21,7 +21,7 @@ const ColorsSaved = ({
 
   const openContextMenu = (e: MouseEvent) => {
     e.preventDefault();
-    dispatch(activeDialog());
+    dispatch(activeContextMenu());
     dispatch(changeMousePosition([e.clientX, e.clientY]));
     dispatch(changeColor(""));
   };
@@ -29,7 +29,7 @@ const ColorsSaved = ({
   const handleRemove = (e: MouseEvent, color: string) => {
     e.preventDefault();
     e.stopPropagation();
-    dispatch(activeDialog());
+    dispatch(activeContextMenu());
     dispatch(changeMousePosition([e.clientX, e.clientY]));
     dispatch(changeColor(color));
   };
