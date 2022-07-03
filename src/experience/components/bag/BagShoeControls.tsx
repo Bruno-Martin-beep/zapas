@@ -7,8 +7,12 @@ import {
   removeShoe,
   selectShoeList,
 } from "../../features/shoeListSlice";
-import Dialog from "./Dialog";
 import { nanoid } from "nanoid";
+import {
+  activeDialogRemoveShoe,
+  changeRemoveShoeInfo,
+} from "../../features/removeShoeSlice";
+import { MouseEvent } from "react";
 
 const BagShoeControls = ({
   shoe,
@@ -53,26 +57,6 @@ const BagShoeControls = ({
     });
   };
 
-  const handleEditConfirm = () => {
-    setTimeout(() => {
-      handleShoe();
-      dispatch(
-        addShoe({
-          ...shoe,
-          currentMesh: currentModel.currentMesh.index,
-          editing: !shoe.editing,
-        })
-      );
-      dispatch(
-        updateShoe({
-          ...shoe,
-          currentMesh: currentModel.currentMesh.index,
-          editing: !shoe.editing,
-        })
-      );
-    });
-  };
-
   const handleCopy = () => {
     dispatch(
       updateShoe({
@@ -108,6 +92,34 @@ const BagShoeControls = ({
     );
   };
 
+  const checkShoe = (e: MouseEvent) => {
+    e.stopPropagation();
+    const currentShoe = bag.find((shoe) => shoe.index === currentModel.index);
+
+    const hasNoChanges = currentShoe?.meshes.every(
+      (mesh) => mesh.color === currentModel.meshes[mesh.index].color
+    );
+
+    const isDefault = currentModel.meshes.every(
+      (mesh) => mesh.color === "#ffffff"
+    );
+
+    if ((currentShoe && hasNoChanges) || (!currentShoe && isDefault)) {
+      handleEdit();
+      return;
+    }
+
+    setTimeout(() => {
+      dispatch(activeDialogRemoveShoe());
+      dispatch(
+        changeRemoveShoeInfo({
+          shoeID: shoe.index,
+          mousePosition: [e.clientX, e.clientY],
+        })
+      );
+    });
+  };
+
   const handleRemove = () => {
     dispatch(removeShoe(shoe));
   };
@@ -126,10 +138,9 @@ const BagShoeControls = ({
           </>
         ) : (
           <>
-            <Dialog
-              actionDefault={() => handleEdit()}
-              actionConfirm={() => handleEditConfirm()}
-            />
+            <p className="bag-shoe-control" onClick={(e) => checkShoe(e)}>
+              Edit
+            </p>
             <p className="bag-shoe-control" onClick={() => handleCopy()}>
               Copy
             </p>

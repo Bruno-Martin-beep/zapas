@@ -1,12 +1,11 @@
-@use "../../../styles/colors" as *;
-@use "../../../styles/media-queries" as *;
+@use "../../styles/colors" as *;
+@use "../../styles/media-queries" as *;
 
-.question {
+.dialog-removeshoe {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   position: absolute;
-  top: 105%;
   width: 15em;
   height: 5em;
   padding: 0.5em;
@@ -16,6 +15,9 @@
     background-color: t("bg");
   }
   box-shadow: 0px 0px 4em 2em $gray-500-300;
+  transition: top 400ms cubic-bezier(0.25, 1, 0.5, 1),
+    left 400ms cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 100;
   @include portrait {
     width: 60em;
     height: 22em;
@@ -25,27 +27,23 @@
   }
 }
 
-.question.enter {
+.dialog-removeshoe.enter {
   opacity: 0;
 }
-.question.enter-active {
+
+.dialog-removeshoe.enter-active {
   opacity: 1;
   transition: opacity 300ms;
 }
 
-.question.exit {
+.dialog-removeshoe.exit {
   opacity: 1;
 }
-.question.exit-active {
+
+.dialog-removeshoe.exit-active {
   opacity: 0;
   transition: opacity 300ms;
 }
-
-.question > p {
-  @include portrait{
-    font-size: 4em;
-  }
-} 
 
 .question-controls {
   display: flex;
@@ -58,3 +56,4 @@
     font-size: 4em;
   }
 } 
+

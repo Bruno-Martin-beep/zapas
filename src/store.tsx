@@ -3,6 +3,7 @@ import shoeListSlice from "./experience/features/shoeListSlice";
 import modelsListSlice from "./experience/features/modelsListSlice";
 import colorsListSlice from "./experience/features/colorsListSlice";
 import contextMenuSlice from "./experience/features/contextMenuSlice";
+import removeShoeSlice from "./experience/features/removeShoeSlice";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     modelsList: modelsListSlice,
     colorsList: colorsListSlice,
     contextMenu: contextMenuSlice,
+    removeShoe: removeShoeSlice,
   },
 });
 

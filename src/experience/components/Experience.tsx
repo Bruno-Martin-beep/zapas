@@ -21,6 +21,7 @@ import Checkout from "./Checkout";
 import colors from "../mocks/defaultColors";
 import getContrastTheme from "../utils/getContrastTheme";
 import ContextMenu from "./ContextMenu";
+import DialogRemoveShoe from "./DialogRemoveShoe";
 
 const Experience = () => {
   const dispatch = useDispatch();
@@ -74,6 +75,7 @@ const Experience = () => {
     <>
       <Loader />
       <ContextMenu />
+      <DialogRemoveShoe handleShoe={handleShoe} />
       <Navbar
         background={background}
         setBackground={setBackground}
